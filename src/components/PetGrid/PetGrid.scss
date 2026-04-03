@@ -1,39 +1,61 @@
 @use '../../styles/variables' as *;
-@use '../../styles/mixins' as *;
 
 .pet-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
+  gap: clamp(1.5rem, 2vw, 2rem);
+  max-width: 1200px;
+  margin: 10px auto 0;
+
+  > * {
+    animation: petCardIn 0.45s ease both;
+  }
 }
 
 .pet-grid__skeleton {
-  @include card;
-  min-height: 320px;
-  background: linear-gradient(110deg, rgba(240, 253, 244, 0.8) 20%, rgba(255, 255, 255, 0.8) 40%, rgba(240, 253, 244, 0.8) 60%);
+  min-height: 430px;
+  border-radius: 28px;
+  background: linear-gradient(110deg, #f7f8ff 18%, #edf0ff 42%, #f7f8ff 66%);
   background-size: 240% 100%;
+  box-shadow: 0 20px 50px rgba(30, 34, 90, 0.08);
   animation: loadingShimmer 1.3s linear infinite;
 }
 
 .pet-grid__empty {
-  @include card;
-  padding: 1.2rem;
+  max-width: 1200px;
+  margin: 10px auto 0;
+  border-radius: 28px;
+  background: #fff;
+  box-shadow: 0 20px 50px rgba(30, 34, 90, 0.08);
+  padding: 2rem 1.4rem;
   text-align: center;
 
   h2 {
     margin: 0;
-    color: $color-text-primary;
+    color: #1e225a;
+    font-size: clamp(1.35rem, 2.5vw, 1.7rem);
   }
 
   p {
-    margin: 0.45rem 0 0;
-    color: $color-text-secondary;
+    margin: 0.55rem 0 0;
+    color: #6e72a8;
   }
 }
 
 @keyframes loadingShimmer {
   to {
     background-position: -120% 0;
+  }
+}
+
+@keyframes petCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -52,6 +74,11 @@
 @media (max-width: 620px) {
   .pet-grid {
     grid-template-columns: 1fr;
+    margin-top: 10px;
+  }
+
+  .pet-grid__empty {
+    margin-top: 10px;
   }
 }
 

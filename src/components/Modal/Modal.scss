@@ -3,7 +3,7 @@
 .app-modal {
   position: fixed;
   inset: 0;
-  z-index: 70;
+  z-index: 120;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,7 +14,7 @@
   position: absolute;
   inset: 0;
   border: 0;
-  background: rgba(6, 78, 59, 0.45);
+  background: rgba(30, 34, 90, 0.5);
 }
 
 .app-modal__panel {

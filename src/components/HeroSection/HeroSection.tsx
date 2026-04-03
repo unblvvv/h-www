@@ -3,7 +3,7 @@ import './HeroSection.scss';
 
 export function HeroSection() {
   return (
-    <section className="hero" aria-labelledby="hero-title">
+    <section className="hero" aria-labelledby="hero-title" data-header-anchor>
       <div className="hero__layout">
         <div className="hero__content">
           <h1 id="hero-title" className="hero__title">

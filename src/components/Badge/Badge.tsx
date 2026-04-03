@@ -9,7 +9,7 @@ interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 const variantText: Record<BadgeVariant, string> = {
-  available: 'Looking for home',
+  available: 'Available now',
   'in-process': 'In process',
   adopted: 'Adopted',
 };

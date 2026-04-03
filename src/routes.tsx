@@ -1,7 +1,7 @@
 "use client";
 
 import { createBrowserRouter, createMemoryRouter } from 'react-router';
-import { Outlet } from 'react-router';
+import { Outlet, useLocation } from 'react-router';
 import HomePage from './pages/HomePage/HomePage';
 import FindPetPage from './pages/FindPetPage/FindPetPage';
 import AnimalDetailsPage from './pages/AnimalDetails/AnimalDetailsPage';
@@ -15,14 +15,17 @@ import { LoginPage, RegisterPage } from './pages/AuthPages';
 import { AuthProvider } from './features/auth/AuthContext';
 
 function Layout() {
+  const location = useLocation();
+  const isAuthRoute = location.pathname === '/login' || location.pathname === '/register';
+
   return (
     <AuthProvider>
       <div className="app-layout">
-        <Navbar />
+        {!isAuthRoute ? <Navbar /> : null}
         <main className="app-layout__main">
           <Outlet />
         </main>
-        <Footer />
+        {!isAuthRoute ? <Footer /> : null}
       </div>
     </AuthProvider>
   );

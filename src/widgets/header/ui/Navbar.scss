@@ -5,7 +5,7 @@
   top: 0;
   z-index: 40;
   background: rgba(10, 20, 88, 0.88);
-  border-bottom: 1px solid $color-border;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
   backdrop-filter: blur(8px);
 }
 
@@ -34,7 +34,7 @@
   gap: 0.55rem;
   font-weight: 700;
   text-decoration: none;
-  color: $color-text-primary;
+  color: #fff;
 }
 
 .site-brand__logo {
@@ -51,7 +51,7 @@
   margin-top: 12px;
   padding-inline: 1.4rem;
   border-radius: 18px;
-  background: rgba(30, 34, 90, 0.10);
+  background: rgba(30, 34, 90, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.24);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -76,21 +76,20 @@
   gap: 1.45rem;
 
   a {
-    color: $color-text-secondary;
+    color: rgba(255, 255, 255, 0.76);
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.2s ease;
+    transition: color 0.35s ease;
 
     &:hover,
     &.is-active {
-      color: $color-accent-hover;
+      color: #fff;
     }
   }
 }
 
 .site-header--hero .site-nav__links a {
   color: rgba(255, 255, 255, 0.78);
-  transition: color 0.35s ease;
 
   &:hover,
   &.is-active {
@@ -185,7 +184,7 @@
 
 .profile-chip--active {
   border-color: $color-accent;
-  background: rgba(34, 197, 94, 0.12);
+  background: rgba(99, 103, 255, 0.14);
 }
 
 @media (max-width: 900px) {
@@ -211,4 +210,3 @@
     padding-inline: 1rem;
   }
 }
-

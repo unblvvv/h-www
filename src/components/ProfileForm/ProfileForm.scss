@@ -1,26 +1,39 @@
-@use '../../styles/variables' as *;
-@use '../../styles/mixins' as *;
-
 .profile-form {
-  @include card;
-  padding: 1.1rem;
+  background: #fff;
+  border: 1px solid #edf0ff;
+  border-radius: 28px;
+  box-shadow: 0 20px 60px rgba(30, 34, 90, 0.08);
+  padding: 1.35rem;
   display: grid;
-  gap: 0.95rem;
+  gap: 1rem;
 
   label {
     display: grid;
     gap: 0.35rem;
-    color: $color-text-primary;
+    color: #1e225a;
     font-weight: 600;
 
     p {
       margin: 0;
-      border: 1px solid $color-border;
-      border-radius: $radius-md;
-      background: $color-input-bg;
-      color: $color-text-secondary;
-      padding: 0.7rem 0.85rem;
+      min-height: 52px;
+      border: 0;
+      border-radius: 999px;
+      background: #f1f3ff;
+      color: #3f467f;
+      padding: 0.9rem 1rem;
       font-weight: 500;
+    }
+  }
+
+  .app-input {
+    min-height: 52px;
+    border: 0;
+    border-radius: 999px;
+    background: #f1f3ff;
+
+    &:focus-visible {
+      background: #e8ebff;
+      box-shadow: 0 0 0 3px rgba(99, 103, 255, 0.2);
     }
   }
 }
@@ -29,6 +42,10 @@
   display: flex;
   justify-content: flex-end;
   gap: 0.6rem;
+  flex-wrap: wrap;
+
+  .app-button {
+    min-height: 48px;
+    border-radius: 999px;
+  }
 }
-
-

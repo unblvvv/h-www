@@ -4,11 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c571c0de-0bf7-4d94-b18f-bed227e6aee1" name="Changes" comment="New site design">
+    <list default="true" id="c571c0de-0bf7-4d94-b18f-bed227e6aee1" name="Changes" comment="Fixed toolbar visibility">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/assets/index-CVC6i087.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/assets/index-D1aXuC5c.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AdminAnimalForm/AdminAnimalForm.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdminAnimalForm/AdminAnimalForm.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AnimalCard/AnimalCard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AnimalCard/AnimalCard.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AnimalCard/AnimalCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AnimalCard/AnimalCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Badge/Badge.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Badge/Badge.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Badge/Badge.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Badge/Badge.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Button/Button.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Button/Button.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DonationForm/DonationForm.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DonationForm/DonationForm.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FilterBar/FilterBar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FilterBar/FilterBar.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FilterBar/FilterBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FilterBar/FilterBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HeroSection/HeroSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HeroSection/HeroSection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Input/Input.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Input/Input.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Modal/Modal.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Modal/Modal.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PetGrid/PetGrid.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PetGrid/PetGrid.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ProfileForm/ProfileForm.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfileForm/ProfileForm.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Textarea/Textarea.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Textarea/Textarea.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/AdminPage/AdminPage.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdminPage/AdminPage.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/AdminPage/AdminPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdminPage/AdminPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/AdopFormPage/AdoptionFormPage.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdopFormPage/AdoptionFormPage.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/AnimalDetails/AnimalDetailsPage.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AnimalDetails/AnimalDetailsPage.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/AnimalDetails/AnimalDetailsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AnimalDetails/AnimalDetailsPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/AuthPages.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AuthPages.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/DonatePage/DonatePage.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/DonatePage/DonatePage.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/FindPetPage/FindPetPage.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/FindPetPage/FindPetPage.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/FindPetPage/FindPetPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/FindPetPage/FindPetPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ProfilePage/ProfilePage.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ProfilePage/ProfilePage.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/_variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/main.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/widgets/header/ui/Navbar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/header/ui/Navbar.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/widgets/header/ui/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/header/ui/Navbar.tsx" afterDir="false" />
     </list>
@@ -19,6 +44,13 @@
   </component>
   <component name="EmbeddingIndexingInfo">
     <option name="cachedIndexableFilesCount" value="169" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -47,26 +79,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;C:/Users/Admin/AppData/Roaming/JetBrains/WebStorm2025.3/node/versions/20.15.0/node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Admin\\WebstormProjects\\dnipro_animals\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "JavaScript Debug.index.html.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "git-widget-placeholder": "main",
+    "javascript.preferred.runtime.type.id": "node",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "C:/Users/Admin/AppData/Roaming/JetBrains/WebStorm2025.3/node/versions/20.15.0/node",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\Users\\Admin\\WebstormProjects\\dnipro_animals\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\WebstormProjects\dnipro_animals" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -116,7 +154,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775207273568</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Fixed toolbar visibility">
+      <option name="closed" value="true" />
+      <created>1775219362289</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1775219362289</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,6 +182,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="New commit" />
     <MESSAGE value="File structure changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="File structure changes" />
+    <MESSAGE value="Fixed toolbar visibility" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed toolbar visibility" />
   </component>
 </project>

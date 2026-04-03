@@ -69,65 +69,67 @@ export default function AdminPage() {
   return (
     <main className="page admin-page">
       <div className="app-container">
-        <header className="admin-page__head">
-          <div>
-            <h1 className="section-title">Admin: manage animals</h1>
-            <p className="section-subtitle">Create, edit, and remove animal cards visible in the adoption catalog.</p>
-          </div>
-          <Button onClick={handleOpenCreate}>
-            <Plus size={16} />
-            Add animal
-          </Button>
-        </header>
+        <section className="admin-page__panel">
+          <header className="admin-page__head" data-header-anchor>
+            <div>
+              <h1 className="section-title">Admin: manage animals</h1>
+              <p className="section-subtitle">Create, edit, and remove animal cards visible in the adoption catalog.</p>
+            </div>
+            <Button onClick={handleOpenCreate}>
+              <Plus size={16} />
+              Add animal
+            </Button>
+          </header>
 
-        {showSuccess ? (
-          <p className="admin-page__success" role="status">
-            <CheckCircle2 size={16} /> Saved successfully
-          </p>
-        ) : null}
+          {showSuccess ? (
+            <p className="admin-page__success" role="status">
+              <CheckCircle2 size={16} /> Saved successfully
+            </p>
+          ) : null}
 
-        <section className="admin-page__table-wrap" aria-label="Admin animal list">
-          <table>
-            <thead>
-              <tr>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Age</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {animals.map((animal) => (
-                <tr key={animal.id}>
-                  <td>
-                    <ImageWithFallback
-                      src={animal.image}
-                      alt={`${animal.name} profile image in admin list`}
-                      className="admin-page__thumb"
-                    />
-                  </td>
-                  <td>{animal.name}</td>
-                  <td>{animal.type}</td>
-                  <td>{animal.age}</td>
-                  <td>
-                    <Badge variant={animal.status} />
-                  </td>
-                  <td>
-                    <div className="admin-page__actions">
-                      <button aria-label={`Edit ${animal.name}`} onClick={() => handleOpenEdit(animal)}>
-                        <Pencil size={16} />
-                      </button>
-                      <button aria-label={`Delete ${animal.name}`} onClick={() => handleDelete(animal.id)}>
-                        <Trash2 size={16} />
-                      </button>
-                    </div>
-                  </td>
+          <section className="admin-page__table-wrap" aria-label="Admin animal list">
+            <table>
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Name</th>
+                  <th>Type</th>
+                  <th>Age</th>
+                  <th>Status</th>
+                  <th>Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {animals.map((animal) => (
+                  <tr key={animal.id}>
+                    <td>
+                      <ImageWithFallback
+                        src={animal.image}
+                        alt={`${animal.name} profile image in admin list`}
+                        className="admin-page__thumb"
+                      />
+                    </td>
+                    <td>{animal.name}</td>
+                    <td>{animal.type}</td>
+                    <td>{animal.age}</td>
+                    <td>
+                      <Badge variant={animal.status} />
+                    </td>
+                    <td>
+                      <div className="admin-page__actions">
+                        <button aria-label={`Edit ${animal.name}`} onClick={() => handleOpenEdit(animal)}>
+                          <Pencil size={16} />
+                        </button>
+                        <button aria-label={`Delete ${animal.name}`} onClick={() => handleDelete(animal.id)}>
+                          <Trash2 size={16} />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
         </section>
       </div>
 

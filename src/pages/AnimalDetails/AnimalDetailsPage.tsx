@@ -11,6 +11,15 @@ export default function AnimalDetailsPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const animal = mockAnimals.find((pet) => pet.id === id);
+  const petTypeLabel = animal?.type === 'dog' ? 'Dog' : 'Cat';
+  const petAgeLabel = animal?.age === 'young' ? 'Young' : 'Adult';
+  const petGenderLabel = animal?.gender === 'female' ? 'Female' : 'Male';
+  const statusHint =
+    animal?.status === 'available'
+      ? 'Ready to go home today'
+      : animal?.status === 'in-process'
+        ? 'A family is currently applying'
+        : 'Already happily adopted';
 
   useSeo({
     title: animal ? `${animal.name} | Rescue Pet Details` : 'Pet details | Animal Shelter',
@@ -49,7 +58,7 @@ export default function AnimalDetailsPage() {
               className="animal-details-page__main-image"
             />
             <div className="animal-details-page__thumbs">
-              {[1, 2].map((thumb) => (
+              {[1, 2, 3].map((thumb) => (
                 <ImageWithFallback
                   key={thumb}
                   src={animal.image}
@@ -61,18 +70,38 @@ export default function AnimalDetailsPage() {
           </section>
 
           <section className="animal-details-page__info">
-            <header>
+            <header className="animal-details-page__title-wrap">
               <h1>{animal.name}</h1>
-              <p>
-                {animal.age === 'young' ? 'Young' : 'Adult'} {animal.type} / {animal.gender}
-              </p>
+              <p>{petTypeLabel} - {petAgeLabel} - {petGenderLabel}</p>
             </header>
 
-            <Badge variant={animal.status} />
+            <section className="animal-details-page__status-box" aria-label="Adoption status">
+              <Badge variant={animal.status} />
+              <p>{statusHint}</p>
+            </section>
 
-            <section>
+            <section className="animal-details-page__about">
               <h2>About this pet</h2>
               <p>{animal.description}</p>
+            </section>
+
+            <section className="animal-details-page__facts" aria-label="Pet facts">
+              <div>
+                <span>Type</span>
+                <strong>{petTypeLabel}</strong>
+              </div>
+              <div>
+                <span>Age</span>
+                <strong>{petAgeLabel}</strong>
+              </div>
+              <div>
+                <span>Gender</span>
+                <strong>{petGenderLabel}</strong>
+              </div>
+              <div>
+                <span>Status</span>
+                <strong>{animal.status === 'available' ? 'Available' : animal.status === 'in-process' ? 'In process' : 'Adopted'}</strong>
+              </div>
             </section>
 
             <section className="animal-details-page__actions" aria-label="Pet actions">

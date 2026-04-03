@@ -1,5 +1,7 @@
-﻿@use '../../styles/variables' as *;
-@use '../../styles/mixins' as *;
+.page.donate-page {
+  padding: 120px 0 96px;
+  background: linear-gradient(180deg, #eef0ff 0%, #ffffff 100%);
+}
 
 .donate-page__layout {
   display: grid;
@@ -9,22 +11,35 @@
 }
 
 .donate-page__intro {
-  @include card;
-  padding: 1.2rem;
+  padding: 1.35rem;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #4f52e8 0%, #6367ff 65%, #7d83ff 100%);
+  box-shadow: 0 20px 60px rgba(30, 34, 90, 0.16);
 
   svg {
-    color: $color-accent;
+    color: #ffb272;
+  }
+
+  .section-title {
+    color: #fff;
+  }
+
+  .section-subtitle {
+    color: rgba(255, 255, 255, 0.78);
   }
 }
 
 .donate-page__form-wrap {
-  @include card;
-  padding: 1.2rem;
+  border-radius: 30px;
+  background: #fff;
+  border: 1px solid #edf0ff;
+  box-shadow: 0 20px 60px rgba(30, 34, 90, 0.08);
+  padding: 1.35rem;
 }
 
 .donate-page__processing {
-  margin: 0.8rem 0 0;
-  color: $color-text-secondary;
+  margin: 0.85rem 0 0;
+  color: #6e72a8;
 }
 
 .donate-page__success-wrap {
@@ -33,15 +48,18 @@
 }
 
 .donate-page__success-card {
-  @include card;
-  max-width: 620px;
-  padding: 1.3rem;
+  max-width: 660px;
+  border-radius: 30px;
+  background: #fff;
+  border: 1px solid #edf0ff;
+  box-shadow: 0 20px 60px rgba(30, 34, 90, 0.08);
+  padding: 1.6rem;
   text-align: center;
   display: grid;
-  gap: 0.7rem;
+  gap: 0.8rem;
 
   svg {
-    color: $color-success;
+    color: #6367ff;
     justify-self: center;
   }
 
@@ -50,17 +68,28 @@
     margin: 0;
   }
 
+  h1 {
+    color: #1e225a;
+  }
+
   p {
-    color: $color-text-secondary;
+    color: #6e72a8;
     line-height: 1.6;
+  }
+
+  .app-button {
+    min-height: 48px;
+    border-radius: 999px;
+    justify-self: center;
   }
 }
 
 @media (max-width: 920px) {
+  .page.donate-page {
+    padding-top: 108px;
+  }
+
   .donate-page__layout {
     grid-template-columns: 1fr;
   }
 }
-
-
-

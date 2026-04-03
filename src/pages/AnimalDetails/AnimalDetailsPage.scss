@@ -1,45 +1,58 @@
-﻿@use '../../styles/variables' as *;
-@use '../../styles/mixins' as *;
+.page.animal-details-page {
+  padding: 110px 0 96px;
+  background: linear-gradient(180deg, #eef0ff 0%, #ffffff 100%);
+}
 
 .animal-details-page__back-link {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  color: $color-accent-hover;
+  color: #4f52e8;
   text-decoration: none;
-  margin-bottom: 0.9rem;
+  margin-bottom: 0.95rem;
+  font-weight: 600;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #3d41c9;
+  }
 }
 
 .animal-details-page__card {
-  @include card;
-  padding: 1rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
   gap: 1rem;
+  padding: clamp(0.9rem, 2.2vw, 1.3rem);
+  border-radius: 32px;
+  background: #fff;
+  border: 1px solid #edf0ff;
+  box-shadow: 0 20px 60px rgba(30, 34, 90, 0.1);
 }
 
 .animal-details-page__gallery {
   display: grid;
-  gap: 0.6rem;
+  grid-template-rows: minmax(0, 1fr) 132px;
+  gap: 0.65rem;
+  height: clamp(470px, 64vh, 620px);
 }
 
 .animal-details-page__main-image {
-  border-radius: $radius-lg;
+  height: 100%;
   width: 100%;
-  aspect-ratio: 1.15 / 1;
+  border-radius: 24px;
   object-fit: cover;
 }
 
 .animal-details-page__thumbs {
   display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.55rem;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .animal-details-page__thumb-image {
+  height: 100%;
   width: 100%;
-  aspect-ratio: 1.2 / 1;
-  border-radius: $radius-md;
+  border-radius: 14px;
   object-fit: cover;
 }
 
@@ -47,23 +60,83 @@
   display: grid;
   align-content: start;
   gap: 0.9rem;
+  padding: 0.25rem 0.2rem 0.15rem;
+}
 
+.animal-details-page__title-wrap {
   h1 {
     margin: 0;
-    color: $color-text-primary;
-    font-size: clamp(1.6rem, 2.9vw, 2.35rem);
+    color: #1e225a;
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    font-size: clamp(2rem, 3.8vw, 3.1rem);
   }
 
-  p,
-  h2 {
-    margin: 0.35rem 0 0;
-    color: $color-text-secondary;
+  p {
+    margin: 0.45rem 0 0;
+    color: #6e72a8;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+}
+
+.animal-details-page__status-box {
+  display: grid;
+  gap: 0.45rem;
+  padding: 0.85rem 0.9rem;
+  border-radius: 18px;
+  background: #f4f6ff;
+
+  .app-badge {
+    justify-self: start;
   }
 
+  p {
+    margin: 0;
+    color: #6e72a8;
+    font-size: 0.92rem;
+  }
+}
+
+.animal-details-page__about {
   h2 {
-    margin-top: 0;
-    color: $color-text-primary;
-    font-size: 1.05rem;
+    margin: 0;
+    color: #1e225a;
+    font-size: 1.1rem;
+  }
+
+  p {
+    margin: 0.45rem 0 0;
+    color: #6e72a8;
+    line-height: 1.56;
+  }
+}
+
+.animal-details-page__facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+
+  div {
+    min-height: 66px;
+    border-radius: 14px;
+    background: #f6f8ff;
+    padding: 0.55rem 0.65rem;
+    display: grid;
+    align-content: center;
+    gap: 0.18rem;
+
+    span {
+      color: #7980b0;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    strong {
+      color: #1e225a;
+      font-size: 1rem;
+    }
   }
 }
 
@@ -71,6 +144,33 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.65rem;
+
+  .app-button {
+    min-height: 48px;
+    border-radius: 999px;
+  }
+
+  .app-button--primary {
+    background: #6367ff;
+    border-color: #6367ff;
+
+    &:hover:not(:disabled) {
+      background: #4f52e8;
+      border-color: #4f52e8;
+    }
+  }
+
+  .app-button--secondary {
+    background: #f3f5ff;
+    border-color: #dfe4ff;
+    color: #3d41c9;
+
+    &:hover:not(:disabled) {
+      border-color: #cdd5ff;
+      color: #3438bd;
+      background: #edf0ff;
+    }
+  }
 }
 
 .animal-details-page__not-found {
@@ -80,17 +180,39 @@
   gap: 0.7rem;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 980px) {
   .animal-details-page__card {
     grid-template-columns: 1fr;
   }
+
+  .animal-details-page__gallery {
+    height: clamp(420px, 58vh, 560px);
+  }
 }
 
-@media (max-width: 620px) {
+@media (max-width: 760px) {
+  .page.animal-details-page {
+    padding-top: 102px;
+  }
+
+  .animal-details-page__thumbs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .animal-details-page__gallery {
+    grid-template-rows: minmax(0, 1fr) 112px;
+    height: auto;
+  }
+
+  .animal-details-page__main-image {
+    min-height: 300px;
+  }
+
+  .animal-details-page__facts {
+    grid-template-columns: 1fr;
+  }
+
   .animal-details-page__actions {
     grid-template-columns: 1fr;
   }
 }
-
-
-

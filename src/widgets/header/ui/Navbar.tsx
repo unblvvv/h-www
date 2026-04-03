@@ -8,23 +8,26 @@ import './Navbar.scss';
 
 export function Navbar() {
   const location = useLocation();
-  const isHome = location.pathname === '/';
+  const isHeroStyledPage = true;
   const { isAuthenticated, user } = useAuth();
   const [isOnLightBackground, setIsOnLightBackground] = useState(false);
 
   useEffect(() => {
-    if (!isHome) {
-      setIsOnLightBackground(false);
-      return;
-    }
-
     const updateHeaderContrast = () => {
-      const heroEnd = window.innerHeight - 96;
+      const anchor = document.querySelector<HTMLElement>('[data-header-anchor]');
+      if (!anchor) {
+        setIsOnLightBackground(true);
+        return;
+      }
+
+      const anchorTop = anchor.getBoundingClientRect().top + window.scrollY - 96;
+      const anchorBottom = anchorTop + anchor.offsetHeight;
+
       setIsOnLightBackground((prev) => {
-        if (!prev && window.scrollY > heroEnd + 24) {
+        if (!prev && (window.scrollY < anchorTop - 24 || window.scrollY > anchorBottom + 24)) {
           return true;
         }
-        if (prev && window.scrollY < heroEnd - 24) {
+        if (prev && window.scrollY > anchorTop + 24 && window.scrollY < anchorBottom - 24) {
           return false;
         }
         return prev;
@@ -39,59 +42,59 @@ export function Navbar() {
       window.removeEventListener('scroll', updateHeaderContrast);
       window.removeEventListener('resize', updateHeaderContrast);
     };
-  }, [isHome]);
+  }, [location.pathname]);
 
-  const isActive = (path: string) => {
-    if (path === '/find-pet' && location.pathname.startsWith('/animal/')) {
+  const isActive = (routePath: string) => {
+    if (routePath === '/find-pet' && location.pathname.startsWith('/animal/')) {
       return true;
     }
-    return location.pathname === path;
+    return location.pathname === routePath;
   };
 
   return (
-    <>
-      <header className={`site-header${isHome ? ' site-header--hero' : ''}${isHome && isOnLightBackground ? ' site-header--hero-light' : ''}`}>
-        <nav className="site-nav app-container" aria-label="Main navigation">
-          <Link to="/" className="site-brand" aria-label="Animal shelter home page">
-            <img src="/logo.png" alt="" className="site-brand__logo" />
-            <span>Dnipro Animals</span>
+    <header
+      className={`site-header${isHeroStyledPage ? ' site-header--hero' : ''}${isHeroStyledPage && isOnLightBackground ? ' site-header--hero-light' : ''}`}
+    >
+      <nav className="site-nav app-container" aria-label="Main navigation">
+        <Link to="/" className="site-brand" aria-label="Animal shelter home page">
+          <img src="/logo.png" alt="" className="site-brand__logo" />
+          <span>Dnipro Animals</span>
+        </Link>
+
+        <div className="site-nav__links">
+          <Link to="/" className={isActive('/') ? 'is-active' : ''}>
+            Home
           </Link>
+          <Link to="/find-pet" className={isActive('/find-pet') ? 'is-active' : ''}>
+            Find a pet
+          </Link>
+          <Link to="/donate" className={isActive('/donate') ? 'is-active' : ''}>
+            Donate
+          </Link>
+          <Link to="/admin" className={isActive('/admin') ? 'is-active' : ''}>
+            Admin
+          </Link>
+        </div>
 
-          <div className="site-nav__links">
-            <Link to="/" className={isActive('/') ? 'is-active' : ''}>
-              Home
+        <div className="site-nav__auth">
+          {isAuthenticated ? (
+            <Link to="/profile" className={isActive('/profile') ? 'profile-chip profile-chip--active' : 'profile-chip'}>
+              <User size={16} />
+              <span>{user?.name || 'Profile'}</span>
             </Link>
-            <Link to="/find-pet" className={isActive('/find-pet') ? 'is-active' : ''}>
-              Find a pet
-            </Link>
-            <Link to="/donate" className={isActive('/donate') ? 'is-active' : ''}>
-              Donate
-            </Link>
-            <Link to="/admin" className={isActive('/admin') ? 'is-active' : ''}>
-              Admin
-            </Link>
-          </div>
-
-          <div className="site-nav__auth">
-            {isAuthenticated ? (
-              <Link to="/profile" className={isActive('/profile') ? 'profile-chip profile-chip--active' : 'profile-chip'}>
-                <User size={16} />
-                <span>{user?.name || 'Profile'}</span>
+          ) : (
+            <>
+              <Link to="/register" className={isActive('/register') ? 'signup-chip signup-chip--active' : 'signup-chip'}>
+                Sign up
               </Link>
-            ) : (
-              <>
-                <Link to="/register" className={isActive('/register') ? 'signup-chip signup-chip--active' : 'signup-chip'}>
-                  Sign up
-                </Link>
-                <Link to="/login" className={isActive('/login') ? 'login-chip login-chip--active' : 'login-chip'}>
-                  <LogIn size={16} />
-                  <span>Log in</span>
-                </Link>
-              </>
-            )}
-          </div>
-        </nav>
-      </header>
-    </>
+              <Link to="/login" className={isActive('/login') ? 'login-chip login-chip--active' : 'login-chip'}>
+                <LogIn size={16} />
+                <span>Log in</span>
+              </Link>
+            </>
+          )}
+        </div>
+      </nav>
+    </header>
   );
 }
