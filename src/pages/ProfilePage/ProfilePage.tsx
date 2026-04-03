@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { UserCircle2 } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import { Button } from '../../components/Button/Button';
-import { ProfileForm } from '../../components/ProfileForm/ProfileForm';
+import { ProfileForm } from './ui/ProfileForm/ProfileForm';
 import { useAuth } from '../../features/auth/AuthContext';
 import './ProfilePage.scss';
 

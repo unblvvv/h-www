@@ -1,7 +1,7 @@
 import { useSeo } from '../../shared/utils/useSeo';
-import { HeroSection } from '../../components/HeroSection/HeroSection';
-import { AboutSection } from '../../components/AboutSection/AboutSection';
-import { FeaturedPetsSection } from '../../components/FeaturedPetsSection/FeaturedPetsSection';
+import { HeroSection } from './ui/HeroSection/HeroSection';
+import { AboutSection } from './ui/AboutSection/AboutSection';
+import { FeaturedPetsSection } from './ui/FeaturedPetsSection/FeaturedPetsSection';
 import { mockAnimals } from '../../shared/data/mockAnimals';
 import './HomePage.scss';
 

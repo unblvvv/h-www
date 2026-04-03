@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { mockAnimals } from '../../shared/data/mockAnimals';
 import { AnimalAge, AnimalStatus, AnimalType } from '../../shared/types/animal';
-import { FilterBar } from '../../components/FilterBar/FilterBar';
-import { PetGrid } from '../../components/PetGrid/PetGrid';
+import { FilterBar } from '../../features/animal-filter/FilterBar/FilterBar';
+import { PetGrid } from './ui/PetGrid/PetGrid';
 import { ImageWithFallback } from '../../components/figma/ImageWithFallback';
 import { useSeo } from '../../shared/utils/useSeo';
 import './FindPetPage.scss';

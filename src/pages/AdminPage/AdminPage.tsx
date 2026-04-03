@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { CheckCircle2, Eye, LayoutGrid, List, Pencil, Plus, Search, SlidersHorizontal, Trash2 } from 'lucide-react';
-import { AdminAnimalForm } from '../../components/AdminAnimalForm/AdminAnimalForm';
+import { AdminAnimalForm } from './ui/AdminAnimalForm/AdminAnimalForm';
 import { Badge } from '../../components/Badge/Badge';
 import { Button } from '../../components/Button/Button';
 import { Modal } from '../../components/Modal/Modal';
