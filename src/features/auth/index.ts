@@ -1,3 +1,3 @@
 export { AuthProvider, useAuth } from './AuthContext';
-export { LoginModal } from './ui/LoginModal';
-export { RegisterModal } from './ui/RegisterModal';
+export { LoginModal } from './ui/Login/LoginModal';
+export { RegisterModal } from './ui/Register/RegisterModal';
