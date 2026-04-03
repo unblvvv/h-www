@@ -5,6 +5,7 @@ import { useSeo } from '../../shared/utils/useSeo';
 import { DonationForm } from '../../features/donate/DonationForm/DonationForm';
 import { Button } from '../../components/Button/Button';
 import './DonatePage.scss';
+const monoPayUrl = '/mono_pay.png';
 
 export default function DonatePage() {
   useSeo({
@@ -52,9 +53,12 @@ export default function DonatePage() {
 
   return (
     <main className="page donate-page">
-      <div className="app-container donate-page__layout">
+      <div
+        className="app-container donate-page__layout"
+        // style={{ backgroundImage: `url(${monoPayUrl})` }}
+      >
         <header className="donate-page__intro">
-          <Heart size={30} />
+          <img src={monoPayUrl} alt="Monobank Pay" style={{height:"30px",width:"30px"}}/>
           <h1 className="section-title">Підтримайте врятованих тварин</h1>
           <p className="section-subtitle">
             Кожен донат іде на необхідну допомогу: візити до ветеринара, ліки, корм і пошук безпечних домівок.
@@ -66,7 +70,7 @@ export default function DonatePage() {
           {processing ? (
             <div className="donate-page__gateway">
               <div className="donate-page__gateway-badge" aria-hidden="true">
-                mono
+                <img src={monoPayUrl} alt="Monobank Pay" />
               </div>
               <div>
                 <p>Monobank Pay</p>

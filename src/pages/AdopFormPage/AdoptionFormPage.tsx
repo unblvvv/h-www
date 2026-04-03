@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router';
 import { CheckCircle2 } from 'lucide-react';
 import { useAuth } from '../../features/auth/AuthContext';
 import { apiRequest } from '../../shared/lib/api';
-import { Animal, AnimalAge, AnimalStatus, AnimalType } from '../../shared/types/animal';
+import { Animal, AnimalAge, AnimalStatus } from '../../shared/types/animal';
 import { Button } from '../../components/Button/Button';
 import { Input } from '../../components/Input/Input';
 import { Textarea } from '../../components/Textarea/Textarea';
@@ -38,13 +38,6 @@ interface CreateApplicationRequest {
 interface CreateApplicationResponse {
   message?: string;
 }
-
-const normalizeType = (value?: string): AnimalType => {
-  const normalized = value?.trim().toLowerCase();
-  if (normalized === 'cat') return 'cat';
-  if (normalized === 'dog') return 'dog';
-  return 'unknown';
-};
 
 const normalizeAge = (value?: string): AnimalAge => {
   const trimmed = value?.trim();
@@ -121,9 +114,8 @@ export default function AdoptionFormPage() {
         const mapped = items.map((item, index) => ({
           id: item.ID ?? `${index}`,
           name: item.Name ?? 'Без імені',
-          type: normalizeType(undefined),
           age: normalizeAge(item.Age),
-          gender: normalizeSex(item.Sex),
+          sex: normalizeSex(item.Sex),
           description: item.Description ?? '',
           image: item.PhotoURLs ?? [],
           status: normalizeStatus(item.Status),

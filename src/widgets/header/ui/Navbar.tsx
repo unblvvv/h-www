@@ -6,33 +6,12 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '@/features/auth/AuthContext';
 import './Navbar.scss';
 
-type NotificationType = 'adoption' | 'donation' | 'system' | 'message';
-
-interface NotificationItem {
-  id: string;
-  type: NotificationType;
-  title: string;
-  text: string;
-  time: string;
-  isRead: boolean;
-}
-
 export function Navbar() {
   const location = useLocation();
   const isHeroStyledPage = true;
   const { isAuthenticated, isAdmin, user } = useAuth();
   const [isOnLightBackground, setIsOnLightBackground] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
-  const [notifications] = useState<NotificationItem[]>([
-    {
-      id: 'adoption-demo-1',
-      type: 'adoption',
-      title: 'Нова заявка на усиновлення',
-      text: 'Луна отримала нову заявку на усиновлення.',
-      time: '5 хв тому',
-      isRead: false,
-    },
-  ]);
 
   useEffect(() => {
     const updateHeaderContrast = () => {
@@ -91,9 +70,6 @@ export function Navbar() {
     });
   };
 
-  const unreadCount = notifications.filter((notification) => !notification.isRead).length;
-
-
   return (
     <header
       className={`site-header${isHeroStyledPage ? ' site-header--hero' : ''}${isHeroStyledPage && isOnLightBackground ? ' site-header--hero-light' : ''}`}
@@ -134,11 +110,6 @@ export function Navbar() {
                     strokeLinejoin="round"
                   />
                 </svg>
-                {unreadCount > 0 ? (
-                  <span className="notifications-chip__badge" aria-label={`${unreadCount} непрочитаних сповіщень`}>
-                    {unreadCount > 9 ? '9+' : unreadCount}
-                  </span>
-                ) : null}
               </Link>
             </div>
           ) : null}

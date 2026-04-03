@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useSeo } from '../../shared/utils/useSeo';
 import { apiRequest } from '../../shared/lib/api';
-import { Animal, AnimalAge, AnimalStatus, AnimalType } from '../../shared/types/animal';
+import { Animal, AnimalAge, AnimalStatus } from '../../shared/types/animal';
 import { Badge } from '../../components/Badge/Badge';
 import { Button } from '../../components/Button/Button';
 import { ImageWithFallback } from '../../components/figma/ImageWithFallback';
@@ -25,13 +25,6 @@ interface ApiAnimal {
 interface ApiAnimalListResponse {
   items?: ApiAnimal[];
 }
-
-const normalizeType = (value?: string): AnimalType => {
-  const normalized = value?.trim().toLowerCase();
-  if (normalized === 'cat') return 'cat';
-  if (normalized === 'dog') return 'dog';
-  return 'unknown';
-};
 
 const normalizeAge = (value?: string): AnimalAge => {
   const trimmed = value?.trim();
@@ -62,8 +55,6 @@ export default function AnimalDetailsPage() {
   const [animal, setAnimal] = useState<Animal | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [activePhotoIndex, setActivePhotoIndex] = useState(0);
-  const petTypeLabel =
-    animal?.type === 'dog' ? 'Собака' : animal?.type === 'cat' ? 'Кіт' : 'Невідомо';
   const petAgeLabel =
     animal?.age === 'young'
       ? 'Молодий'
@@ -71,11 +62,11 @@ export default function AnimalDetailsPage() {
         ? 'Дорослий'
         : animal?.age || 'Невідомо';
   const petGenderLabel =
-    animal?.gender === 'female'
+    animal?.sex === 'female'
       ? 'Самка'
-      : animal?.gender === 'male'
+      : animal?.sex === 'male'
         ? 'Самець'
-        : animal?.gender || 'Невідомо';
+        : animal?.sex || 'Невідомо';
   const statusLabel =
     animal?.status === 'available'
       ? 'доступний'
@@ -92,7 +83,7 @@ export default function AnimalDetailsPage() {
   useSeo({
     title: animal ? `${animal.name} | Деталі врятованого улюбленця` : 'Деталі улюбленця | Притулок для тварин',
     description: animal
-      ? `${animal.name} — ${petAgeLabel.toLowerCase()} ${petTypeLabel.toLowerCase()}, зараз статус: ${statusLabel}. Дізнайтеся більше та подайте заявку на усиновлення.`
+      ? `${animal.name} — ${petAgeLabel.toLowerCase()}, зараз статус: ${statusLabel}. Дізнайтеся більше та подайте заявку на усиновлення.`
       : 'Перегляньте деталі улюбленця та подайте заявку на усиновлення.',
   });
 
@@ -149,9 +140,8 @@ export default function AnimalDetailsPage() {
         const mapped = items.map((item, index) => ({
           id: item.ID ?? `${index}`,
           name: item.Name ?? 'Без імені',
-          type: normalizeType(undefined),
           age: normalizeAge(item.Age),
-          gender: normalizeSex(item.Sex),
+          sex: normalizeSex(item.Sex),
           description: item.Description ?? '',
           image: item.PhotoURLs ?? [],
           status: normalizeStatus(item.Status),
@@ -256,7 +246,7 @@ export default function AnimalDetailsPage() {
           <section className="animal-details-page__info">
             <header className="animal-details-page__title-wrap">
               <h1>{animal.name}</h1>
-              <p>{petTypeLabel} - {petAgeLabel} - {petGenderLabel}</p>
+              <p>{petAgeLabel} - {petGenderLabel}</p>
             </header>
 
             <section className="animal-details-page__status-box" aria-label="Статус усиновлення">
@@ -270,10 +260,6 @@ export default function AnimalDetailsPage() {
             </section>
 
             <section className="animal-details-page__facts" aria-label="Факти про улюбленця">
-              <div>
-                <span>Тип</span>
-                <strong>{petTypeLabel}</strong>
-              </div>
               <div>
                 <span>Вік</span>
                 <strong>{petAgeLabel}</strong>

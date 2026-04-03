@@ -27,18 +27,12 @@ export function Footer() {
                 <Link to="/donate">Підтримати</Link>
               </nav>
             </div>
-            <div className="site-footer__links-group">
-              <p className="site-footer__title">Підтримка</p>
-              <nav className="site-footer__links">
-                <a href="mailto:hello@dniproanimals.org">Контакти</a>
-              </nav>
-            </div>
           </section>
 
           <section className="site-footer__column site-footer__column--right" aria-label="Соцмережі та донати">
-            <button type="button" className="site-footer__donate" aria-label="Підтримати (плейсхолдер)">
+            <Link to="/donate" className="site-footer__donate" aria-label="Підтримати притулок">
               Підтримати
-            </button>
+            </Link>
             <div className="site-footer__socials" aria-label="Соціальні посилання">
               <button type="button" aria-label="Фейсбук">
                 <a href="https://www.facebook.com/dniproanimalsua/" target="_blank" rel="noopener noreferrer">

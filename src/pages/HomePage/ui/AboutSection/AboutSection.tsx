@@ -3,7 +3,7 @@ import { mockAnimals } from '../../../../shared/data/mockAnimals';
 import './AboutSection.scss';
 
 export function AboutSection() {
-  const aboutPet = mockAnimals.find((pet) => pet.type === 'cat') ?? mockAnimals[0];
+  const aboutPet = mockAnimals[0];
 
   return (
     <section className="about" aria-labelledby="about-title">

@@ -1,4 +1,4 @@
-import { Animal, AnimalAge, AnimalStatus, AnimalType } from '../../../../shared/types/animal';
+import { Animal, AnimalAge, AnimalStatus } from '../../../../shared/types/animal';
 import { Input } from '../../../../components/Input/Input';
 import { Textarea } from '../../../../components/Textarea/Textarea';
 import { Button } from '../../../../components/Button/Button';
@@ -24,17 +24,12 @@ export function AdminAnimalForm({ values, submitLabel, onChange, onSubmit }: Adm
       ? values.image.split(',').filter(Boolean).length
       : 0;
   const hasImage = selectedFiles.length > 0 || existingImageCount > 0;
-  const typeOptions = [
-    { value: 'dog', label: 'Собака' },
-    { value: 'cat', label: 'Кіт' },
-  ];
-
   const ageOptions = [
     { value: 'young', label: 'Молодий' },
     { value: 'adult', label: 'Дорослий' },
   ];
 
-  const genderOptions = [
+  const sexOptions = [
     { value: 'male', label: 'Самець' },
     { value: 'female', label: 'Самка' },
   ];
@@ -54,17 +49,6 @@ export function AdminAnimalForm({ values, submitLabel, onChange, onSubmit }: Adm
 
       <div className="admin-animal-form__row">
         <label>
-          <span>Тип</span>
-          <AppSelect
-            className="admin-animal-form__select"
-            value={values.type || 'dog'}
-            options={typeOptions}
-            ariaLabel="Тип тварини"
-            onValueChange={(value) => onChange({ type: value as AnimalType })}
-          />
-        </label>
-
-        <label>
           <span>Вік</span>
           <AppSelect
             className="admin-animal-form__select"
@@ -81,10 +65,10 @@ export function AdminAnimalForm({ values, submitLabel, onChange, onSubmit }: Adm
           <span>Стать</span>
           <AppSelect
             className="admin-animal-form__select"
-            value={values.gender || 'male'}
-            options={genderOptions}
+            value={values.sex || 'male'}
+            options={sexOptions}
             ariaLabel="Стать тварини"
-            onValueChange={(value) => onChange({ gender: value as 'male' | 'female' })}
+            onValueChange={(value) => onChange({ sex: value as 'male' | 'female' })}
           />
         </label>
 

@@ -8,7 +8,7 @@ interface DonationFormProps {
   disabled?: boolean;
 }
 
-const presetAmounts = [5, 10, 20, 50];
+const presetAmounts = [50, 100, 200, 300];
 
 export function DonationForm({ onDonate, disabled }: DonationFormProps) {
   const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
@@ -40,7 +40,7 @@ export function DonationForm({ onDonate, disabled }: DonationFormProps) {
                 setCustomAmount('');
               }}
             >
-              ${preset}
+              {preset} грн
             </button>
           ))}
         </div>

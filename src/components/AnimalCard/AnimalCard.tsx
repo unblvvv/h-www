@@ -11,9 +11,10 @@ interface AnimalCardProps {
 }
 
 export function AnimalCard({ animal }: AnimalCardProps) {
-  const petTypeLabel = animal.type === 'dog' ? 'Собака' : animal.type === 'cat' ? 'Кіт' : 'Невідомо';
   const petAgeLabel =
     animal.age === 'young' ? 'Молодий' : animal.age === 'adult' ? 'Дорослий' : animal.age || 'Невідомо';
+  const petGenderLabel =
+    animal.sex === 'male' ? 'Самець' : animal.sex === 'female' ? 'Самка' : animal.sex || 'Невідомо';
   const isAvailable = animal.status === 'available';
   const actionLabel = isAvailable ? 'Усиновити' : 'Деталі';
   const availability =
@@ -36,7 +37,7 @@ export function AnimalCard({ animal }: AnimalCardProps) {
       <div className="animal-card__image-wrap">
         <ImageWithFallback
           src={imageSrc}
-          alt={`${animal.name}, ${petAgeLabel.toLowerCase()} ${petTypeLabel.toLowerCase()}, ${availability}`}
+          alt={`${animal.name}, ${petAgeLabel.toLowerCase()}, ${availability}`}
           className="animal-card__image"
         />
         <p className={`animal-card__availability animal-card__availability--${animal.status}`}>{stateLabel}</p>
@@ -46,7 +47,9 @@ export function AnimalCard({ animal }: AnimalCardProps) {
         <header className="animal-card__header">
           <div>
             <h3 className="animal-card__name">{animal.name}</h3>
-            <p className="animal-card__meta">{petTypeLabel} - {petAgeLabel}</p>
+            <p className="animal-card__meta">
+              {petAgeLabel} - {petGenderLabel}
+            </p>
           </div>
         </header>
 

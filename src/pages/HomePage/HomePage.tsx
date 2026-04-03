@@ -4,7 +4,7 @@ import { HeroSection } from './ui/HeroSection/HeroSection';
 import { AboutSection } from './ui/AboutSection/AboutSection';
 import { FeaturedPetsSection } from './ui/FeaturedPetsSection/FeaturedPetsSection';
 import { apiRequest } from '../../shared/lib/api';
-import { Animal, AnimalAge, AnimalStatus, AnimalType } from '../../shared/types/animal';
+import { Animal, AnimalAge, AnimalStatus } from '../../shared/types/animal';
 import './HomePage.scss';
 
 interface ApiAnimal {
@@ -25,13 +25,6 @@ interface ApiAnimalListResponse {
 }
 
 const FEATURED_LIMIT = 8;
-
-const normalizeType = (value?: string): AnimalType => {
-  const normalized = value?.trim().toLowerCase();
-  if (normalized === 'cat') return 'cat';
-  if (normalized === 'dog') return 'dog';
-  return 'unknown';
-};
 
 const normalizeAge = (value?: string): AnimalAge => {
   const trimmed = value?.trim();
@@ -75,9 +68,8 @@ export default function HomePage() {
         const mapped = items.map((item, index) => ({
           id: item.ID ?? `${index}`,
           name: item.Name ?? 'Без імені',
-          type: normalizeType(undefined),
           age: normalizeAge(item.Age),
-          gender: normalizeSex(item.Sex),
+          sex: normalizeSex(item.Sex),
           description: item.Description ?? '',
           image: item.PhotoURLs ?? [],
           status: normalizeStatus(item.Status),

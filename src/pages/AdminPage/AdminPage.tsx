@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { CheckCircle2, Eye, LayoutGrid, List, Pencil, Plus, Search, SlidersHorizontal, Trash2 } from 'lucide-react';
+import { CheckCircle2, Eye, LayoutGrid, List, Pencil, Plus, Search, Trash2 } from 'lucide-react';
 import { AdminAnimalForm } from './ui/AdminAnimalForm/AdminAnimalForm';
 import { Badge } from '../../components/Badge/Badge';
 import { Button } from '../../components/Button/Button';
@@ -7,19 +7,13 @@ import { Modal } from '../../components/Modal/Modal';
 import { ImageWithFallback } from '../../components/figma/ImageWithFallback';
 import { AppSelect } from '../../components/AppSelect/AppSelect';
 import { instance } from '../../shared/lib/api.config';
-import { Animal, AnimalAge, AnimalStatus, AnimalType } from '../../shared/types/animal';
+import { Animal, AnimalAge, AnimalStatus } from '../../shared/types/animal';
 import './AdminPage.scss';
 
 const statusLabel: Record<Animal['status'], string> = {
   available: 'Доступний',
   'in-process': 'В процесі',
   adopted: 'Усиновлено',
-};
-
-const getTypeLabel = (value: Animal['type']) => {
-  if (value === 'dog') return 'Собака';
-  if (value === 'cat') return 'Кіт';
-  return 'Невідомо';
 };
 
 const getAgeLabel = (value: Animal['age']) => {
@@ -29,19 +23,12 @@ const getAgeLabel = (value: Animal['age']) => {
   return value;
 };
 
-const getGenderLabel = (value: Animal['gender']) => {
+const getSexLabel = (value: Animal['sex']) => {
   if (value === 'male') return 'Самець';
   if (value === 'female') return 'Самка';
   if (!value) return 'Невідомо';
   return value;
 };
-
-const typeFilterOptions = [
-  { value: 'all', label: 'Усі типи' },
-  { value: 'dog', label: 'Собака' },
-  { value: 'cat', label: 'Кіт' },
-  { value: 'unknown', label: 'Невідомо' },
-];
 
 const statusFilterOptions = [
   { value: 'all', label: 'Усі статуси' },
@@ -92,13 +79,6 @@ interface ApiAnimalListResponse {
 }
 
 const normalizeUrl = (url?: string | null) => (url ? url.replace(/([^:]\/)(\/)+/g, '$1') : '');
-
-const normalizeType = (value?: string): AnimalType => {
-  const normalized = value?.trim().toLowerCase();
-  if (normalized === 'cat') return 'cat';
-  if (normalized === 'dog') return 'dog';
-  return 'unknown';
-};
 
 const normalizeAge = (value?: string): AnimalAge => {
   const trimmed = value?.trim();
@@ -170,9 +150,8 @@ export default function AdminPage() {
   const [previewAnimal, setPreviewAnimal] = useState<Animal | null>(null);
   const [formValues, setFormValues] = useState<Partial<Animal>>({
     name: '',
-    type: 'dog',
     age: 'young',
-    gender: 'male',
+    sex: 'male',
     description: '',
     image: '',
     status: 'available',
@@ -180,7 +159,6 @@ export default function AdminPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [typeFilter, setTypeFilter] = useState<'all' | Animal['type']>('all');
   const [statusFilter, setStatusFilter] = useState<'all' | Animal['status']>('all');
   const [ageFilter, setAgeFilter] = useState<'all' | Animal['age']>('all');
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
@@ -190,7 +168,7 @@ export default function AdminPage() {
     setIsFiltering(true);
     const timeout = window.setTimeout(() => setIsFiltering(false), 220);
     return () => window.clearTimeout(timeout);
-  }, [searchQuery, typeFilter, statusFilter, ageFilter, viewMode]);
+  }, [searchQuery, statusFilter, ageFilter, viewMode]);
 
   useEffect(() => {
     let isMounted = true;
@@ -208,9 +186,8 @@ export default function AdminPage() {
         const mapped = items.map((item, index) => ({
           id: item.ID ?? `${index}`,
           name: item.Name ?? 'Без імені',
-          type: normalizeType(undefined),
           age: normalizeAge(item.Age),
-          gender: normalizeSex(item.Sex),
+          sex: normalizeSex(item.Sex),
           description: item.Description ?? '',
           image: item.PhotoURLs ?? [],
           status: normalizeStatus(item.Status),
@@ -248,21 +225,19 @@ export default function AdminPage() {
         !normalizedQuery ||
         animal.name.toLowerCase().includes(normalizedQuery) ||
         animal.description.toLowerCase().includes(normalizedQuery);
-      const matchesType = typeFilter === 'all' || animal.type === typeFilter;
       const matchesStatus = statusFilter === 'all' || animal.status === statusFilter;
       const matchesAge = ageFilter === 'all' || animal.age === ageFilter;
 
-      return matchesSearch && matchesType && matchesStatus && matchesAge;
+      return matchesSearch && matchesStatus && matchesAge;
     });
-  }, [animals, ageFilter, searchQuery, statusFilter, typeFilter]);
+  }, [animals, ageFilter, searchQuery, statusFilter]);
 
   const handleOpenCreate = () => {
     setEditingAnimal(null);
     setFormValues({
       name: '',
-      type: 'dog',
       age: 'young',
-      gender: 'male',
+      sex: 'male',
       description: '',
       image: '',
       status: 'available',
@@ -296,7 +271,7 @@ export default function AdminPage() {
         description: formValues.description,
         name: formValues.name,
         photo_urls: photoUrls,
-        sex: formValues.gender,
+        sex: formValues.sex,
         status: formValues.status,
       });
 
@@ -329,8 +304,13 @@ export default function AdminPage() {
       setShowSuccess(true);
       window.setTimeout(() => setShowSuccess(false), 1800);
     } catch (error) {
+      const message =
+        error && typeof error === 'object' && 'response' in error
+          ? (error as { response?: { data?: { message?: string; detail?: string } } }).response?.data?.message ??
+            (error as { response?: { data?: { detail?: string } } }).response?.data?.detail
+          : null;
       console.error('Failed to save animal', error);
-      window.alert('Не вдалося зберегти тварину. Спробуйте ще раз.');
+      window.alert(message || 'Не вдалося зберегти тварину. Спробуйте ще раз.');
     }
   };
 
@@ -426,19 +406,6 @@ export default function AdminPage() {
             </div>
 
             <div className="admin-page__filters-row">
-              <label className="admin-page__filter">
-                <span>
-                  <SlidersHorizontal size={14} /> Тип
-                </span>
-                <AppSelect
-                  className="admin-page__filter-select"
-                  value={typeFilter}
-                  options={typeFilterOptions}
-                  ariaLabel="Фільтр за типом"
-                  onValueChange={(value) => setTypeFilter(value as 'all' | Animal['type'])}
-                />
-              </label>
-
               <label className="admin-page__filter">
                 <span>Статус</span>
                 <AppSelect
@@ -562,7 +529,7 @@ export default function AdminPage() {
                         <Badge variant={animal.status}>{statusLabel[animal.status]}</Badge>
                       </div>
                       <p className="admin-page__meta">
-                        {getTypeLabel(animal.type)} / {getAgeLabel(animal.age)}
+                        {getAgeLabel(animal.age)} / {getSexLabel(animal.sex)}
                       </p>
                       <p className="admin-page__description">{animal.description}</p>
                       <label className="admin-page__status-control">
@@ -599,7 +566,7 @@ export default function AdminPage() {
                     <div className="admin-page__list-main">
                       <h2>{animal.name}</h2>
                       <p>
-                        {getTypeLabel(animal.type)} / {getAgeLabel(animal.age)}
+                        {getAgeLabel(animal.age)} / {getSexLabel(animal.sex)}
                       </p>
                     </div>
                     <Badge variant={animal.status}>{statusLabel[animal.status]}</Badge>
@@ -658,8 +625,7 @@ export default function AdminPage() {
             <div className="admin-page__preview-content">
               <Badge variant={previewAnimal.status}>{statusLabel[previewAnimal.status]}</Badge>
               <p className="admin-page__preview-meta">
-                {getTypeLabel(previewAnimal.type)} / {getAgeLabel(previewAnimal.age)} /{' '}
-                {getGenderLabel(previewAnimal.gender)}
+                {getAgeLabel(previewAnimal.age)} / {getSexLabel(previewAnimal.sex)}
               </p>
               <p className="admin-page__preview-description">{previewAnimal.description}</p>
               <div className="admin-page__preview-actions">

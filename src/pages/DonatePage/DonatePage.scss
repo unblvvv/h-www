@@ -15,6 +15,8 @@
   border-radius: 30px;
   background: linear-gradient(135deg, #4f52e8 0%, #6367ff 65%, #7d83ff 100%);
   box-shadow: 0 20px 60px rgba(30, 34, 90, 0.16);
+  display: grid;
+  gap: 0.8rem;
 
   svg {
     color: #ffb272;
@@ -27,6 +29,14 @@
   .section-subtitle {
     color: rgba(255, 255, 255, 0.78);
   }
+}
+
+.donate-page__mono {
+  width: clamp(140px, 30vw, 190px);
+  border-radius: 22px;
+  box-shadow: 0 16px 36px rgba(12, 18, 60, 0.28);
+  background: rgba(255, 255, 255, 0.08);
+  align-self: start;
 }
 
 .donate-page__form-wrap {

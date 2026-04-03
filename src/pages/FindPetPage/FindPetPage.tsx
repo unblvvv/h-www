@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { ArrowUp } from 'lucide-react';
-import { Animal, AnimalAge, AnimalStatus, AnimalType } from '../../shared/types/animal';
+import { Animal, AnimalAge, AnimalStatus } from '../../shared/types/animal';
 import { FilterBar } from '../../features/animal-filter/FilterBar/FilterBar';
 import { PetGrid } from './ui/PetGrid/PetGrid';
 import { ImageWithFallback } from '../../components/figma/ImageWithFallback';
@@ -24,13 +24,6 @@ interface ApiAnimal {
 interface ApiAnimalListResponse {
   items?: ApiAnimal[];
 }
-
-const normalizeType = (value?: string): AnimalType => {
-  const normalized = value?.trim().toLowerCase();
-  if (normalized === 'cat') return 'cat';
-  if (normalized === 'dog') return 'dog';
-  return 'unknown';
-};
 
 const normalizeAge = (value?: string): AnimalAge => {
   const trimmed = value?.trim();
@@ -59,11 +52,10 @@ export default function FindPetPage() {
   useSeo({
     title: 'Знайти улюбленця | Притулок для тварин у Дніпрі',
     description:
-      'Шукайте та фільтруйте врятованих тварин за типом, віком і статусом. Переглядайте доступних улюбленців та розпочинайте усиновлення.',
+      'Шукайте та фільтруйте врятованих тварин за віком і статусом. Переглядайте доступних улюбленців та розпочинайте усиновлення.',
   });
 
   const [searchQuery, setSearchQuery] = useState('');
-  const [typeFilter, setTypeFilter] = useState<AnimalType | 'all'>('all');
   const [ageFilter, setAgeFilter] = useState<AnimalAge | 'all'>('all');
   const [statusFilter, setStatusFilter] = useState<AnimalStatus | 'all'>('all');
   const [loading, setLoading] = useState(true);
@@ -81,9 +73,8 @@ export default function FindPetPage() {
         const nextPets = items.map((animal, index) => ({
           id: animal.ID ?? `${index}`,
           name: animal.Name ?? 'Без імені',
-          type: normalizeType(undefined),
           age: normalizeAge(animal.Age),
-          gender: normalizeSex(animal.Sex),
+          sex: normalizeSex(animal.Sex),
           description: animal.Description ?? '',
           image: animal.PhotoURLs ?? [],
           status: normalizeStatus(animal.Status),
@@ -119,12 +110,11 @@ export default function FindPetPage() {
 
     return pets.filter((pet) => {
       const matchesSearch = !normalizedQuery || pet.name.toLowerCase().includes(normalizedQuery);
-      const matchesType = typeFilter === 'all' || pet.type === typeFilter;
       const matchesAge = ageFilter === 'all' || pet.age === ageFilter;
       const matchesStatus = statusFilter === 'all' || pet.status === statusFilter;
-      return matchesSearch && matchesType && matchesAge && matchesStatus;
+      return matchesSearch && matchesAge && matchesStatus;
     });
-  }, [pets, searchQuery, typeFilter, ageFilter, statusFilter]);
+  }, [pets, searchQuery, ageFilter, statusFilter]);
 
   const heroPet = useMemo(() => {
     return filteredPets.find((pet) => pet.status === 'available') ?? filteredPets[0];
@@ -140,7 +130,7 @@ export default function FindPetPage() {
         <div className="app-container find-pet-hero__layout">
           <div className="find-pet-hero__content">
             <h1 id="find-pet-title">Знайдіть нового друга</h1>
-            <p>Відкрийте врятованих котів і собак та усиновіть улюбленця, який пасує вашому стилю життя.</p>
+            <p>Відкрийте врятованих улюбленців та усиновіть тварину, яка пасує вашому стилю життя.</p>
           </div>
 
           <div className="find-pet-hero__visual" aria-hidden="true">
@@ -153,11 +143,9 @@ export default function FindPetPage() {
       <div className="app-container find-pet-page__content">
         <FilterBar
           searchQuery={searchQuery}
-          typeFilter={typeFilter}
           ageFilter={ageFilter}
           statusFilter={statusFilter}
           onSearchChange={setSearchQuery}
-          onTypeChange={setTypeFilter}
           onAgeChange={setAgeFilter}
           onStatusChange={setStatusFilter}
         />

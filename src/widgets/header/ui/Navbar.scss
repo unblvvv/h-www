@@ -415,6 +415,12 @@
   color: #4f52e8;
 }
 
+.dark .notifications-chip {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.16);
+}
+
 .dark .notifications-panel {
   border-color: rgba(69, 83, 140, 0.95);
   background: rgba(22, 30, 66, 0.98);
