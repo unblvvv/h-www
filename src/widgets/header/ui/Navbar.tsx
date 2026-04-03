@@ -2,6 +2,7 @@
 
 import { Link, useLocation } from 'react-router';
 import { User, LogIn } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { useAuth } from '@/features/auth/AuthContext';
 import './Navbar.scss';
 
@@ -9,6 +10,36 @@ export function Navbar() {
   const location = useLocation();
   const isHome = location.pathname === '/';
   const { isAuthenticated, user } = useAuth();
+  const [isOnLightBackground, setIsOnLightBackground] = useState(false);
+
+  useEffect(() => {
+    if (!isHome) {
+      setIsOnLightBackground(false);
+      return;
+    }
+
+    const updateHeaderContrast = () => {
+      const heroEnd = window.innerHeight - 96;
+      setIsOnLightBackground((prev) => {
+        if (!prev && window.scrollY > heroEnd + 24) {
+          return true;
+        }
+        if (prev && window.scrollY < heroEnd - 24) {
+          return false;
+        }
+        return prev;
+      });
+    };
+
+    updateHeaderContrast();
+    window.addEventListener('scroll', updateHeaderContrast, { passive: true });
+    window.addEventListener('resize', updateHeaderContrast);
+
+    return () => {
+      window.removeEventListener('scroll', updateHeaderContrast);
+      window.removeEventListener('resize', updateHeaderContrast);
+    };
+  }, [isHome]);
 
   const isActive = (path: string) => {
     if (path === '/find-pet' && location.pathname.startsWith('/animal/')) {
@@ -19,7 +50,7 @@ export function Navbar() {
 
   return (
     <>
-      <header className={`site-header${isHome ? ' site-header--hero' : ''}`}>
+      <header className={`site-header${isHome ? ' site-header--hero' : ''}${isHome && isOnLightBackground ? ' site-header--hero-light' : ''}`}>
         <nav className="site-nav app-container" aria-label="Main navigation">
           <Link to="/" className="site-brand" aria-label="Animal shelter home page">
             <img src="/logo.png" alt="" className="site-brand__logo" />

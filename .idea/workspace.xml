@@ -5,66 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c571c0de-0bf7-4d94-b18f-bed227e6aee1" name="Changes" comment="New site design">
-      <change beforePath="$PROJECT_DIR$/.vite-dev.err.log" beforeDir="false" afterPath="$PROJECT_DIR$/.vite-dev.err.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vite-dev.log" beforeDir="false" afterPath="$PROJECT_DIR$/.vite-dev.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/assets/index-YxshObFV.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/assets/index-jCtQL8B1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/file.svg" beforeDir="false" afterPath="$PROJECT_DIR$/dist/file.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/index-CVC6i087.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/index-D1aXuC5c.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/file.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/file.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AboutSection.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AboutSection.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AdminAnimalForm.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AdminAnimalForm.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AnimalCard.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AnimalCard.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Badge.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Badge.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Button.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Button.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DonationForm.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DonationForm.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/FeaturedPetsSection.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/FeaturedPetsSection.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/FilterBar.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/FilterBar.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Footer.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Footer.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HeroSection.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HeroSection.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HowItWorksSection.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HowItWorksSection.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Input.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Input.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LoginModal.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LoginModal.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Modal.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Modal.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navbar.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navbar.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PetGrid.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PetGrid.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ProfileForm.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ProfileForm.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/RegisterModal.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/RegisterModal.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Textarea.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Textarea.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/adopt-animal/ui/AdoptionFormPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/adopt-animal/ui/AdoptionFormPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/donate/ui/DonatePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/donate/ui/DonatePage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/AdminPage/AdminPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdminPage/AdminPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/AdopFormPage/AdoptionFormPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdopFormPage/AdoptionFormPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/AnimalDetails/AnimalDetailsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AnimalDetails/AnimalDetailsPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/DonatePage/DonatePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/DonatePage/DonatePage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/FindPetPage/FindPetPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/FindPetPage/FindPetPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/HomePage.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/HomePage.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/HomePage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ProfilePage/ProfilePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ProfilePage/ProfilePage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/data/mockAnimals.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/data/mockAnimals.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/widgets/header/ui/Navbar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/header/ui/Navbar.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/widgets/header/ui/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/header/ui/Navbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vite.config.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
