@@ -13,6 +13,4 @@ export const authApi = {
         instance.get<AuthResponse>(`${AUTH_BASE}/refresh`),
     logout: () =>
         instance.post(`${AUTH_BASE}/logout`),
-    getMe: () =>
-        instance.get<UserProfile>(`${AUTH_BASE}/profile`),
 };

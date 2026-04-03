@@ -90,13 +90,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
 
       if (token) {
-        try {
-          const profileResponse = await authApi.getMe();
-          const profile = profileResponse.data;
+        const profile = resolveProfileFromAuth({ token });
+        if (profile) {
           localStorage.setItem(USER_KEY, JSON.stringify(profile));
           setUser(profile);
           setIsAuthenticated(true);
-        } catch {
+        } else {
           localStorage.removeItem('token');
         }
       }
@@ -121,11 +120,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (profile) {
         localStorage.setItem(USER_KEY, JSON.stringify(profile));
         setUser(profile);
-      } else {
-        const profileResponse = await authApi.getMe();
-        const fetchedProfile = profileResponse.data;
-        localStorage.setItem(USER_KEY, JSON.stringify(fetchedProfile));
-        setUser(fetchedProfile);
       }
 
       setIsAuthenticated(true);

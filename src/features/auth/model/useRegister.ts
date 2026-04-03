@@ -13,7 +13,7 @@ export function useRegister() {
 
       const res = await authApi.register(data)
 
-      const token = res.token
+      const token = res.data?.token
       if (token) {
         localStorage.setItem('token', token)
       }
