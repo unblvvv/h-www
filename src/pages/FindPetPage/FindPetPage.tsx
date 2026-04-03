@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { mockAnimals } from '../../shared/data/mockAnimals';
 import { AnimalAge, AnimalStatus, AnimalType } from '../../shared/types/animal';
-import { FilterBar } from '../../components/FilterBar';
-import { PetGrid } from '../../components/PetGrid';
+import { FilterBar } from '../../components/FilterBar/FilterBar';
+import { PetGrid } from '../../components/PetGrid/PetGrid';
 import { useSeo } from '../../shared/utils/useSeo';
 import './FindPetPage.scss';
 

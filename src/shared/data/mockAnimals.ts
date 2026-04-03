@@ -1,4 +1,4 @@
-import { Animal } from '../../shared/types/animal';
+import { Animal } from '../types/animal';
 
 export const mockAnimals: Animal[] = [
   {

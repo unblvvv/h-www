@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { CheckCircle2, Heart } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import { useSeo } from '../../shared/utils/useSeo';
-import { DonationForm } from '../../components/DonationForm';
-import { Button } from '../../components/Button';
+import { DonationForm } from '../../components/DonationForm/DonationForm';
+import { Button } from '../../components/Button/Button';
 import './DonatePage.scss';
 
 export default function DonatePage() {

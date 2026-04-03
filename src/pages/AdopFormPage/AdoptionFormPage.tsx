@@ -3,10 +3,10 @@ import { Link, useNavigate, useParams } from 'react-router';
 import { CheckCircle2 } from 'lucide-react';
 import { useAuth } from '../../features/auth/AuthContext';
 import { mockAnimals } from '../../shared/data/mockAnimals';
-import { Button } from '../../components/Button';
-import { Input } from '../../components/Input';
-import { Textarea } from '../../components/Textarea';
-import { RegisterModal } from '../../components/RegisterModal';
+import { Button } from '../../components/Button/Button';
+import { Input } from '../../components/Input/Input';
+import { Textarea } from '../../components/Textarea/Textarea';
+import { RegisterModal } from '../../components/RegisterModal/RegisterModal';
 import { useSeo } from '../../shared/utils/useSeo';
 import './AdoptionFormPage.scss';
 

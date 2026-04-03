@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { CheckCircle2, Pencil, Plus, Trash2 } from 'lucide-react';
-import { AdminAnimalForm } from '../../components/AdminAnimalForm';
-import { Badge } from '../../components/Badge';
-import { Button } from '../../components/Button';
-import { Modal } from '../../components/Modal';
+import { AdminAnimalForm } from '../../components/AdminAnimalForm/AdminAnimalForm';
+import { Badge } from '../../components/Badge/Badge';
+import { Button } from '../../components/Button/Button';
+import { Modal } from '../../components/Modal/Modal';
 import { ImageWithFallback } from '../../components/figma/ImageWithFallback';
 import { mockAnimals } from '../../shared/data/mockAnimals';
 import { Animal } from '../../shared/types/animal';

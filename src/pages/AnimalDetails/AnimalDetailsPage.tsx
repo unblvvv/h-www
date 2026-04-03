@@ -2,8 +2,8 @@ import { Link, useNavigate, useParams } from 'react-router';
 import { ArrowLeft } from 'lucide-react';
 import { useSeo } from '../../shared/utils/useSeo';
 import { mockAnimals } from '../../shared/data/mockAnimals';
-import { Badge } from '../../components/Badge';
-import { Button } from '../../components/Button';
+import { Badge } from '../../components/Badge/Badge';
+import { Button } from '../../components/Button/Button';
 import { ImageWithFallback } from '../../components/figma/ImageWithFallback';
 import './AnimalDetailsPage.scss';
 

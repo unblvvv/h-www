@@ -1,0 +1,31 @@
+@use '../../styles/variables' as *;
+
+.app-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.3rem 0.72rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  border: 1px solid transparent;
+}
+
+.app-badge--available {
+  background: rgba(16, 185, 129, 0.16);
+  color: $color-success;
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+.app-badge--in-process {
+  background: rgba(245, 158, 11, 0.15);
+  color: #92400e;
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.app-badge--adopted {
+  background: rgba(107, 114, 128, 0.13);
+  color: $color-text-secondary;
+  border-color: rgba(107, 114, 128, 0.22);
+}
+

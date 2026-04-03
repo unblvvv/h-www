@@ -4,89 +4,67 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c571c0de-0bf7-4d94-b18f-bed227e6aee1" name="Changes" comment="File structure changes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+    <list default="true" id="c571c0de-0bf7-4d94-b18f-bed227e6aee1" name="Changes" comment="New site design">
+      <change beforePath="$PROJECT_DIR$/.vite-dev.err.log" beforeDir="false" afterPath="$PROJECT_DIR$/.vite-dev.err.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vite-dev.log" beforeDir="false" afterPath="$PROJECT_DIR$/.vite-dev.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/index-YxshObFV.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/index-jCtQL8B1.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/file.svg" beforeDir="false" afterPath="$PROJECT_DIR$/dist/file.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/adopt-animal/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/adopt-animal/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/adopt-animal/ui/AdoptionFormPage.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/auth/AuthContext.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/auth/ui/LoginModal.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/auth/ui/RegisterModal.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/donate/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/donate/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/donate/ui/DonatePage.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/HomePage.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/PetPage/AnimalDetailsPage.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ProfilePage/ui/AdminPage.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ProfilePage/ui/ProfilePage.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/entities/animal/animal.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/entities/animal/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/entities/animal/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/entities/animal/mockAnimals.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/lib/cn.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/AnimalCard.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/Badge.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/Button.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ImageWithFallback.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/Input.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/Modal.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/Textarea.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/ui/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/accordion.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/alert-dialog.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/alert.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/aspect-ratio.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/avatar.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/badge.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/breadcrumb.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/button.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/calendar.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/card.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/carousel.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/chart.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/checkbox.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/collapsible.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/command.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/context-menu.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/dialog.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/drawer.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/dropdown-menu.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/form.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/hover-card.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/input-otp.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/input.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/label.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/menubar.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/navigation-menu.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/pagination.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/popover.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/progress.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/radio-group.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/resizable.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/scroll-area.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/select.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/separator.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/sheet.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/sidebar.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/skeleton.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/slider.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/sonner.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/switch.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/table.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/tabs.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/textarea.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/toggle-group.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/toggle.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/tooltip.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/use-mobile.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ui/ui/utils.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/widgets/footer/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/footer/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/widgets/footer/ui/Footer.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/widgets/header/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/header/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/widgets/header/ui/Navbar.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/file.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/file.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AboutSection.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AboutSection.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AdminAnimalForm.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AdminAnimalForm.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AnimalCard.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AnimalCard.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Badge.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Badge.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Button.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Button.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DonationForm.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DonationForm.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FeaturedPetsSection.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FeaturedPetsSection.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FilterBar.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FilterBar.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HeroSection.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HeroSection.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HowItWorksSection.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HowItWorksSection.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Input.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Input.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LoginModal.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LoginModal.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Modal.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Modal.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbar.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbar.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PetGrid.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PetGrid.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ProfileForm.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ProfileForm.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/RegisterModal.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/RegisterModal.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Textarea.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Textarea.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/adopt-animal/ui/AdoptionFormPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/adopt-animal/ui/AdoptionFormPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/donate/ui/DonatePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/donate/ui/DonatePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/AdminPage/AdminPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdminPage/AdminPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/AdopFormPage/AdoptionFormPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdopFormPage/AdoptionFormPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/AnimalDetails/AnimalDetailsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AnimalDetails/AnimalDetailsPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/DonatePage/DonatePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/DonatePage/DonatePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/FindPetPage/FindPetPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/FindPetPage/FindPetPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/HomePage.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/HomePage.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/HomePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ProfilePage/ProfilePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ProfilePage/ProfilePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/data/mockAnimals.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/data/mockAnimals.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/widgets/header/ui/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/header/ui/Navbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vite.config.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,26 +101,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JavaScript Debug.index.html.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "git-widget-placeholder": "main",
-    "javascript.preferred.runtime.type.id": "node",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "C:/Users/Admin/AppData/Roaming/JetBrains/WebStorm2025.3/node/versions/20.15.0/node",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Users\\Admin\\WebstormProjects\\dnipro_animals\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;C:/Users/Admin/AppData/Roaming/JetBrains/WebStorm2025.3/node/versions/20.15.0/node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Admin\\WebstormProjects\\dnipro_animals\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>

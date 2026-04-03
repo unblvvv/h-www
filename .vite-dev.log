@@ -4,3 +4,168 @@
   [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m5173[22m/[39m
   [32m➜[39m  [1mNetwork[22m: [36mhttp://26.175.79.244:[1m5173[22m/[39m
   [32m➜[39m  [1mNetwork[22m: [36mhttp://192.168.66.165:[1m5173[22m/[39m
+[2m13:00:52[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/main.scss, /src/app/components/Footer.scss, /src/app/components/AboutSection.scss, /src/app/components/HowItWorksSection.scss, /src/app/pages/DonatePage.scss, /src/app/pages/AdoptionFormPage.scss, /src/app/components/Navbar.scss, /src/app/pages/AdminPage.scss, /src/app/pages/AnimalDetailsPage.scss, /src/app/components/HeroSection.scss, /src/app/components/FeaturedPetsSection.scss, /src/app/pages/ProfilePage.scss, /src/app/components/Badge.scss, /src/app/components/RegisterModal.scss, /src/app/components/LoginModal.scss, /src/app/components/AdminAnimalForm.scss, /src/app/components/Input.scss, /src/app/components/ProfileForm.scss, /src/app/components/DonationForm.scss, /src/app/components/Textarea.scss, /src/app/components/Button.scss, /src/app/components/Modal.scss, /src/app/components/FilterBar.scss, /src/app/components/PetGrid.scss, /src/app/components/AnimalCard.scss[22m
+[2m13:01:00[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/Button.scss[22m
+[2m13:01:05[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/Input.scss[22m
+[2m13:01:13[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/Textarea.scss[22m
+[2m13:01:22[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/FilterBar.scss[22m
+[2m13:01:32[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/HeroSection.scss[22m
+[2m13:01:38[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/HowItWorksSection.scss[22m
+[2m13:01:44[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/Navbar.scss[22m
+[2m13:01:51[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/Modal.scss[22m
+[2m13:02:05[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/Badge.scss[22m
+[2m13:02:15[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/AdminAnimalForm.scss[22m
+[2m13:04:55[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/main.scss, /src/app/components/Footer.scss, /src/app/components/AboutSection.scss, /src/app/components/HowItWorksSection.scss, /src/app/pages/DonatePage.scss, /src/app/pages/AdoptionFormPage.scss, /src/app/components/Navbar.scss, /src/app/pages/AdminPage.scss, /src/app/pages/AnimalDetailsPage.scss, /src/app/components/HeroSection.scss, /src/app/components/FeaturedPetsSection.scss, /src/app/pages/ProfilePage.scss, /src/app/components/Badge.scss, /src/app/components/RegisterModal.scss, /src/app/components/LoginModal.scss, /src/app/components/AdminAnimalForm.scss, /src/app/components/Input.scss, /src/app/components/ProfileForm.scss, /src/app/components/DonationForm.scss, /src/app/components/Textarea.scss, /src/app/components/Button.scss, /src/app/components/Modal.scss, /src/app/components/FilterBar.scss, /src/app/components/PetGrid.scss, /src/app/components/AnimalCard.scss[22m
+[2m13:05:02[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/main.scss[22m
+[2m13:05:08[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/Navbar.scss[22m
+[2m13:05:17[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/Badge.scss[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/accordion.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/alert-dialog.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/alert.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/aspect-ratio.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/avatar.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/badge.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/breadcrumb.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/button.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/card.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/carousel.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/chart.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/checkbox.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/collapsible.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/command.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/context-menu.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/dialog.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/drawer.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/dropdown-menu.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/form.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/hover-card.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/input-otp.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/input.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/label.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/menubar.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/navigation-menu.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/pagination.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/popover.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/progress.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/radio-group.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/resizable.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/scroll-area.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/select.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/separator.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/sheet.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/sidebar.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/skeleton.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/calendar.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/slider.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/sonner.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/switch.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/table.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/tabs.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/textarea.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/toggle-group.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/toggle.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/tooltip.tsx[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/use-mobile.ts[22m
+[2m13:09:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/utils.ts[22m
+[2m13:09:56[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/C:\Users\Admin\WebstormProjects\dnipro_animals\src\app\components\figma\ImageWithFallback.tsx, /src/styles/index.css[22m
+[2m13:10:07[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/C:\Users\Admin\WebstormProjects\dnipro_animals\src\app\components\figma\ImageWithFallback.tsx, /src/styles/index.css, /src/app/routes.tsx, /src/app/pages/HomePage.tsx, /@fs/C:\Users\Admin\WebstormProjects\dnipro_animals\src\app\components\FeaturedPetsSection.tsx, /@fs/C:\Users\Admin\WebstormProjects\dnipro_animals\src\app\components\PetGrid.tsx[22m
+[2m13:10:07[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/C:\Users\Admin\WebstormProjects\dnipro_animals\src\app\components\figma\ImageWithFallback.tsx, /src/styles/index.css[22m
+[2m13:17:59[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/main.scss, /src/app/components/Footer.scss, /src/app/components/AboutSection.scss, /src/app/components/HowItWorksSection.scss, /src/app/pages/DonatePage.scss, /src/app/pages/AdoptionFormPage.scss, /src/app/components/Navbar.scss, /src/app/pages/AdminPage.scss, /src/app/pages/AnimalDetailsPage.scss, /src/app/components/HeroSection.scss, /src/app/components/FeaturedPetsSection.scss, /src/app/pages/ProfilePage.scss, /src/app/components/Badge.scss, /src/app/components/RegisterModal.scss, /src/app/components/LoginModal.scss, /src/app/components/AdminAnimalForm.scss, /src/app/components/Input.scss, /src/app/components/ProfileForm.scss, /src/app/components/DonationForm.scss, /src/app/components/Textarea.scss, /src/app/components/Button.scss, /src/app/components/Modal.scss, /src/app/components/FilterBar.scss, /src/app/components/PetGrid.scss, /src/app/components/AnimalCard.scss[22m
+[2m13:18:07[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/main.scss[22m
+[2m13:18:11[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/main.scss, /src/app/components/AboutSection.scss, /src/app/components/HowItWorksSection.scss, /src/app/pages/DonatePage.scss, /src/app/pages/AdoptionFormPage.scss, /src/app/pages/AdminPage.scss, /src/app/pages/AnimalDetailsPage.scss, /src/app/components/HeroSection.scss, /src/app/pages/ProfilePage.scss, /src/app/components/ProfileForm.scss, /src/app/components/FilterBar.scss, /src/app/components/PetGrid.scss, /src/app/components/AnimalCard.scss[22m
+[2m13:18:16[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/C:\Users\Admin\WebstormProjects\dnipro_animals\src\app\components\Button.tsx, /src/styles/index.css[22m
+[2m13:18:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/Button.scss[22m
+[2m13:18:40[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/Badge.scss[22m
+[2m13:18:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/Badge.scss[22m
+[2m13:18:59[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/Navbar.scss[22m
+[2m13:19:11[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/HeroSection.scss[22m
+[2m13:19:17[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/Modal.scss[22m
+[2m13:19:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/AdminAnimalForm.scss[22m
+[2m13:19:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/Textarea.scss[22m
+[2m13:19:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/Input.scss[22m
+[2m13:19:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/FilterBar.scss[22m
+[2m13:19:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/LoginModal.scss[22m
+[2m13:19:45[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/HowItWorksSection.scss[22m
+[2m13:19:51[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/PetGrid.scss[22m
+[2m13:19:57[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/DonationForm.scss[22m
+[2m13:20:03[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/DonationForm.scss[22m
+[2m13:20:10[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/C:\Users\Admin\WebstormProjects\dnipro_animals\src\app\components\DonationForm.tsx, /src/styles/index.css[22m
+[2m13:20:24[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/pages/AdminPage.scss[22m
+[2m13:22:48[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/main.scss, /src/app/components/Footer.scss, /src/app/components/AboutSection.scss, /src/app/components/HowItWorksSection.scss, /src/app/pages/DonatePage.scss, /src/app/pages/AdoptionFormPage.scss, /src/app/components/Navbar.scss, /src/app/pages/AdminPage.scss, /src/app/pages/AnimalDetailsPage.scss, /src/app/components/HeroSection.scss, /src/app/components/FeaturedPetsSection.scss, /src/app/pages/ProfilePage.scss, /src/app/components/Badge.scss, /src/app/components/RegisterModal.scss, /src/app/components/LoginModal.scss, /src/app/components/AdminAnimalForm.scss, /src/app/components/Input.scss, /src/app/components/ProfileForm.scss, /src/app/components/DonationForm.scss, /src/app/components/Textarea.scss, /src/app/components/Button.scss, /src/app/components/Modal.scss, /src/app/components/FilterBar.scss, /src/app/components/PetGrid.scss, /src/app/components/AnimalCard.scss[22m
+[2m13:22:56[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/main.scss[22m
+[2m13:23:06[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/HeroSection.scss[22m
+[2m13:23:13[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/pages/AdminPage.scss[22m
+[2m13:23:30[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/Button.scss[22m
+[2m13:24:26[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/Navbar.tsx, /src/styles/index.css[22m
+[2m13:24:31[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/Navbar.scss[22m
+[2m13:24:36[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2mindex.html[22m
+[2m13:26:00[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/Navbar.tsx, /src/styles/index.css[22m
+[2m13:32:19[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2mindex.html[22m
+[2m13:32:19[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/AdminAnimalForm.scss[22m
+[2m13:32:19[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/Badge.scss[22m
+[2m13:32:19[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/Button.scss[22m
+[2m13:32:19[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/C:\Users\Admin\WebstormProjects\dnipro_animals\src\app\components\Button.tsx, /src/styles/index.css[22m
+[2m13:32:19[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/DonationForm.scss[22m
+[2m13:32:19[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/C:\Users\Admin\WebstormProjects\dnipro_animals\src\app\components\DonationForm.tsx, /src/styles/index.css[22m
+[2m13:32:19[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/FilterBar.scss[22m
+[2m13:32:19[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/HeroSection.scss[22m
+[2m13:32:19[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/HowItWorksSection.scss[22m
+[2m13:32:19[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/Input.scss[22m
+[2m13:32:19[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/LoginModal.scss[22m
+[2m13:32:19[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/Modal.scss[22m
+[2m13:32:19[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/Navbar.scss[22m
+[2m13:32:19[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/Navbar.tsx, /src/styles/index.css[22m
+[2m13:32:19[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/PetGrid.scss[22m
+[2m13:32:19[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/components/Textarea.scss[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/pages/AdminPage.scss[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/main.scss, /src/app/components/AboutSection.scss, /src/app/components/HowItWorksSection.scss, /src/app/pages/DonatePage.scss, /src/app/pages/AdoptionFormPage.scss, /src/app/pages/AdminPage.scss, /src/app/pages/AnimalDetailsPage.scss, /src/app/components/HeroSection.scss, /src/app/pages/ProfilePage.scss, /src/app/components/ProfileForm.scss, /src/app/components/FilterBar.scss, /src/app/components/PetGrid.scss, /src/app/components/AnimalCard.scss[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/main.scss, /src/app/components/Footer.scss, /src/app/components/AboutSection.scss, /src/app/components/HowItWorksSection.scss, /src/app/pages/DonatePage.scss, /src/app/pages/AdoptionFormPage.scss, /src/app/components/Navbar.scss, /src/app/pages/AdminPage.scss, /src/app/pages/AnimalDetailsPage.scss, /src/app/components/HeroSection.scss, /src/app/components/FeaturedPetsSection.scss, /src/app/pages/ProfilePage.scss, /src/app/components/Badge.scss, /src/app/components/RegisterModal.scss, /src/app/components/LoginModal.scss, /src/app/components/AdminAnimalForm.scss, /src/app/components/Input.scss, /src/app/components/ProfileForm.scss, /src/app/components/DonationForm.scss, /src/app/components/Textarea.scss, /src/app/components/Button.scss, /src/app/components/Modal.scss, /src/app/components/FilterBar.scss, /src/app/components/PetGrid.scss, /src/app/components/AnimalCard.scss[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/main.scss[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/accordion.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/alert-dialog.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/alert.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/aspect-ratio.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/avatar.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/badge.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/breadcrumb.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/button.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/calendar.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/card.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/carousel.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/chart.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/checkbox.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/collapsible.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/command.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/context-menu.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/dialog.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/drawer.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/dropdown-menu.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/form.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/hover-card.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/input-otp.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/input.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/label.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/menubar.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/navigation-menu.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/pagination.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/popover.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/progress.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/radio-group.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/resizable.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/scroll-area.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/select.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/separator.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/sheet.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/sidebar.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/skeleton.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/slider.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/sonner.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/switch.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/table.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/tabs.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/textarea.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/toggle-group.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/toggle.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/tooltip.tsx[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/use-mobile.ts[22m
+[2m13:32:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/components/ui/utils.ts[22m

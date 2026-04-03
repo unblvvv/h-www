@@ -1,0 +1,82 @@
+[2m13:10:01[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "../components/figma/ImageWithFallback" from "src/app/pages/AnimalDetailsPage.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Admin/WebstormProjects/dnipro_animals/src/app/pages/AnimalDetailsPage.tsx[39m:7:34
+[33m  22 |  import { Badge } from "../components/Badge";
+  23 |  import { Button } from "../components/Button";
+  24 |  import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+     |                                     ^
+  25 |  import "./AnimalDetailsPage.scss";
+  26 |  export default function AnimalDetailsPage() {[39m
+      at TransformPluginContext._formatLog (file:///C:/Users/Admin/WebstormProjects/dnipro_animals/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42528:41)
+      at TransformPluginContext.error (file:///C:/Users/Admin/WebstormProjects/dnipro_animals/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42525:16)
+      at normalizeUrl (file:///C:/Users/Admin/WebstormProjects/dnipro_animals/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40504:23)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async file:///C:/Users/Admin/WebstormProjects/dnipro_animals/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40623:37
+      at async Promise.all (index 9)
+      at async TransformPluginContext.transform (file:///C:/Users/Admin/WebstormProjects/dnipro_animals/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40550:7)
+      at async EnvironmentPluginContainer.transform (file:///C:/Users/Admin/WebstormProjects/dnipro_animals/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42323:18)
+      at async loadAndTransform (file:///C:/Users/Admin/WebstormProjects/dnipro_animals/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:35739:27)
+[2m13:10:01[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to resolve import "../components/figma/ImageWithFallback" from "src/app/pages/AdminPage.tsx". Does the file exist?
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Admin/WebstormProjects/dnipro_animals/src/app/pages/AdminPage.tsx[39m:7:34
+[33m  22 |  import { Button } from "../components/Button";
+  23 |  import { Modal } from "../components/Modal";
+  24 |  import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+     |                                     ^
+  25 |  import { mockAnimals } from "../data/mockAnimals";
+  26 |  import "./AdminPage.scss";[39m
+[2m13:10:01[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to resolve import "../components/figma/ImageWithFallback" from "src/app/pages/AnimalDetailsPage.tsx". Does the file exist?
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Admin/WebstormProjects/dnipro_animals/src/app/pages/AnimalDetailsPage.tsx[39m:7:34
+[33m  22 |  import { Badge } from "../components/Badge";
+  23 |  import { Button } from "../components/Button";
+  24 |  import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+     |                                     ^
+  25 |  import "./AnimalDetailsPage.scss";
+  26 |  export default function AnimalDetailsPage() {[39m
+[2m13:10:01[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to resolve import "./figma/ImageWithFallback" from "src/app/components/HeroSection.tsx". Does the file exist?
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Admin/WebstormProjects/dnipro_animals/src/app/components/HeroSection.tsx[39m:4:34
+[33m  18 |  import { PawPrint } from "lucide-react";
+  19 |  import { Button } from "./Button";
+  20 |  import { ImageWithFallback } from "./figma/ImageWithFallback";
+     |                                     ^
+  21 |  import "./HeroSection.scss";
+  22 |  export function HeroSection({ pets }) {[39m
+[2m13:10:01[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "../components/figma/ImageWithFallback" from "src/app/pages/AdminPage.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Admin/WebstormProjects/dnipro_animals/src/app/pages/AdminPage.tsx[39m:7:34
+[33m  22 |  import { Button } from "../components/Button";
+  23 |  import { Modal } from "../components/Modal";
+  24 |  import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+     |                                     ^
+  25 |  import { mockAnimals } from "../data/mockAnimals";
+  26 |  import "./AdminPage.scss";[39m
+      at TransformPluginContext._formatLog (file:///C:/Users/Admin/WebstormProjects/dnipro_animals/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42528:41)
+      at TransformPluginContext.error (file:///C:/Users/Admin/WebstormProjects/dnipro_animals/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42525:16)
+      at normalizeUrl (file:///C:/Users/Admin/WebstormProjects/dnipro_animals/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40504:23)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async file:///C:/Users/Admin/WebstormProjects/dnipro_animals/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40623:37
+      at async Promise.all (index 9)
+      at async TransformPluginContext.transform (file:///C:/Users/Admin/WebstormProjects/dnipro_animals/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40550:7)
+      at async EnvironmentPluginContainer.transform (file:///C:/Users/Admin/WebstormProjects/dnipro_animals/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42323:18)
+      at async loadAndTransform (file:///C:/Users/Admin/WebstormProjects/dnipro_animals/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:35739:27)
+      at async viteTransformMiddleware (file:///C:/Users/Admin/WebstormProjects/dnipro_animals/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:37254:24)
+[2m13:10:01[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to resolve import "./figma/ImageWithFallback" from "src/app/components/AnimalCard.tsx". Does the file exist?
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Admin/WebstormProjects/dnipro_animals/src/app/components/AnimalCard.tsx[39m:7:34
+[33m  19 |  import { Badge } from "./Badge";
+  20 |  import { Button } from "./Button";
+  21 |  import { ImageWithFallback } from "./figma/ImageWithFallback";
+     |                                     ^
+  22 |  import "./AnimalCard.scss";
+  23 |  export function AnimalCard({ animal }) {[39m
+[2m13:10:01[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to resolve import "./figma/ImageWithFallback" from "src/app/components/AnimalCard.tsx". Does the file exist?
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Admin/WebstormProjects/dnipro_animals/src/app/components/AnimalCard.tsx[39m:7:34
+[33m  19 |  import { Badge } from "./Badge";
+  20 |  import { Button } from "./Button";
+  21 |  import { ImageWithFallback } from "./figma/ImageWithFallback";
+     |                                     ^
+  22 |  import "./AnimalCard.scss";
+  23 |  export function AnimalCard({ animal }) {[39m

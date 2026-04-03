@@ -1,0 +1,40 @@
+@use '../../styles/variables' as *;
+
+.admin-animal-form {
+  display: grid;
+  gap: 0.9rem;
+
+  label {
+    display: grid;
+    gap: 0.35rem;
+    color: $color-text-primary;
+    font-weight: 600;
+  }
+
+  select {
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    background: $color-input-bg;
+    color: $color-text-primary;
+    padding: 0.68rem 0.8rem;
+
+    &:focus-visible {
+      outline: none;
+      border-color: $color-accent;
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+      background: $color-surface;
+    }
+  }
+}
+
+.admin-animal-form__row {
+  display: grid;
+  gap: 0.65rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 620px) {
+  .admin-animal-form__row {
+    grid-template-columns: 1fr;
+  }
+}

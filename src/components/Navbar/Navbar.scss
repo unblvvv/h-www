@@ -1,0 +1,149 @@
+@use '../../styles/variables' as *;
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(236, 253, 245, 0.88);
+  border-bottom: 1px solid $color-border;
+  backdrop-filter: blur(8px);
+}
+
+.site-header--hero {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 80;
+  background: transparent;
+  border-bottom: 0;
+  backdrop-filter: none;
+}
+
+.site-nav {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.site-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: $color-text-primary;
+}
+
+.site-brand__logo {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.site-header--hero .site-nav {
+  width: min(100% - 4.5rem, 1200px);
+  min-height: 64px;
+  margin-top: 12px;
+  padding-inline: 1.4rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  backdrop-filter: blur(14px);
+}
+
+.site-header--hero .site-brand {
+  color: #fff;
+}
+
+.site-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 1.45rem;
+
+  a {
+    color: $color-text-secondary;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+
+    &:hover,
+    &.is-active {
+      color: $color-accent-hover;
+    }
+  }
+}
+
+.site-header--hero .site-nav__links a {
+  color: rgba(255, 255, 255, 0.78);
+
+  &:hover,
+  &.is-active {
+    color: #fff;
+  }
+}
+
+.site-nav__auth {
+  display: flex;
+  align-items: center;
+}
+
+.login-chip,
+.profile-chip {
+  border: 1px solid $color-border;
+  background: $color-surface;
+  border-radius: 999px;
+  color: $color-text-primary;
+  padding: 0.5rem 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.site-header--hero .login-chip,
+.site-header--hero .profile-chip {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.site-header--hero .profile-chip--active {
+  border-color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.profile-chip--active {
+  border-color: $color-accent;
+  background: rgba(34, 197, 94, 0.12);
+}
+
+@media (max-width: 900px) {
+  .site-header--hero {
+    top: 0;
+  }
+
+  .site-nav {
+    flex-wrap: wrap;
+    padding: 0.75rem 0;
+  }
+
+  .site-nav__links {
+    width: 100%;
+    order: 3;
+    padding-bottom: 0.2rem;
+    overflow-x: auto;
+  }
+
+  .site-header--hero .site-nav {
+    width: min(100% - 2rem, 1200px);
+    margin-top: 8px;
+    padding-inline: 1rem;
+  }
+}
+
