@@ -63,6 +63,8 @@ type CreateAnimalResponse = {
 
 type ViewMode = 'grid' | 'list';
 
+const normalizeUrl = (url: string) => url.replace(/([^:]\/)(\/)+/g, '$1');
+
 export default function AdminPage() {
   const [animals, setAnimals] = useState<Animal[]>(mockAnimals);
   const [editingAnimal, setEditingAnimal] = useState<Animal | null>(null);
@@ -155,7 +157,7 @@ export default function AdminPage() {
           },
         });
 
-        photoUrl = uploadResponse.data.url;
+        photoUrl = normalizeUrl(uploadResponse.data.url);
       }
 
       const createResponse = await instance.post<CreateAnimalResponse>('/admin/animal/create', {

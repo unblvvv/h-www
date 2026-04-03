@@ -1,12 +1,52 @@
 import { useEffect, useMemo, useState } from 'react';
 import { ArrowUp } from 'lucide-react';
-import { mockAnimals } from '../../shared/data/mockAnimals';
-import { AnimalAge, AnimalStatus, AnimalType } from '../../shared/types/animal';
+import { Animal, AnimalAge, AnimalStatus, AnimalType } from '../../shared/types/animal';
 import { FilterBar } from '../../features/animal-filter/FilterBar/FilterBar';
 import { PetGrid } from './ui/PetGrid/PetGrid';
 import { ImageWithFallback } from '../../components/figma/ImageWithFallback';
 import { useSeo } from '../../shared/utils/useSeo';
+import { apiRequest } from '../../shared/lib/api';
 import './FindPetPage.scss';
+
+interface ApiAnimal {
+  Age?: string;
+  CreatedAt?: string;
+  Description?: string;
+  ID?: string;
+  Name?: string;
+  OrganizationID?: string;
+  PhotoURL?: string;
+  Sex?: string;
+  Status?: string;
+  Type?: string;
+  UpdatedAt?: string;
+}
+
+interface ApiAnimalListResponse {
+  items?: ApiAnimal[];
+}
+
+const normalizeType = (value?: string): AnimalType => {
+  const normalized = value?.trim().toLowerCase();
+  return normalized === 'cat' ? 'cat' : 'dog';
+};
+
+const normalizeAge = (value?: string): AnimalAge => {
+  const normalized = value?.trim().toLowerCase();
+  return normalized === 'young' ? 'young' : 'adult';
+};
+
+const normalizeStatus = (value?: string): AnimalStatus => {
+  const normalized = value?.trim().toLowerCase();
+  if (normalized === 'in-process') return 'in-process';
+  if (normalized === 'adopted') return 'adopted';
+  return 'available';
+};
+
+const normalizeSex = (value?: string): 'male' | 'female' => {
+  const normalized = value?.trim().toLowerCase();
+  return normalized === 'female' ? 'female' : 'male';
+};
 
 export default function FindPetPage() {
   useSeo({
@@ -20,16 +60,42 @@ export default function FindPetPage() {
   const [ageFilter, setAgeFilter] = useState<AnimalAge | 'all'>('all');
   const [statusFilter, setStatusFilter] = useState<AnimalStatus | 'all'>('all');
   const [loading, setLoading] = useState(true);
+  const [pets, setPets] = useState<Animal[]>([]);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
+    let isMounted = true;
     setLoading(true);
-    const timer = window.setTimeout(() => {
-      setLoading(false);
-    }, 260);
 
-    return () => window.clearTimeout(timer);
-  }, [searchQuery, typeFilter, ageFilter, statusFilter]);
+    apiRequest<ApiAnimalListResponse>('/animal')
+      .then((data) => {
+        if (!isMounted) return;
+        const items = data.items ?? [];
+        const nextPets = items.map((animal, index) => ({
+          id: animal.ID ?? `${index}`,
+          name: animal.Name ?? 'Без імені',
+          type: normalizeType(animal.Type),
+          age: normalizeAge(animal.Age),
+          gender: normalizeSex(animal.Sex),
+          description: animal.Description ?? '',
+          image: animal.PhotoURL ?? '',
+          status: normalizeStatus(animal.Status),
+        }));
+        setPets(nextPets);
+      })
+      .catch(() => {
+        if (!isMounted) return;
+        setPets([]);
+      })
+      .finally(() => {
+        if (!isMounted) return;
+        setLoading(false);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,18 +110,18 @@ export default function FindPetPage() {
   const filteredPets = useMemo(() => {
     const normalizedQuery = searchQuery.toLowerCase().trim();
 
-    return mockAnimals.filter((pet) => {
+    return pets.filter((pet) => {
       const matchesSearch = !normalizedQuery || pet.name.toLowerCase().includes(normalizedQuery);
       const matchesType = typeFilter === 'all' || pet.type === typeFilter;
       const matchesAge = ageFilter === 'all' || pet.age === ageFilter;
       const matchesStatus = statusFilter === 'all' || pet.status === statusFilter;
       return matchesSearch && matchesType && matchesAge && matchesStatus;
     });
-  }, [searchQuery, typeFilter, ageFilter, statusFilter]);
+  }, [pets, searchQuery, typeFilter, ageFilter, statusFilter]);
 
   const heroPet = useMemo(() => {
-    return mockAnimals.find((pet) => pet.status === 'available') ?? mockAnimals[0];
-  }, []);
+    return filteredPets.find((pet) => pet.status === 'available') ?? filteredPets[0];
+  }, [filteredPets]);
 
   const availableCount = filteredPets.filter((pet) => pet.status === 'available').length;
   const inProcessCount = filteredPets.filter((pet) => pet.status === 'in-process').length;
@@ -72,7 +138,7 @@ export default function FindPetPage() {
 
           <div className="find-pet-hero__visual" aria-hidden="true">
             <div className="find-pet-hero__shape" />
-            <ImageWithFallback src={heroPet.image} alt="" className="find-pet-hero__image" />
+            <ImageWithFallback src={heroPet?.image ?? ''} alt="" className="find-pet-hero__image" />
           </div>
         </div>
       </section>

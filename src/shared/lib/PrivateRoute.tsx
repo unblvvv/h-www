@@ -6,7 +6,7 @@ interface PrivateRouteProps {
   allowRoles?: string[];
 }
 
-export function PrivateRoute({ redirectTo = '/login' }: PrivateRouteProps) {
+export function PrivateRoute({ redirectTo = '/login', allowRoles }: PrivateRouteProps) {
   const { isAuthenticated, isAuthInProgress, user } = useAuth();
 
   if (isAuthInProgress) {
