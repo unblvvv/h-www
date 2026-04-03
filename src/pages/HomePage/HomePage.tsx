@@ -7,9 +7,9 @@ import './HomePage.scss';
 
 export default function HomePage() {
   useSeo({
-    title: 'Animal Shelter in Dnipro | Adopt a Rescue Pet',
+    title: 'Притулок для тварин у Дніпрі | Усиновіть врятованого улюбленця',
     description:
-      'Discover rescued cats and dogs in Dnipro, learn how adoption works, and support the shelter by donating.',
+      'Знайдіть врятованих котів і собак у Дніпрі, дізнайтеся, як працює усиновлення, і підтримайте притулок донатами.',
   });
 
   const featuredPets = mockAnimals.filter((pet) => pet.status !== 'adopted').slice(0, 8);

@@ -24,13 +24,13 @@ export function LoginPage() {
     const nextErrors: Record<string, string> = {};
 
     if (!formData.email.trim()) {
-      nextErrors.email = 'Email is required';
+      nextErrors.email = 'Потрібно вказати електронну пошту';
     } else if (!isEmailValid(formData.email)) {
-      nextErrors.email = 'Please enter a valid email';
+      nextErrors.email = 'Вкажіть коректну електронну пошту';
     }
 
     if (!formData.password) {
-      nextErrors.password = 'Password is required';
+      nextErrors.password = 'Потрібно вказати пароль';
     }
 
     setErrors(nextErrors);
@@ -50,7 +50,7 @@ export function LoginPage() {
       await login(formData.email, formData.password);
       navigate('/profile');
     } catch {
-      setFormError('Wrong email or password. Please try again.');
+      setFormError('Невірна пошта або пароль. Спробуйте ще раз.');
     } finally {
       setIsSubmitting(false);
     }
@@ -74,14 +74,14 @@ export function LoginPage() {
                 }}
               >
                 <ArrowLeft size={16} />
-                Back
+                Назад
               </button>
 
               <form className="auth-form" onSubmit={handleSubmit}>
                 {formError ? <p className="auth-form__alert">{formError}</p> : null}
 
                 <label className="auth-form__field">
-                  <span>Email</span>
+                  <span>Електронна пошта</span>
                   <Input
                     className="auth-input"
                     type="email"
@@ -93,11 +93,11 @@ export function LoginPage() {
                 </label>
 
                 <label className="auth-form__field">
-                  <span>Password</span>
+                  <span>Пароль</span>
                   <Input
                     className="auth-input"
                     type="password"
-                    placeholder="Enter password"
+                    placeholder="Введіть пароль"
                     value={formData.password}
                     onChange={(event) => setFormData((prev) => ({ ...prev, password: event.target.value }))}
                     error={errors.password}
@@ -105,21 +105,21 @@ export function LoginPage() {
                 </label>
 
                 <Button className="auth-form__submit" type="submit" disabled={isSubmitting}>
-                  {isSubmitting ? 'Logging in...' : 'Log in'}
+                  {isSubmitting ? 'Вхід...' : 'Увійти'}
                 </Button>
               </form>
 
               <p className="auth-page__switch">
-                Don't have an account? <Link to="/register">Sign up</Link>
+                Немає акаунта? <Link to="/register">Зареєструватися</Link>
               </p>
             </div>
 
             <aside className="auth-page__content-pane">
-              <p className="auth-page__badge">Log in</p>
+              <p className="auth-page__badge">Вхід</p>
               <h1 id="login-title" className="auth-page__title">
-                Welcome back
+                З поверненням
               </h1>
-              <p className="auth-page__subtitle">Sign in to continue helping pets find a loving home.</p>
+              <p className="auth-page__subtitle">Увійдіть, щоб і далі допомагати тваринам знаходити люблячий дім.</p>
             </aside>
           </div>
         </div>

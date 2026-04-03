@@ -29,9 +29,9 @@ export function Navbar() {
     {
       id: 'adoption-demo-1',
       type: 'adoption',
-      title: 'New adoption request',
-      text: 'Luna has received a new adoption request.',
-      time: '5 min ago',
+      title: 'Нова заявка на усиновлення',
+      text: 'Луна отримала нову заявку на усиновлення.',
+      time: '5 хв тому',
       isRead: false,
     },
   ]);
@@ -148,24 +148,24 @@ export function Navbar() {
     <header
       className={`site-header${isHeroStyledPage ? ' site-header--hero' : ''}${isHeroStyledPage && isOnLightBackground ? ' site-header--hero-light' : ''}`}
     >
-      <nav className="site-nav app-container" aria-label="Main navigation">
-        <Link to="/" className="site-brand" aria-label="Animal shelter home page">
+      <nav className="site-nav app-container" aria-label="Головна навігація">
+        <Link to="/" className="site-brand" aria-label="Головна сторінка притулку для тварин">
           <img src="/logo.png" alt="" className="site-brand__logo" />
           <span>Dnipro Animals</span>
         </Link>
 
         <div className="site-nav__links">
           <Link to="/" className={isActive('/') ? 'is-active' : ''}>
-            Home
+            Головна
           </Link>
           <Link to="/find-pet" className={isActive('/find-pet') ? 'is-active' : ''}>
-            Find a pet
+            Знайти улюбленця
           </Link>
           <Link to="/donate" className={isActive('/donate') ? 'is-active' : ''}>
-            Donate
+            Підтримати
           </Link>
           <Link to="/admin" className={isActive('/admin') ? 'is-active' : ''}>
-            Admin
+            Адмін
           </Link>
         </div>
 
@@ -175,7 +175,7 @@ export function Navbar() {
               type="button"
               className={isNotificationsOpen ? 'notifications-chip notifications-chip--active' : 'notifications-chip'}
               onClick={() => setIsNotificationsOpen((prev) => !prev)}
-              aria-label="Notifications"
+              aria-label="Сповіщення"
               aria-expanded={isNotificationsOpen}
               aria-controls="notifications-panel"
             >
@@ -189,7 +189,7 @@ export function Navbar() {
                 />
               </svg>
               {unreadCount > 0 ? (
-                <span className="notifications-chip__badge" aria-label={`${unreadCount} unread notifications`}>
+                <span className="notifications-chip__badge" aria-label={`${unreadCount} непрочитаних сповіщень`}>
                   {unreadCount > 9 ? '9+' : unreadCount}
                 </span>
               ) : null}
@@ -198,17 +198,17 @@ export function Navbar() {
             <section
               id="notifications-panel"
               className={isNotificationsOpen ? 'notifications-panel is-open' : 'notifications-panel'}
-              aria-label="Notifications panel"
+              aria-label="Панель сповіщень"
             >
               <header className="notifications-panel__head">
-                <h3>Notifications</h3>
+                <h3>Сповіщення</h3>
                 <div className="notifications-panel__actions">
                   <button
                     type="button"
                     className="notifications-panel__full-screen"
                     onClick={() => handleOpenMailbox()}
                   >
-                    Full Screen
+                    На весь екран
                   </button>
                   <button
                     type="button"
@@ -216,14 +216,14 @@ export function Navbar() {
                     onClick={handleMarkAllAsRead}
                     disabled={unreadCount === 0}
                   >
-                    Mark all as read
+                    Позначити всі як прочитані
                   </button>
                 </div>
               </header>
 
               <div className="notifications-panel__body">
                 {notifications.length === 0 ? (
-                  <p className="notifications-panel__empty">No notifications yet</p>
+                  <p className="notifications-panel__empty">Поки що немає сповіщень</p>
                 ) : (
                   <ul className="notifications-list">
                     {notifications.map((notification) => (
@@ -252,8 +252,8 @@ export function Navbar() {
             type="button"
             className={isDarkTheme ? 'theme-chip theme-chip--active' : 'theme-chip'}
             onClick={handleThemeToggle}
-            aria-label={isDarkTheme ? 'Switch to light theme' : 'Switch to dark theme'}
-            title={isDarkTheme ? 'Light theme' : 'Dark theme'}
+            aria-label={isDarkTheme ? 'Увімкнути світлу тему' : 'Увімкнути темну тему'}
+            title={isDarkTheme ? 'Світла тема' : 'Темна тема'}
           >
             {isDarkTheme ? <Sun size={16} /> : <Moon size={16} />}
           </button>
@@ -261,16 +261,16 @@ export function Navbar() {
           {isAuthenticated ? (
             <Link to="/profile" className={isActive('/profile') ? 'profile-chip profile-chip--active' : 'profile-chip'}>
               <User size={16} />
-              <span>{user?.name || 'Profile'}</span>
+              <span>{user?.name || 'Профіль'}</span>
             </Link>
           ) : (
             <>
               <Link to="/register" className={isActive('/register') ? 'signup-chip signup-chip--active' : 'signup-chip'}>
-                Sign up
+                Зареєструватися
               </Link>
               <Link to="/login" className={isActive('/login') ? 'login-chip login-chip--active' : 'login-chip'}>
                 <LogIn size={16} />
-                <span>Log in</span>
+                <span>Увійти</span>
               </Link>
             </>
           )}

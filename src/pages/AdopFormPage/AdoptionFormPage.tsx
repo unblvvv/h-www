@@ -16,8 +16,8 @@ export default function AdoptionFormPage() {
   const animal = mockAnimals.find((pet) => pet.id === id);
 
   useSeo({
-    title: animal ? `Adopt ${animal.name} | Shelter Application` : 'Adoption request | Animal Shelter',
-    description: 'Submit your adoption request online and optionally create an account to save your contact data.',
+    title: animal ? `Усиновити ${animal.name} | Заявка з притулку` : 'Заявка на усиновлення | Притулок для тварин',
+    description: 'Подайте заявку на усиновлення онлайн та за бажанням створіть акаунт, щоб зберегти контакти.',
   });
 
   const [formData, setFormData] = useState({
@@ -46,18 +46,18 @@ export default function AdoptionFormPage() {
     const nextErrors: Record<string, string> = {};
 
     if (!formData.name.trim()) {
-      nextErrors.name = 'Name is required';
+      nextErrors.name = "Потрібно вказати ім'я";
     }
     if (!formData.email.trim()) {
-      nextErrors.email = 'Email is required';
+      nextErrors.email = 'Потрібно вказати електронну пошту';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      nextErrors.email = 'Please enter a valid email';
+      nextErrors.email = 'Вкажіть коректну електронну пошту';
     }
     if (!formData.phone.trim()) {
-      nextErrors.phone = 'Phone is required';
+      nextErrors.phone = 'Потрібно вказати телефон';
     }
     if (!formData.message.trim()) {
-      nextErrors.message = 'Please write a short message';
+      nextErrors.message = 'Будь ласка, напишіть коротке повідомлення';
     }
 
     setErrors(nextErrors);
@@ -77,10 +77,10 @@ export default function AdoptionFormPage() {
     return (
       <main className="page adoption-page">
         <div className="app-container adoption-page__not-found">
-          <h1 className="section-title">Pet not found</h1>
-          <p className="section-subtitle">The adoption target is missing from the catalog.</p>
+          <h1 className="section-title">Улюбленця не знайдено</h1>
+          <p className="section-subtitle">Запит на усиновлення відсутній у каталозі.</p>
           <Link to="/find-pet">
-            <Button>Back to pets</Button>
+            <Button>Назад до улюбленців</Button>
           </Link>
         </div>
       </main>
@@ -93,24 +93,24 @@ export default function AdoptionFormPage() {
         <div className="app-container adoption-page__success-wrap">
           <section className="adoption-page__success-card">
             <CheckCircle2 size={56} />
-            <h1>Request sent for {animal.name}</h1>
+            <h1>Заявку надіслано для {animal.name}</h1>
             <p>
-              Thank you. Our team will contact you soon to arrange the next step of the adoption process.
+              Дякуємо. Наша команда скоро зв'яжеться з вами, щоб узгодити наступний крок усиновлення.
             </p>
 
             {!isAuthenticated ? (
               <div className="adoption-page__register-prompt">
-                <h2>Save your details for next time</h2>
-                <p>Create an account to auto-fill your future adoption requests.</p>
+                <h2>Збережіть ваші дані на майбутнє</h2>
+                <p>Створіть акаунт, щоб автоматично заповнювати наступні заявки.</p>
                 <div>
                   <Button variant="secondary" onClick={() => navigate('/find-pet')}>
-                    Skip for now
+                    Пропустити
                   </Button>
-                  <Button onClick={() => navigate('/register')}>Create account</Button>
+                  <Button onClick={() => navigate('/register')}>Створити акаунт</Button>
                 </div>
               </div>
             ) : (
-              <Button onClick={() => navigate('/find-pet')}>Back to pets catalog</Button>
+              <Button onClick={() => navigate('/find-pet')}>Назад до каталогу</Button>
             )}
           </section>
         </div>
@@ -122,15 +122,15 @@ export default function AdoptionFormPage() {
     <main className="page adoption-page">
       <div className="app-container">
         <header className="adoption-page__head">
-          <h1 className="section-title">Adopt {animal.name}</h1>
+          <h1 className="section-title">Усиновити {animal.name}</h1>
           <p className="section-subtitle">
-            Complete this form so we can review your request and contact you shortly.
+            Заповніть форму, щоб ми могли розглянути заявку та зв'язатися з вами найближчим часом.
           </p>
         </header>
 
         <form className="adoption-page__form" onSubmit={handleSubmit}>
           <label>
-            <span>Name</span>
+            <span>Ім'я</span>
             <Input
               value={formData.name}
               onChange={(event) => setFormData((prev) => ({ ...prev, name: event.target.value }))}
@@ -139,7 +139,7 @@ export default function AdoptionFormPage() {
           </label>
 
           <label>
-            <span>Email</span>
+            <span>Електронна пошта</span>
             <Input
               type="email"
               value={formData.email}
@@ -149,7 +149,7 @@ export default function AdoptionFormPage() {
           </label>
 
           <label>
-            <span>Phone</span>
+            <span>Телефон</span>
             <Input
               value={formData.phone}
               onChange={(event) => setFormData((prev) => ({ ...prev, phone: event.target.value }))}
@@ -158,17 +158,17 @@ export default function AdoptionFormPage() {
           </label>
 
           <label>
-            <span>Message</span>
+            <span>Повідомлення</span>
             <Textarea
               value={formData.message}
               onChange={(event) => setFormData((prev) => ({ ...prev, message: event.target.value }))}
               error={errors.message}
-              placeholder="Tell us why you want to adopt this pet and what home you can provide."
+              placeholder="Розкажіть, чому хочете усиновити цього улюбленця і які умови можете забезпечити."
             />
           </label>
 
           <Button type="submit" size="lg">
-            Submit adoption request
+            Надіслати заявку на усиновлення
           </Button>
         </form>
       </div>

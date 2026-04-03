@@ -10,7 +10,7 @@ interface PetGridProps {
 export function PetGrid({ pets, loading }: PetGridProps) {
   if (loading) {
     return (
-      <section className="pet-grid" aria-label="Loading pets">
+      <section className="pet-grid" aria-label="Завантаження тварин">
         {Array.from({ length: 8 }).map((_, index) => (
           <div className="pet-grid__skeleton" key={index} />
         ))}
@@ -21,14 +21,14 @@ export function PetGrid({ pets, loading }: PetGridProps) {
   if (!pets.length) {
     return (
       <section className="pet-grid__empty" aria-live="polite">
-        <h2>No pets match your filters right now</h2>
-        <p>Try changing one of the filters or search with a different name.</p>
+        <h2>Наразі жоден улюбленець не відповідає фільтрам</h2>
+        <p>Спробуйте змінити один із фільтрів або пошукайте інше ім'я.</p>
       </section>
     );
   }
 
   return (
-    <section className="pet-grid" aria-label="Available pets list">
+    <section className="pet-grid" aria-label="Список доступних тварин">
       {pets.map((pet) => (
         <AnimalCard key={pet.id} animal={pet} />
       ))}

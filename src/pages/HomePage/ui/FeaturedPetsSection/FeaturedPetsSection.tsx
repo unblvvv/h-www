@@ -22,14 +22,14 @@ export function FeaturedPetsSection({ pets }: FeaturedPetsSectionProps) {
       <div className="app-container">
         <div className="featured-pets__head">
           <h2 id="featured-pets-title" className="featured-pets__title">
-            Find your new friend
+            Знайдіть нового друга
           </h2>
           <Link to="/find-pet" className="featured-pets__view-all">
-            View all
+            Переглянути всі
           </Link>
         </div>
 
-        <div className="pets-carousel" aria-label="Available pets">
+        <div className="pets-carousel" aria-label="Доступні тварини">
           <div className="pets-carousel__track">
             <div className="pets-carousel__group">
               {carouselPets.map((pet) => (
@@ -37,10 +37,10 @@ export function FeaturedPetsSection({ pets }: FeaturedPetsSectionProps) {
                   <ImageWithFallback src={pet.image} alt={pet.name} className="pet-card__image" />
                   <div className="pet-card__meta">
                     <h3>{pet.name}</h3>
-                    <p>{pet.type}</p>
+                    <p>{pet.type === 'dog' ? 'Собака' : 'Кіт'}</p>
                   </div>
                   <button type="button" className="pet-card__button" onClick={() => handleViewInfo(pet.id)}>
-                    View info
+                    Детальніше
                   </button>
                 </article>
               ))}
@@ -52,7 +52,7 @@ export function FeaturedPetsSection({ pets }: FeaturedPetsSectionProps) {
                   <ImageWithFallback src={pet.image} alt="" className="pet-card__image" />
                   <div className="pet-card__meta">
                     <h3>{pet.name}</h3>
-                    <p>{pet.type}</p>
+                    <p>{pet.type === 'dog' ? 'Собака' : 'Кіт'}</p>
                   </div>
                   <button
                     type="button"
@@ -60,7 +60,7 @@ export function FeaturedPetsSection({ pets }: FeaturedPetsSectionProps) {
                     tabIndex={-1}
                     onClick={() => handleViewInfo(pet.id)}
                   >
-                    View info
+                    Детальніше
                   </button>
                 </article>
               ))}

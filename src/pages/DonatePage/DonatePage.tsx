@@ -8,9 +8,9 @@ import './DonatePage.scss';
 
 export default function DonatePage() {
   useSeo({
-    title: 'Donate to Animal Shelter | Help Rescue Pets',
+    title: 'Підтримати притулок | Допомога врятованим тваринам',
     description:
-      'Support rescued cats and dogs with one-time donations. Your contribution helps with food, treatment, and care.',
+      'Підтримайте врятованих котів і собак разовим донатом. Ваш внесок допомагає з кормом, лікуванням і доглядом.',
   });
 
   const navigate = useNavigate();
@@ -35,9 +35,9 @@ export default function DonatePage() {
         <div className="app-container donate-page__success-wrap">
           <section className="donate-page__success-card">
             <CheckCircle2 size={56} />
-            <h1>Thank you for your donation</h1>
-            <p>Your support helps provide treatment, food, and temporary housing for rescue animals.</p>
-            <Button onClick={() => navigate('/find-pet')}>Continue to pets catalog</Button>
+            <h1>Дякуємо за вашу підтримку</h1>
+            <p>Ваша допомога забезпечує лікування, корм і тимчасове житло для врятованих тварин.</p>
+            <Button onClick={() => navigate('/find-pet')}>Перейти до каталогу</Button>
           </section>
         </div>
       </main>
@@ -49,15 +49,15 @@ export default function DonatePage() {
       <div className="app-container donate-page__layout">
         <header className="donate-page__intro">
           <Heart size={30} />
-          <h1 className="section-title">Support rescue pets</h1>
+          <h1 className="section-title">Підтримайте врятованих тварин</h1>
           <p className="section-subtitle">
-            Every donation goes to essential care: veterinary visits, medicine, food, and finding safe homes.
+            Кожен донат іде на необхідну допомогу: візити до ветеринара, ліки, корм і пошук безпечних домівок.
           </p>
         </header>
 
-        <section className="donate-page__form-wrap" aria-label="Donation form">
+        <section className="donate-page__form-wrap" aria-label="Форма донату">
           <DonationForm onDonate={handleDonate} disabled={processing} />
-          {processing ? <p className="donate-page__processing">Processing donation...</p> : null}
+          {processing ? <p className="donate-page__processing">Обробка донату...</p> : null}
         </section>
       </div>
     </main>

@@ -21,9 +21,9 @@ export default function ProfilePage() {
   if (!isAuthenticated || !user) {
     return (
       <main className="page profile-page profile-page--empty">
-        <h1 className="section-title">Profile is unavailable</h1>
-        <p className="section-subtitle">Please log in to view and edit saved contact details.</p>
-        <Button onClick={() => navigate('/')}>Back to home</Button>
+        <h1 className="section-title">Профіль недоступний</h1>
+        <p className="section-subtitle">Будь ласка, увійдіть, щоб переглядати та редагувати збережені контактні дані.</p>
+        <Button onClick={() => navigate('/')}>Назад на головну</Button>
       </main>
     );
   }
@@ -32,17 +32,17 @@ export default function ProfilePage() {
     const nextErrors: Record<string, string> = {};
 
     if (!values.name.trim()) {
-      nextErrors.name = 'Name is required';
+      nextErrors.name = "Потрібно вказати ім'я";
     }
 
     if (!values.email.trim()) {
-      nextErrors.email = 'Email is required';
+      nextErrors.email = 'Потрібно вказати електронну пошту';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
-      nextErrors.email = 'Please enter a valid email';
+      nextErrors.email = 'Вкажіть коректну електронну пошту';
     }
 
     if (!values.phone.trim()) {
-      nextErrors.phone = 'Phone is required';
+      nextErrors.phone = 'Потрібно вказати телефон';
     }
 
     setErrors(nextErrors);
@@ -75,8 +75,8 @@ export default function ProfilePage() {
         <header className="profile-page__head">
           <UserCircle2 size={32} />
           <div>
-            <h1 className="section-title">Your profile</h1>
-            <p className="section-subtitle">Keep your adoption contact details up to date.</p>
+            <h1 className="section-title">Ваш профіль</h1>
+            <p className="section-subtitle">Тримайте контактні дані для усиновлення актуальними.</p>
           </div>
         </header>
 

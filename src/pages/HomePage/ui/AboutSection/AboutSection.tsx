@@ -10,19 +10,19 @@ export function AboutSection() {
       <div className="app-container">
         <div className="about__panel">
           <div className="about__content">
-            <p className="about__badge">About us</p>
+            <p className="about__badge">Про нас</p>
             <h2 id="about-title" className="about__title">
-              We rescue pets
+              Рятуємо тварин
               <br />
-              and match real families
+              та поєднуємо їх з родинами
             </h2>
             <p className="about__text">
-              Dnipro Animals provides medical care, rehabilitation, and a transparent adoption path to help every pet
-              find a safe, loving home.
+              Dnipro Animals забезпечує медичну допомогу, реабілітацію та прозорий шлях усиновлення, щоб кожен
+              улюбленець знайшов безпечний, люблячий дім.
             </p>
             <p className="about__text about__text--secondary">
-              We focus on responsible adoption, post-adoption support, and clear communication so each match is safe
-              and sustainable for both families and pets.
+              Ми фокусуємося на відповідальному усиновленні, підтримці після нього та прозорій комунікації, щоб кожна
+              пара була безпечною та сталою для родини й тварини.
             </p>
           </div>
 

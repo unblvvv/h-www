@@ -12,21 +12,27 @@ export default function AnimalDetailsPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const animal = mockAnimals.find((pet) => pet.id === id);
-  const petTypeLabel = animal?.type === 'dog' ? 'Dog' : 'Cat';
-  const petAgeLabel = animal?.age === 'young' ? 'Young' : 'Adult';
-  const petGenderLabel = animal?.gender === 'female' ? 'Female' : 'Male';
+  const petTypeLabel = animal?.type === 'dog' ? 'Собака' : 'Кіт';
+  const petAgeLabel = animal?.age === 'young' ? 'Молодий' : 'Дорослий';
+  const petGenderLabel = animal?.gender === 'female' ? 'Самка' : 'Самець';
+  const statusLabel =
+    animal?.status === 'available'
+      ? 'доступний'
+      : animal?.status === 'in-process'
+        ? 'в процесі'
+        : 'усиновлено';
   const statusHint =
     animal?.status === 'available'
-      ? 'Ready to go home today'
+      ? 'Готовий поїхати додому вже сьогодні'
       : animal?.status === 'in-process'
-        ? 'A family is currently applying'
-        : 'Already happily adopted';
+        ? 'Наразі сімʼя подає заявку'
+        : 'Вже щасливо усиновлений';
 
   useSeo({
-    title: animal ? `${animal.name} | Rescue Pet Details` : 'Pet details | Animal Shelter',
+    title: animal ? `${animal.name} | Деталі врятованого улюбленця` : 'Деталі улюбленця | Притулок для тварин',
     description: animal
-      ? `${animal.name} is a ${animal.age} ${animal.type} currently ${animal.status}. Learn more and apply to adopt.`
-      : 'View pet details and start your adoption request.',
+      ? `${animal.name} — ${petAgeLabel.toLowerCase()} ${petTypeLabel.toLowerCase()}, зараз статус: ${statusLabel}. Дізнайтеся більше та подайте заявку на усиновлення.`
+      : 'Перегляньте деталі улюбленця та подайте заявку на усиновлення.',
   });
 
   useEffect(() => {
@@ -37,10 +43,10 @@ export default function AnimalDetailsPage() {
     return (
       <main className="page animal-details-page">
         <div className="app-container animal-details-page__not-found">
-          <h1 className="section-title">Pet not found</h1>
-          <p className="section-subtitle">This pet profile does not exist or has been removed.</p>
+          <h1 className="section-title">Улюбленця не знайдено</h1>
+          <p className="section-subtitle">Цей профіль не існує або був видалений.</p>
           <Link to="/find-pet">
-            <Button>Back to pets catalog</Button>
+            <Button>Назад до каталогу</Button>
           </Link>
         </div>
       </main>
@@ -52,14 +58,14 @@ export default function AnimalDetailsPage() {
       <div className="app-container">
         <Link to="/find-pet" className="animal-details-page__back-link">
           <ArrowLeft size={18} />
-          Back to pets catalog
+          Назад до каталогу
         </Link>
 
         <article className="animal-details-page__card">
-          <section className="animal-details-page__gallery" aria-label={`Photos of ${animal.name}`}>
+          <section className="animal-details-page__gallery" aria-label={`Фото ${animal.name}`}>
             <ImageWithFallback
               src={animal.image}
-              alt={`${animal.name}, ${animal.age} ${animal.type}, rescue shelter profile photo`}
+              alt={`${animal.name}, ${petAgeLabel.toLowerCase()} ${petTypeLabel.toLowerCase()}, профільне фото з притулку`}
               className="animal-details-page__main-image"
             />
             <div className="animal-details-page__thumbs">
@@ -67,7 +73,7 @@ export default function AnimalDetailsPage() {
                 <ImageWithFallback
                   key={thumb}
                   src={animal.image}
-                  alt={`${animal.name} photo ${thumb + 1}`}
+                  alt={`Фото ${animal.name} ${thumb + 1}`}
                   className="animal-details-page__thumb-image"
                 />
               ))}
@@ -80,41 +86,41 @@ export default function AnimalDetailsPage() {
               <p>{petTypeLabel} - {petAgeLabel} - {petGenderLabel}</p>
             </header>
 
-            <section className="animal-details-page__status-box" aria-label="Adoption status">
+            <section className="animal-details-page__status-box" aria-label="Статус усиновлення">
               <Badge variant={animal.status} />
               <p>{statusHint}</p>
             </section>
 
             <section className="animal-details-page__about">
-              <h2>About this pet</h2>
+              <h2>Про улюбленця</h2>
               <p>{animal.description}</p>
             </section>
 
-            <section className="animal-details-page__facts" aria-label="Pet facts">
+            <section className="animal-details-page__facts" aria-label="Факти про улюбленця">
               <div>
-                <span>Type</span>
+                <span>Тип</span>
                 <strong>{petTypeLabel}</strong>
               </div>
               <div>
-                <span>Age</span>
+                <span>Вік</span>
                 <strong>{petAgeLabel}</strong>
               </div>
               <div>
-                <span>Gender</span>
+                <span>Стать</span>
                 <strong>{petGenderLabel}</strong>
               </div>
               <div>
-                <span>Status</span>
-                <strong>{animal.status === 'available' ? 'Available' : animal.status === 'in-process' ? 'In process' : 'Adopted'}</strong>
+                <span>Статус</span>
+                <strong>{animal.status === 'available' ? 'Доступний' : animal.status === 'in-process' ? 'В процесі' : 'Усиновлено'}</strong>
               </div>
             </section>
 
-            <section className="animal-details-page__actions" aria-label="Pet actions">
+            <section className="animal-details-page__actions" aria-label="Дії з улюбленцем">
               <Button size="lg" onClick={() => navigate(`/adopt/${animal.id}`)} disabled={animal.status !== 'available'}>
-                Adopt this pet
+                Усиновити цього улюбленця
               </Button>
               <Button size="lg" variant="secondary" onClick={() => navigate('/donate')}>
-                Donate
+                Підтримати
               </Button>
             </section>
           </section>

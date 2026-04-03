@@ -30,9 +30,9 @@ export function ProfileForm({
   onLogout,
 }: ProfileFormProps) {
   return (
-    <section className="profile-form" aria-label="Profile details form">
+    <section className="profile-form" aria-label="Форма даних профілю">
       <label>
-        <span>Name</span>
+        <span>Ім'я</span>
         {isEditing ? (
           <Input value={values.name} onChange={(event) => onChange('name', event.target.value)} error={errors.name} />
         ) : (
@@ -41,7 +41,7 @@ export function ProfileForm({
       </label>
 
       <label>
-        <span>Email</span>
+        <span>Електронна пошта</span>
         {isEditing ? (
           <Input value={values.email} onChange={(event) => onChange('email', event.target.value)} error={errors.email} />
         ) : (
@@ -50,7 +50,7 @@ export function ProfileForm({
       </label>
 
       <label>
-        <span>Phone</span>
+        <span>Телефон</span>
         {isEditing ? (
           <Input value={values.phone} onChange={(event) => onChange('phone', event.target.value)} error={errors.phone} />
         ) : (
@@ -62,16 +62,16 @@ export function ProfileForm({
         {isEditing ? (
           <>
             <Button variant="secondary" onClick={onCancel}>
-              Cancel
+              Скасувати
             </Button>
-            <Button onClick={onSave}>Save profile</Button>
+            <Button onClick={onSave}>Зберегти профіль</Button>
           </>
         ) : (
           <>
             <Button variant="secondary" onClick={onLogout}>
-              Log out
+              Вийти
             </Button>
-            <Button onClick={onEdit}>Edit profile</Button>
+            <Button onClick={onEdit}>Редагувати профіль</Button>
           </>
         )}
       </div>

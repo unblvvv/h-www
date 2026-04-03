@@ -9,9 +9,9 @@ interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 const variantText: Record<BadgeVariant, string> = {
-  available: 'Available now',
-  'in-process': 'In process',
-  adopted: 'Adopted',
+  available: 'Доступний зараз',
+  'in-process': 'В процесі',
+  adopted: 'Усиновлено',
 };
 
 export function Badge({ variant, className, children, ...props }: BadgeProps) {

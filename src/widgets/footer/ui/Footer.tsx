@@ -6,55 +6,55 @@ export function Footer() {
     <footer className="site-footer">
       <div className="app-container site-footer__inner">
         <div className="site-footer__columns">
-          <section className="site-footer__column site-footer__column--left" aria-label="Brand information">
+          <section className="site-footer__column site-footer__column--left" aria-label="Інформація про бренд">
             <div className="site-footer__brand">
-              <img src="/logo.png" alt="Dnipro Animals logo" className="site-footer__logo" />
+              <img src="/logo.png" alt="Логотип Dnipro Animals" className="site-footer__logo" />
               <strong>Dnipro Animals</strong>
             </div>
-            <p className="site-footer__description">Helping pets find safe homes</p>
+            <p className="site-footer__description">Допомагаємо тваринам знаходити безпечні домівки</p>
             <address className="site-footer__contacts">
               <a href="mailto:hello@dniproanimals.org">hello@dniproanimals.org</a>
-              <span>Dnipro, Ukraine</span>
+              <span>Дніпро, Україна</span>
             </address>
           </section>
 
-          <section className="site-footer__column site-footer__column--center" aria-label="Footer navigation">
+          <section className="site-footer__column site-footer__column--center" aria-label="Навігація футера">
             <div className="site-footer__links-group">
-              <p className="site-footer__title">Navigation</p>
+              <p className="site-footer__title">Навігація</p>
               <nav className="site-footer__links">
-                <Link to="/">Home</Link>
-                <Link to="/find-pet">Find a pet</Link>
-                <Link to="/donate">Donate</Link>
+                <Link to="/">Головна</Link>
+                <Link to="/find-pet">Знайти улюбленця</Link>
+                <Link to="/donate">Підтримати</Link>
               </nav>
             </div>
             <div className="site-footer__links-group">
-              <p className="site-footer__title">Support</p>
+              <p className="site-footer__title">Підтримка</p>
               <nav className="site-footer__links">
-                <a href="mailto:hello@dniproanimals.org">Contact</a>
+                <a href="mailto:hello@dniproanimals.org">Контакти</a>
               </nav>
             </div>
           </section>
 
-          <section className="site-footer__column site-footer__column--right" aria-label="Social and donate">
-            <button type="button" className="site-footer__donate" aria-label="Donate placeholder">
-              Donate
+          <section className="site-footer__column site-footer__column--right" aria-label="Соцмережі та донати">
+            <button type="button" className="site-footer__donate" aria-label="Підтримати (плейсхолдер)">
+              Підтримати
             </button>
-            <div className="site-footer__socials" aria-label="Social links">
-              <button type="button" aria-label="Facebook">
-                <img src="/social/facebook.svg" alt="" />
+            <div className="site-footer__socials" aria-label="Соціальні посилання">
+              <button type="button" aria-label="Фейсбук">
+                <a href="https://www.facebook.com/dniproanimalsua/" target="_blank" rel="noopener noreferrer">
+                  <img src="/social/facebook.svg" alt="Фейсбук" />
+                </a>
               </button>
-              <button type="button" aria-label="Instagram">
-                <img src="/social/instagram.svg" alt="" />
-              </button>
-              <button type="button" aria-label="YouTube">
-                <img src="/social/youtube.svg" alt="" />
+              <button type="button" aria-label="Інстаграм">
+                <a href="https://instagram.com/dniproanimals" target="_blank" rel="noopener noreferrer">
+                  <img src="/social/instagram.svg" alt="Інстаграм" />
+                </a>
               </button>
             </div>
           </section>
         </div>
-
         <div className="site-footer__bottom">
-          <p>&copy; 2026 Dnipro Animals. All rights reserved.</p>
+          <p>&copy; 2026 Dnipro Animals. Всі права захищені.</p>
         </div>
       </div>
     </footer>

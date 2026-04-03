@@ -28,7 +28,7 @@ export function DonationForm({ onDonate, disabled }: DonationFormProps) {
   return (
     <form className="donation-form" onSubmit={handleSubmit}>
       <fieldset>
-        <legend>Select an amount</legend>
+        <legend>Оберіть суму</legend>
         <div className="donation-form__amounts">
           {presetAmounts.map((preset) => (
             <button
@@ -47,7 +47,7 @@ export function DonationForm({ onDonate, disabled }: DonationFormProps) {
       </fieldset>
 
       <label className="donation-form__custom">
-        <span>Custom amount</span>
+        <span>Своя сума</span>
         <Input
           type="number"
           min="1"
@@ -56,12 +56,12 @@ export function DonationForm({ onDonate, disabled }: DonationFormProps) {
             setCustomAmount(event.target.value);
             setSelectedAmount(null);
           }}
-          placeholder="Enter custom amount"
+          placeholder="Введіть власну суму"
         />
       </label>
 
       <Button type="submit" size="lg" disabled={disabled || !amount || amount <= 0}>
-        Donate now
+        Підтримати зараз
       </Button>
     </form>
   );

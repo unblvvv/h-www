@@ -7,26 +7,26 @@ export function HeroSection() {
       <div className="hero__layout">
         <div className="hero__content">
           <h1 id="hero-title" className="hero__title">
-            Help pets
+            Допоможіть тваринам
             <br />
-            find a home
+            знайти дім
           </h1>
           <p className="hero__lead">
-            Find your companion and give them a safe home.
+            Знайдіть свого друга та подаруйте йому безпечний дім.
           </p>
           <div className="hero__actions">
             <Link to="/find-pet" className="hero__button hero__button--primary">
-              Adopt
+              Усиновити
             </Link>
             <Link to="/donate" className="hero__button hero__button--secondary">
-              Donate
+              Підтримати
             </Link>
           </div>
         </div>
 
-        <div className="hero__visual" aria-label="Cat ready for adoption">
+        <div className="hero__visual" aria-label="Кіт, готовий до усиновлення">
           <div className="hero__cat-wrap">
-            <img src="/file.svg" alt="Cat ready for adoption" className="hero__cat" />
+            <img src="/file.svg" alt="Кіт, готовий до усиновлення" className="hero__cat" />
           </div>
         </div>
       </div>

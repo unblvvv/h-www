@@ -31,7 +31,16 @@ const decodeJwtPayload = (token: string): Record<string, unknown> | null => {
   }
 };
 
-const resolveProfileFromAuth = (res: { token?: string; user?: unknown }): UserProfile | null => {
+const resolveProfileFromAuth = (res: {
+  token?: string;
+  user?: unknown;
+  email?: string;
+  username?: string;
+}): UserProfile | null => {
+  if (res.username && res.email) {
+    return { name: res.username, email: res.email };
+  }
+
   if (res.user && typeof res.user === 'object') {
     const user = res.user as Partial<UserProfile>;
     if (user.name && user.email) {

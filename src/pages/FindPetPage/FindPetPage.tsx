@@ -10,9 +10,9 @@ import './FindPetPage.scss';
 
 export default function FindPetPage() {
   useSeo({
-    title: 'Find a Pet | Animal Shelter in Dnipro',
+    title: 'Знайти улюбленця | Притулок для тварин у Дніпрі',
     description:
-      'Search and filter rescue pets by type, age, and status. Explore available animals and start adoption.',
+      'Шукайте та фільтруйте врятованих тварин за типом, віком і статусом. Переглядайте доступних улюбленців та розпочинайте усиновлення.',
   });
 
   const [searchQuery, setSearchQuery] = useState('');
@@ -66,8 +66,8 @@ export default function FindPetPage() {
       <section className="find-pet-hero" aria-labelledby="find-pet-title" data-header-anchor>
         <div className="app-container find-pet-hero__layout">
           <div className="find-pet-hero__content">
-            <h1 id="find-pet-title">Find your new friend</h1>
-            <p>Discover rescue cats and dogs and adopt a companion that matches your life.</p>
+            <h1 id="find-pet-title">Знайдіть нового друга</h1>
+            <p>Відкрийте врятованих котів і собак та усиновіть улюбленця, який пасує вашому стилю життя.</p>
           </div>
 
           <div className="find-pet-hero__visual" aria-hidden="true">
@@ -89,21 +89,21 @@ export default function FindPetPage() {
           onStatusChange={setStatusFilter}
         />
 
-        <section className="find-pet-catalog" aria-label="Catalog summary">
+        <section className="find-pet-catalog" aria-label="Підсумок каталогу">
           <div className="find-pet-catalog__head">
-            <h2>Pets catalog</h2>
-            <p>{filteredPets.length} results - {availableCount} available now</p>
+            <h2>Каталог улюбленців</h2>
+            <p>{filteredPets.length} результатів - {availableCount} доступні зараз</p>
           </div>
 
-          <div className="find-pet-catalog__legend" aria-label="Pet status legend">
+          <div className="find-pet-catalog__legend" aria-label="Легенда статусів">
             <span className="find-pet-catalog__chip find-pet-catalog__chip--available">
-              Available: {availableCount}
+              Доступні: {availableCount}
             </span>
             <span className="find-pet-catalog__chip find-pet-catalog__chip--in-process">
-              In process: {inProcessCount}
+              В процесі: {inProcessCount}
             </span>
             <span className="find-pet-catalog__chip find-pet-catalog__chip--adopted">
-              Adopted: {adoptedCount}
+              Усиновлено: {adoptedCount}
             </span>
           </div>
         </section>
@@ -115,7 +115,7 @@ export default function FindPetPage() {
         type="button"
         className={`find-pet-page__scroll-top${showScrollTop ? ' is-visible' : ''}`}
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        aria-label="Return to top"
+        aria-label="Повернутися вгору"
       >
         <ArrowUp size={20} />
       </button>

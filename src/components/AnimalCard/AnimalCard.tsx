@@ -11,22 +11,22 @@ interface AnimalCardProps {
 }
 
 export function AnimalCard({ animal }: AnimalCardProps) {
-  const petTypeLabel = animal.type === 'dog' ? 'Dog' : 'Cat';
-  const petAgeLabel = animal.age === 'young' ? 'Young' : 'Adult';
+  const petTypeLabel = animal.type === 'dog' ? 'Собака' : 'Кіт';
+  const petAgeLabel = animal.age === 'young' ? 'Молодий' : 'Дорослий';
   const isAvailable = animal.status === 'available';
-  const actionLabel = isAvailable ? 'Adopt' : 'View details';
+  const actionLabel = isAvailable ? 'Усиновити' : 'Деталі';
   const availability =
     animal.status === 'available'
-      ? 'available for adoption'
+      ? 'доступний для усиновлення'
       : animal.status === 'in-process'
-        ? 'currently in adoption process'
-        : 'already adopted';
+        ? 'зараз у процесі усиновлення'
+        : 'вже усиновлено';
   const stateLabel =
     animal.status === 'available'
-      ? 'Available now'
+      ? 'Доступний зараз'
       : animal.status === 'in-process'
-        ? 'In adoption process'
-        : 'Already adopted';
+        ? 'В процесі усиновлення'
+        : 'Вже усиновлено';
 
   return (
     <article className={`animal-card animal-card--${animal.status}`}>

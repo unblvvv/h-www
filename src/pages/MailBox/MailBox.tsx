@@ -25,16 +25,16 @@ const demoMessages: MailMessage[] = [
   {
     id: 'adoption-demo-1',
     type: 'adoption',
-    sender: 'Adoption Desk',
-    subject: 'New adoption request',
-    preview: 'Luna has received a new adoption request.',
+    sender: 'Відділ усиновлень',
+    subject: 'Нова заявка на усиновлення',
+    preview: 'Луна отримала нову заявку на усиновлення.',
     body: [
-      'A new adoption request has been submitted for Luna.',
-      'Applicant: Kateryna Bondar.',
-      'Please review the profile and contact details in the admin panel to continue the screening process.',
+      'Подано нову заявку на усиновлення Луни.',
+      'Заявник: Катерина Бондар.',
+      'Перегляньте профіль і контактні дані в адмін-панелі, щоб продовжити перевірку.',
     ],
-    time: '5 min ago',
-    date: 'Today, 10:25',
+    time: '5 хв тому',
+    date: 'Сьогодні, 10:25',
     unread: true,
     archived: false,
     starred: false,
@@ -42,15 +42,15 @@ const demoMessages: MailMessage[] = [
   {
     id: 'donation-demo-1',
     type: 'donation',
-    sender: 'Donations',
-    subject: 'Donation received: $50',
-    preview: 'A new donation has been processed successfully.',
+    sender: 'Донати',
+    subject: 'Отримано донат: $50',
+    preview: 'Новий донат успішно оброблено.',
     body: [
-      'A donation of $50 has been received from an anonymous supporter.',
-      'Please make sure the donor receives a thank-you follow up if contact details were provided.',
+      'Отримано донат $50 від анонімного благодійника.',
+      'Якщо є контактні дані, надішліть подяку.',
     ],
-    time: '1 h ago',
-    date: 'Today, 09:11',
+    time: '1 год тому',
+    date: 'Сьогодні, 09:11',
     unread: true,
     archived: false,
     starred: true,
@@ -58,15 +58,15 @@ const demoMessages: MailMessage[] = [
   {
     id: 'system-demo-1',
     type: 'system',
-    sender: 'System',
-    subject: 'Catalog sync completed',
-    preview: 'Animal catalog and request statuses are up to date.',
+    sender: 'Система',
+    subject: 'Синхронізацію каталогу завершено',
+    preview: 'Каталог тварин і статуси заявок актуальні.',
     body: [
-      'Nightly synchronization has been completed.',
-      'No conflicts were detected between profile data and adoption statuses.',
+      'Нічну синхронізацію завершено.',
+      'Конфліктів між даними профілю та статусами усиновлення не виявлено.',
     ],
-    time: '3 h ago',
-    date: 'Today, 07:00',
+    time: '3 год тому',
+    date: 'Сьогодні, 07:00',
     unread: false,
     archived: false,
     starred: false,
@@ -74,26 +74,33 @@ const demoMessages: MailMessage[] = [
   {
     id: 'message-demo-1',
     type: 'message',
-    sender: 'Contact form',
-    subject: 'New volunteer message',
-    preview: 'A volunteer candidate sent a message via contact form.',
+    sender: 'Форма контакту',
+    subject: 'Нове повідомлення від волонтера',
+    preview: 'Кандидат у волонтери надіслав повідомлення через форму контакту.',
     body: [
-      'You have received a new message from the contact form.',
-      'Topic: Volunteering on weekends.',
-      'Open admin mailbox to assign a response owner.',
+      'Ви отримали нове повідомлення з форми контакту.',
+      'Тема: Волонтерство у вихідні.',
+      'Відкрийте адмін-скриньку, щоб призначити відповідального за відповідь.',
     ],
-    time: 'Yesterday',
-    date: 'Apr 2, 16:48',
+    time: 'Вчора',
+    date: '2 квітня, 16:48',
     unread: false,
     archived: true,
     starred: false,
   },
 ];
 
+const mailTypeLabels: Record<MailType, string> = {
+  adoption: 'Усиновлення',
+  donation: 'Донати',
+  system: 'Система',
+  message: 'Повідомлення',
+};
+
 export default function MailBox() {
   useSeo({
-    title: 'Notifications Mailbox | Dnipro Animals',
-    description: 'Review admin notifications and messages in full-screen mailbox view.',
+    title: 'Поштова скринька сповіщень | Dnipro Animals',
+    description: 'Переглядайте адмін-сповіщення та повідомлення у повноекранному режимі.',
   });
 
   const location = useLocation();
@@ -227,18 +234,18 @@ export default function MailBox() {
         <header className="mailbox-page__head">
           <Link to="/admin" className="mailbox-page__back">
             <ArrowLeft size={17} />
-            Back to dashboard
+            Назад до панелі
           </Link>
           <div className="mailbox-page__summary">
-            <p>Mailbox</p>
-            <strong>{folderCounts.unread} unread</strong>
+            <p>Пошта</p>
+            <strong>{folderCounts.unread} непрочитаних</strong>
           </div>
         </header>
 
         <section className="mailbox-shell">
-          <aside className="mailbox-sidebar" aria-label="Mailbox folders">
-            <h1>Notifications inbox</h1>
-            <p>Read incoming updates, requests, and system messages.</p>
+          <aside className="mailbox-sidebar" aria-label="Папки пошти">
+            <h1>Скринька сповіщень</h1>
+            <p>Читайте вхідні оновлення, заявки та системні повідомлення.</p>
 
             <nav className="mailbox-folders">
               <button
@@ -248,7 +255,7 @@ export default function MailBox() {
               >
                 <span>
                   <Inbox size={16} />
-                  Inbox
+                  Вхідні
                 </span>
                 <strong>{folderCounts.inbox}</strong>
               </button>
@@ -259,7 +266,7 @@ export default function MailBox() {
               >
                 <span>
                   <MailOpen size={16} />
-                  Unread
+                  Непрочитані
                 </span>
                 <strong>{folderCounts.unread}</strong>
               </button>
@@ -270,7 +277,7 @@ export default function MailBox() {
               >
                 <span>
                   <Star size={16} />
-                  Starred
+                  Обрані
                 </span>
                 <strong>{folderCounts.starred}</strong>
               </button>
@@ -281,7 +288,7 @@ export default function MailBox() {
               >
                 <span>
                   <Archive size={16} />
-                  Archived
+                  Архів
                 </span>
                 <strong>{folderCounts.archived}</strong>
               </button>
@@ -289,11 +296,11 @@ export default function MailBox() {
 
             <button type="button" className="mailbox-sidebar__mark-all" onClick={markAllAsRead}>
               <CheckCheck size={16} />
-              Mark all as read
+              Позначити всі як прочитані
             </button>
           </aside>
 
-          <section className="mailbox-workspace" aria-label="Messages">
+          <section className="mailbox-workspace" aria-label="Повідомлення">
             <header className="mailbox-toolbar">
               <div className="mailbox-search">
                 <Search size={16} />
@@ -301,16 +308,16 @@ export default function MailBox() {
                   type="search"
                   value={searchQuery}
                   onChange={(event) => setSearchQuery(event.target.value)}
-                  placeholder="Search by subject, sender, or text"
-                  aria-label="Search messages"
+                  placeholder="Пошук за темою, відправником або текстом"
+                  aria-label="Пошук повідомлень"
                 />
               </div>
             </header>
 
             <div className="mailbox-content">
-              <section className="mailbox-list" aria-label="Messages list">
+              <section className="mailbox-list" aria-label="Список повідомлень">
                 {filteredMessages.length === 0 ? (
-                  <p className="mailbox-list__empty">No notifications yet</p>
+                  <p className="mailbox-list__empty">Поки що немає сповіщень</p>
                 ) : (
                   <ul>
                     {filteredMessages.map((message) => (
@@ -333,31 +340,31 @@ export default function MailBox() {
                 )}
               </section>
 
-              <article className="mailbox-reader" aria-label="Message content">
+              <article className="mailbox-reader" aria-label="Вміст повідомлення">
                 {selectedMessage ? (
                   <>
                     <header className="mailbox-reader__head">
                       <div className={`mailbox-reader__type mailbox-reader__type--${selectedMessage.type}`}>
-                        {selectedMessage.type}
+                        {mailTypeLabels[selectedMessage.type]}
                       </div>
                       <h2>{selectedMessage.subject}</h2>
                       <p>
-                        From <strong>{selectedMessage.sender}</strong> • {selectedMessage.date}
+                        Від <strong>{selectedMessage.sender}</strong> • {selectedMessage.date}
                       </p>
                     </header>
 
                     <div className="mailbox-reader__actions">
                       <button type="button" onClick={toggleReadForSelected}>
                         {selectedMessage.unread ? <MailOpen size={15} /> : <Inbox size={15} />}
-                        {selectedMessage.unread ? 'Mark as read' : 'Mark as unread'}
+                        {selectedMessage.unread ? 'Позначити як прочитане' : 'Позначити як непрочитане'}
                       </button>
                       <button type="button" onClick={toggleStarForSelected}>
                         {selectedMessage.starred ? <StarOff size={15} /> : <Star size={15} />}
-                        {selectedMessage.starred ? 'Remove star' : 'Add star'}
+                        {selectedMessage.starred ? 'Прибрати з обраного' : 'Додати в обране'}
                       </button>
                       <button type="button" onClick={toggleArchiveForSelected}>
                         <Archive size={15} />
-                        {selectedMessage.archived ? 'Restore to inbox' : 'Archive'}
+                        {selectedMessage.archived ? 'Повернути у вхідні' : 'Архівувати'}
                       </button>
                     </div>
 
@@ -369,8 +376,8 @@ export default function MailBox() {
                   </>
                 ) : (
                   <div className="mailbox-reader__empty">
-                    <h2>Select a message</h2>
-                    <p>Choose an item from the left list to read full details.</p>
+                    <h2>Оберіть повідомлення</h2>
+                    <p>Оберіть елемент у списку ліворуч, щоб прочитати деталі.</p>
                   </div>
                 )}
               </article>

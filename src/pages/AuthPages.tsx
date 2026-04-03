@@ -24,13 +24,13 @@ export function LoginPage() {
     const nextErrors: Record<string, string> = {};
 
     if (!formData.email.trim()) {
-      nextErrors.email = 'Email is required';
+      nextErrors.email = 'Потрібно вказати електронну пошту';
     } else if (!isEmailValid(formData.email)) {
-      nextErrors.email = 'Please enter a valid email';
+      nextErrors.email = 'Вкажіть коректну електронну пошту';
     }
 
     if (!formData.password) {
-      nextErrors.password = 'Password is required';
+      nextErrors.password = 'Потрібно вказати пароль';
     }
 
     setErrors(nextErrors);
@@ -50,7 +50,7 @@ export function LoginPage() {
       await login(formData.email, formData.password);
       navigate('/profile');
     } catch {
-      setFormError('Wrong email or password. Please try again.');
+      setFormError('Невірна пошта або пароль. Спробуйте ще раз.');
     } finally {
       setIsSubmitting(false);
     }
@@ -74,14 +74,14 @@ export function LoginPage() {
                 }}
               >
                 <ArrowLeft size={16} />
-                Back
+                Назад
               </button>
 
               <form className="auth-form" onSubmit={handleSubmit}>
                 {formError ? <p className="auth-form__alert">{formError}</p> : null}
 
                 <label className="auth-form__field">
-                  <span>Email</span>
+                  <span>Електронна пошта</span>
                   <Input
                     className="auth-input"
                     type="email"
@@ -93,11 +93,11 @@ export function LoginPage() {
                 </label>
 
                 <label className="auth-form__field">
-                  <span>Password</span>
+                  <span>Пароль</span>
                   <Input
                     className="auth-input"
                     type="password"
-                    placeholder="Enter password"
+                    placeholder="Введіть пароль"
                     value={formData.password}
                     onChange={(event) => setFormData((prev) => ({ ...prev, password: event.target.value }))}
                     error={errors.password}
@@ -105,21 +105,21 @@ export function LoginPage() {
                 </label>
 
                 <Button className="auth-form__submit" type="submit" disabled={isSubmitting}>
-                  {isSubmitting ? 'Logging in...' : 'Log in'}
+                  {isSubmitting ? 'Вхід...' : 'Увійти'}
                 </Button>
               </form>
 
               <p className="auth-page__switch">
-                Don't have an account? <Link to="/register">Sign up</Link>
+                Немає акаунта? <Link to="/register">Зареєструватися</Link>
               </p>
             </div>
 
             <aside className="auth-page__content-pane">
-              <p className="auth-page__badge">Log in</p>
+              <p className="auth-page__badge">Вхід</p>
               <h1 id="login-title" className="auth-page__title">
-                Welcome back
+                З поверненням
               </h1>
-              <p className="auth-page__subtitle">Sign in to continue helping pets find a loving home.</p>
+              <p className="auth-page__subtitle">Увійдіть, щоб і далі допомагати тваринам знаходити люблячий дім.</p>
             </aside>
           </div>
         </div>
@@ -145,25 +145,25 @@ export function RegisterPage() {
     const nextErrors: Record<string, string> = {};
 
     if (!formData.fullName.trim()) {
-      nextErrors.fullName = 'Full name is required';
+      nextErrors.fullName = "Потрібно вказати ім'я та прізвище";
     }
 
     if (!formData.email.trim()) {
-      nextErrors.email = 'Email is required';
+      nextErrors.email = 'Потрібно вказати електронну пошту';
     } else if (!isEmailValid(formData.email)) {
-      nextErrors.email = 'Please enter a valid email';
+      nextErrors.email = 'Вкажіть коректну електронну пошту';
     }
 
     if (!formData.password) {
-      nextErrors.password = 'Password is required';
+      nextErrors.password = 'Потрібно вказати пароль';
     } else if (formData.password.length < 6) {
-      nextErrors.password = 'Password must be at least 6 characters';
+      nextErrors.password = 'Пароль має містити щонайменше 6 символів';
     }
 
     if (!formData.confirmPassword) {
-      nextErrors.confirmPassword = 'Please confirm password';
+      nextErrors.confirmPassword = 'Підтвердьте пароль';
     } else if (formData.confirmPassword !== formData.password) {
-      nextErrors.confirmPassword = 'Passwords do not match';
+      nextErrors.confirmPassword = 'Паролі не збігаються';
     }
 
     setErrors(nextErrors);
@@ -190,7 +190,7 @@ export function RegisterPage() {
       );
       navigate('/profile');
     } catch {
-      setFormError('Could not create account. Please try again.');
+      setFormError('Не вдалося створити акаунт. Спробуйте ще раз.');
     } finally {
       setIsSubmitting(false);
     }
@@ -214,18 +214,18 @@ export function RegisterPage() {
                 }}
               >
                 <ArrowLeft size={16} />
-                Back
+                Назад
               </button>
 
               <form className="auth-form" onSubmit={handleSubmit}>
                 {formError ? <p className="auth-form__alert">{formError}</p> : null}
 
                 <label className="auth-form__field">
-                  <span>Full name</span>
+                  <span>Ім'я та прізвище</span>
                   <Input
                     className="auth-input"
                     type="text"
-                    placeholder="Your full name"
+                    placeholder="Ваші ім'я та прізвище"
                     value={formData.fullName}
                     onChange={(event) => setFormData((prev) => ({ ...prev, fullName: event.target.value }))}
                     error={errors.fullName}
@@ -233,7 +233,7 @@ export function RegisterPage() {
                 </label>
 
                 <label className="auth-form__field">
-                  <span>Email</span>
+                  <span>Електронна пошта</span>
                   <Input
                     className="auth-input"
                     type="email"
@@ -245,11 +245,11 @@ export function RegisterPage() {
                 </label>
 
                 <label className="auth-form__field">
-                  <span>Password</span>
+                  <span>Пароль</span>
                   <Input
                     className="auth-input"
                     type="password"
-                    placeholder="At least 6 characters"
+                    placeholder="Щонайменше 6 символів"
                     value={formData.password}
                     onChange={(event) => setFormData((prev) => ({ ...prev, password: event.target.value }))}
                     error={errors.password}
@@ -257,11 +257,11 @@ export function RegisterPage() {
                 </label>
 
                 <label className="auth-form__field">
-                  <span>Confirm password</span>
+                  <span>Підтвердьте пароль</span>
                   <Input
                     className="auth-input"
                     type="password"
-                    placeholder="Repeat password"
+                    placeholder="Повторіть пароль"
                     value={formData.confirmPassword}
                     onChange={(event) => setFormData((prev) => ({ ...prev, confirmPassword: event.target.value }))}
                     error={errors.confirmPassword}
@@ -269,21 +269,21 @@ export function RegisterPage() {
                 </label>
 
                 <Button className="auth-form__submit" type="submit" disabled={isSubmitting}>
-                  {isSubmitting ? 'Creating account...' : 'Create account'}
+                  {isSubmitting ? 'Створення акаунта...' : 'Створити акаунт'}
                 </Button>
               </form>
 
               <p className="auth-page__switch">
-                Already have an account? <Link to="/login">Log in</Link>
+                Вже маєте акаунт? <Link to="/login">Увійти</Link>
               </p>
             </div>
 
             <aside className="auth-page__content-pane">
-              <p className="auth-page__badge">Create account</p>
+              <p className="auth-page__badge">Створити акаунт</p>
               <h1 id="register-title" className="auth-page__title">
-                Join Dnipro Animals
+                Приєднуйтесь до Dnipro Animals
               </h1>
-              <p className="auth-page__subtitle">Create your profile and start the adoption journey.</p>
+              <p className="auth-page__subtitle">Створіть профіль і розпочніть шлях усиновлення.</p>
             </aside>
           </div>
         </div>
