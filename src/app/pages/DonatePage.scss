@@ -1,0 +1,63 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.donate-page__layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.donate-page__intro {
+  @include card;
+  padding: 1.2rem;
+
+  svg {
+    color: $color-accent;
+  }
+}
+
+.donate-page__form-wrap {
+  @include card;
+  padding: 1.2rem;
+}
+
+.donate-page__processing {
+  margin: 0.8rem 0 0;
+  color: $color-text-secondary;
+}
+
+.donate-page__success-wrap {
+  display: grid;
+  place-items: center;
+}
+
+.donate-page__success-card {
+  @include card;
+  max-width: 620px;
+  padding: 1.3rem;
+  text-align: center;
+  display: grid;
+  gap: 0.7rem;
+
+  svg {
+    color: $color-success;
+    justify-self: center;
+  }
+
+  h1,
+  p {
+    margin: 0;
+  }
+
+  p {
+    color: $color-text-secondary;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 920px) {
+  .donate-page__layout {
+    grid-template-columns: 1fr;
+  }
+}

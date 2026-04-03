@@ -1,0 +1,26 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.profile-page__layout {
+  display: grid;
+  gap: 0.95rem;
+}
+
+.profile-page__head {
+  @include card;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+
+  svg {
+    color: $color-accent;
+  }
+}
+
+.profile-page--empty {
+  text-align: center;
+  display: grid;
+  justify-items: center;
+  gap: 0.7rem;
+}

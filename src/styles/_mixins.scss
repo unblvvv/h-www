@@ -1,0 +1,21 @@
+@use 'variables' as *;
+
+@mixin card {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-soft-sm;
+}
+
+@mixin container {
+  width: min(100% - 2rem, $container-width);
+  margin-inline: auto;
+}
+
+@mixin page-title {
+  margin: 0;
+  color: $color-text-primary;
+  font-size: clamp(1.85rem, 3.2vw, 2.8rem);
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+}

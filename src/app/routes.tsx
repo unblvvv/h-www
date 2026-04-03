@@ -1,0 +1,49 @@
+"use client";
+
+import { createBrowserRouter, createMemoryRouter } from 'react-router';
+import { Outlet } from 'react-router';
+import HomePage from './pages/HomePage';
+import FindPetPage from './pages/FindPetPage';
+import AnimalDetailsPage from './pages/AnimalDetailsPage';
+import AdoptionFormPage from './pages/AdoptionFormPage';
+import DonatePage from './pages/DonatePage';
+import AdminPage from './pages/AdminPage';
+import ProfilePage from './pages/ProfilePage';
+import { Navbar } from './components/Navbar';
+import { Footer } from './components/Footer';
+import { AuthProvider } from './contexts/AuthContext';
+
+function Layout() {
+  return (
+    <AuthProvider>
+      <div className="app-layout">
+        <Navbar />
+        <main className="app-layout__main">
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
+    </AuthProvider>
+  );
+}
+
+const routes = [
+  {
+    path: '/',
+    Component: Layout,
+    children: [
+      { index: true, Component: HomePage },
+      { path: 'find-pet', Component: FindPetPage },
+      { path: 'animal/:id', Component: AnimalDetailsPage },
+      { path: 'adopt/:id', Component: AdoptionFormPage },
+      { path: 'donate', Component: DonatePage },
+      { path: 'admin', Component: AdminPage },
+      { path: 'profile', Component: ProfilePage },
+    ],
+  },
+];
+
+export const router =
+  typeof window === 'undefined'
+    ? createMemoryRouter(routes)
+    : createBrowserRouter(routes);
