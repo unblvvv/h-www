@@ -16,7 +16,6 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const USER_KEY = 'shelter_user';
-const AUTH_KEY = 'shelter_auth';
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -30,9 +29,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setIsAuthenticated(true);
     }
 
-    if (!storedUser) {
-      return;
-    }
+    if (!storedUser) return;
 
     try {
       const parsedUser = JSON.parse(storedUser) as UserProfile;
@@ -40,30 +37,42 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setIsAuthenticated(true);
     } catch {
       localStorage.removeItem(USER_KEY);
-      localStorage.removeItem(AUTH_KEY);
+      localStorage.removeItem('token');
     }
   }, []);
 
-  const login = async (email: string, password: string) => {
-    const res = await authApi.login({ email, password });
-    const token = res.token;
+const login = async (email: string, password: string) => {
+  const res = await authApi.login({ email, password });
 
-    if (token) {
-      localStorage.setItem('token', token);
-      setIsAuthenticated(true);
-    } else {
-      throw new Error('Invalid credentials');
-    }
-  };
+  if (!res.token) throw new Error('Invalid credentials');
+
+  localStorage.setItem('token', res.token);
+
+  if (res.user) {
+    localStorage.setItem(USER_KEY, JSON.stringify(res.user));
+    setUser(res.user);
+  }
+
+  setIsAuthenticated(true);
+};
+  
 
   const register = async (profile: UserProfile, password: string) => {
+    await authApi.register({
+      username: profile.name, // мапимо під бек
+      email: profile.email,
+      password,
+    });
+
+    // зберігаємо профіль локально після успішної реєстрації
     localStorage.setItem(USER_KEY, JSON.stringify(profile));
-    localStorage.setItem(AUTH_KEY, JSON.stringify({ email: profile.email, password }));
     setUser(profile);
     setIsAuthenticated(true);
   };
 
   const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem(USER_KEY);
     setUser(null);
     setIsAuthenticated(false);
   };
@@ -82,8 +91,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
 export function useAuth() {
   const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within AuthProvider');
-  }
+  if (!context) throw new Error('useAuth must be used within AuthProvider');
   return context;
 }

@@ -31,7 +31,7 @@ export default function AdoptionFormPage() {
         ...prev,
         name: user.name,
         email: user.email,
-        phone: user.phone,
+        phone: user.phone || '',
       }));
     }
   }, [isAuthenticated, user]);

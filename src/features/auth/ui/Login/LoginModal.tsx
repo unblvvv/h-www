@@ -75,6 +75,7 @@ export function LoginModal({ isOpen, onClose, onLogin }: LoginModalProps) {
             className="auth-input"
             type="email"
             placeholder="you@example.com"
+            autoComplete="username"
             value={formData.email}
             onChange={(event) => setFormData((prev) => ({ ...prev, email: event.target.value }))}
             error={errors.email}
@@ -86,6 +87,7 @@ export function LoginModal({ isOpen, onClose, onLogin }: LoginModalProps) {
           <Input
             className="auth-input"
             type="password"
+            autoComplete="current-password"
             placeholder="Enter password"
             value={formData.password}
             onChange={(event) => setFormData((prev) => ({ ...prev, password: event.target.value }))}

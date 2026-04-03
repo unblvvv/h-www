@@ -114,6 +114,7 @@ export function RegisterModal({ isOpen, onClose, onRegister, defaultValues }: Re
             className="auth-input"
             type="password"
             value={formData.password}
+            autoComplete="new-password" 
             placeholder="At least 6 characters"
             onChange={(event) => setFormData((prev) => ({ ...prev, password: event.target.value }))}
             error={errors.password}
@@ -126,6 +127,7 @@ export function RegisterModal({ isOpen, onClose, onRegister, defaultValues }: Re
             className="auth-input"
             type="password"
             value={formData.confirmPassword}
+            autoComplete="new-password" 
             placeholder="Repeat password"
             onChange={(event) => setFormData((prev) => ({ ...prev, confirmPassword: event.target.value }))}
             error={errors.confirmPassword}

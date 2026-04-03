@@ -59,7 +59,7 @@ export default function ProfilePage() {
   };
 
   const handleCancel = () => {
-    setValues({ name: user.name, email: user.email, phone: user.phone });
+    setValues({ name: user.name, email: user.email, phone: user.phone || '' });
     setErrors({});
     setIsEditing(false);
   };
