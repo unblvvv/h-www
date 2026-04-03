@@ -4,7 +4,7 @@ import { ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { Button } from '../../../components/Button/Button';
 import { Input } from '../../../components/Input/Input';
 import { Textarea } from '../../../components/Textarea/Textarea';
-import { RegisterModal } from '../../../components/RegisterModal/RegisterModal';
+import { RegisterModal } from '../../auth/ui/Register/RegisterModal';
 import { mockAnimals } from '../../../shared/data/mockAnimals';
 import { useAuth } from '../../auth/AuthContext';
 

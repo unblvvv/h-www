@@ -1,128 +1,150 @@
-import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router';
 import { Button } from '../../../../components/Button/Button';
 import { Input } from '../../../../components/Input/Input';
 import { Modal } from '../../../../components/Modal/Modal';
-import { useRegister } from '../../model/useRegister';
 import './RegisterModal.scss';
 
 interface RegisterModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onRegister: (name: string, email: string, password: string) => Promise<void> | void;
   defaultValues?: {
     name: string;
     email: string;
   };
 }
 
-const schema = z
-  .object({
-    username: z.string().min(2, 'Мінімум 2 символи'),
-    email: z.string().email('Невірний email'),
-    password: z.string().min(6, 'Мінімум 6 символів'),
-    confirmPassword: z.string(),
-  })
-  .refine((data) => data.confirmPassword === data.password, {
-    path: ['confirmPassword'],
-    message: 'Паролі не співпадають',
+export function RegisterModal({ isOpen, onClose, onRegister, defaultValues }: RegisterModalProps) {
+  const [formData, setFormData] = useState({
+    name: defaultValues?.name || '',
+    email: defaultValues?.email || '',
+    password: '',
+    confirmPassword: '',
   });
-
-type FormData = z.infer<typeof schema>;
-
-export function RegisterModal({ isOpen, onClose, defaultValues }: RegisterModalProps) {
-  const { register: submitRegister, isLoading, error } = useRegister();
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<FormData>({
-    resolver: zodResolver(schema),
-    defaultValues: {
-      username: defaultValues?.name || '',
-      email: defaultValues?.email || '',
-      password: '',
-      confirmPassword: '',
-    },
-  });
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
     if (!isOpen) {
       return;
     }
 
-    reset({
-      username: defaultValues?.name || '',
-      email: defaultValues?.email || '',
+    setFormData((prev) => ({
+      ...prev,
+      name: defaultValues?.name || prev.name,
+      email: defaultValues?.email || prev.email,
       password: '',
       confirmPassword: '',
-    });
-  }, [isOpen, defaultValues?.name, defaultValues?.email, reset]);
+    }));
+  }, [isOpen, defaultValues?.name, defaultValues?.email]);
 
-  const onSubmit = async (data: FormData) => {
-    await submitRegister({
-      username: data.username,
-      email: data.email,
-      password: data.password,
-    });
+  const validate = () => {
+    const nextErrors: Record<string, string> = {};
+
+    if (!formData.name.trim()) {
+      nextErrors.name = 'Name is required';
+    }
+
+    if (!formData.email.trim()) {
+      nextErrors.email = 'Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      nextErrors.email = 'Please enter a valid email';
+    }
+
+    if (!formData.password) {
+      nextErrors.password = 'Password is required';
+    } else if (formData.password.length < 6) {
+      nextErrors.password = 'Password must be at least 6 characters';
+    }
+
+    if (formData.confirmPassword !== formData.password) {
+      nextErrors.confirmPassword = 'Passwords do not match';
+    }
+
+    setErrors(nextErrors);
+    return Object.keys(nextErrors).length === 0;
+  };
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!validate()) {
+      return;
+    }
+
+    await onRegister(formData.name, formData.email, formData.password);
     onClose();
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Create account">
-      <form className="register-modal" onSubmit={handleSubmit(onSubmit)}>
-        <label className="register-modal__field">
-          <span>Name</span>
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      title="Create account"
+      panelClassName="auth-modal__panel"
+      bodyClassName="auth-modal__body"
+    >
+      <form className="auth-form register-modal" onSubmit={handleSubmit}>
+        <label className="auth-form__field register-modal__field">
+          <span>Full name</span>
           <Input
+            className="auth-input"
             type="text"
-            {...register('username')}
+            value={formData.name}
             placeholder="Your name"
-            error={errors.username?.message}
+            onChange={(event) => setFormData((prev) => ({ ...prev, name: event.target.value }))}
+            error={errors.name}
           />
         </label>
 
-        <label className="register-modal__field">
+        <label className="auth-form__field register-modal__field">
           <span>Email</span>
           <Input
+            className="auth-input"
             type="email"
-            {...register('email')}
+            value={formData.email}
             placeholder="you@example.com"
-            error={errors.email?.message}
+            onChange={(event) => setFormData((prev) => ({ ...prev, email: event.target.value }))}
+            error={errors.email}
           />
         </label>
 
-        <label className="register-modal__field">
+        <label className="auth-form__field register-modal__field">
           <span>Password</span>
           <Input
+            className="auth-input"
             type="password"
-            {...register('password')}
+            value={formData.password}
             placeholder="At least 6 characters"
-            error={errors.password?.message}
+            onChange={(event) => setFormData((prev) => ({ ...prev, password: event.target.value }))}
+            error={errors.password}
           />
         </label>
 
-        <label className="register-modal__field">
+        <label className="auth-form__field register-modal__field">
           <span>Confirm password</span>
           <Input
+            className="auth-input"
             type="password"
-            {...register('confirmPassword')}
+            value={formData.confirmPassword}
             placeholder="Repeat password"
-            error={errors.confirmPassword?.message}
+            onChange={(event) => setFormData((prev) => ({ ...prev, confirmPassword: event.target.value }))}
+            error={errors.confirmPassword}
           />
         </label>
 
-        {error ? <p className="register-modal__error">{error}</p> : null}
-
-        <div className="register-modal__actions">
+        <div className="auth-form__actions register-modal__actions">
           <Button variant="secondary" type="button" onClick={onClose}>
             Cancel
           </Button>
-          <Button type="submit" disabled={isLoading}>
-            {isLoading ? 'Завантаження...' : 'Create account'}
-          </Button>
+          <Button className="auth-form__submit" type="submit">Create account</Button>
         </div>
+
+        <p className="auth-form__switch">
+          Already have an account?{' '}
+          <Link to="/login" onClick={onClose}>
+            Log in
+          </Link>
+        </p>
       </form>
     </Modal>
   );
