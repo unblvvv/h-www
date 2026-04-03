@@ -1,83 +1,64 @@
+"use client";
+
 import { Link, useLocation } from 'react-router';
-import { Heart, User, LogIn } from 'lucide-react';
+import { User, LogIn } from 'lucide-react';
 import { useState } from 'react';
-import { useAuth } from '../../../features/auth/AuthContext';
-import { LoginModal } from '../../../components/LoginModal/LoginModal';
+import { useAuth } from '@/features/auth/AuthContext';
+import { LoginModal } from '@/features/auth/ui/Login/LoginModal';
+import './Navbar.scss';
 
 export function Navbar() {
   const location = useLocation();
+  const isHome = location.pathname === '/';
   const { isAuthenticated, user, login } = useAuth();
   const [showLoginModal, setShowLoginModal] = useState(false);
 
   const isActive = (path: string) => {
+    if (path === '/find-pet' && location.pathname.startsWith('/animal/')) {
+      return true;
+    }
     return location.pathname === path;
   };
 
   return (
     <>
-      <nav className="bg-white border-b-2 border-[#E5E7EB] sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link to="/" className="flex items-center gap-2">
-              <Heart className="w-8 h-8 text-[#22C55E]" />
-              <span className="text-[#111827]">Shelter</span>
+      <header className={`site-header${isHome ? ' site-header--hero' : ''}`}>
+        <nav className="site-nav app-container" aria-label="Main navigation">
+          <Link to="/" className="site-brand" aria-label="Animal shelter home page">
+            <img src="/logo.png" alt="" className="site-brand__logo" />
+            <span>Dnipro Animals</span>
+          </Link>
+
+          <div className="site-nav__links">
+            <Link to="/" className={isActive('/') ? 'is-active' : ''}>
+              Home
             </Link>
-
-            <div className="flex items-center gap-6">
-              <Link
-                to="/"
-                className={cn(
-                  'transition-colors duration-200',
-                  isActive('/') ? 'text-[#22C55E]' : 'text-[#111827] hover:text-[#22C55E]'
-                )}
-              >
-                Home
-              </Link>
-              <Link
-                to="/donate"
-                className={cn(
-                  'transition-colors duration-200',
-                  isActive('/donate') ? 'text-[#22C55E]' : 'text-[#111827] hover:text-[#22C55E]'
-                )}
-              >
-                Donate
-              </Link>
-              <Link
-                to="/admin"
-                className={cn(
-                  'transition-colors duration-200',
-                  isActive('/admin') ? 'text-[#22C55E]' : 'text-[#6B7280] hover:text-[#111827]'
-                )}
-              >
-                Admin
-              </Link>
-
-              {isAuthenticated ? (
-                <Link
-                  to="/profile"
-                  className={cn(
-                    'flex items-center gap-2 px-4 py-2 rounded-xl transition-colors duration-200',
-                    isActive('/profile')
-                      ? 'bg-[#22C55E] text-white'
-                      : 'bg-[#F9FAFB] text-[#111827] hover:bg-[#22C55E]/10'
-                  )}
-                >
-                  <User className="w-4 h-4" />
-                  <span className="hidden sm:inline">{user?.name}</span>
-                </Link>
-              ) : (
-                <button
-                  onClick={() => setShowLoginModal(true)}
-                  className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#F9FAFB] text-[#111827] hover:bg-[#22C55E]/10 transition-colors duration-200"
-                >
-                  <LogIn className="w-4 h-4" />
-                  <span className="hidden sm:inline">Log in</span>
-                </button>
-              )}
-            </div>
+            <Link to="/find-pet" className={isActive('/find-pet') ? 'is-active' : ''}>
+              Find a pet
+            </Link>
+            <Link to="/donate" className={isActive('/donate') ? 'is-active' : ''}>
+              Donate
+            </Link>
+            <Link to="/admin" className={isActive('/admin') ? 'is-active' : ''}>
+              Admin
+            </Link>
           </div>
-        </div>
-      </nav>
+
+          <div className="site-nav__auth">
+            {isAuthenticated ? (
+              <Link to="/profile" className={isActive('/profile') ? 'profile-chip profile-chip--active' : 'profile-chip'}>
+                <User size={16} />
+                <span>{user?.name || 'Profile'}</span>
+              </Link>
+            ) : (
+              <button className="login-chip" onClick={() => setShowLoginModal(true)}>
+                <LogIn size={16} />
+                <span>Log in</span>
+              </button>
+            )}
+          </div>
+        </nav>
+      </header>
 
       <LoginModal
         isOpen={showLoginModal}
@@ -86,8 +67,4 @@ export function Navbar() {
       />
     </>
   );
-}
-
-function cn(...classes: (string | boolean)[]) {
-  return classes.filter(Boolean).join(' ');
 }

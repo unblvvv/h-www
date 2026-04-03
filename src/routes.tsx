@@ -9,8 +9,8 @@ import AdoptionFormPage from './pages/AdopFormPage/AdoptionFormPage';
 import DonatePage from './pages/DonatePage/DonatePage';
 import AdminPage from './pages/AdminPage/AdminPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
-import { Navbar } from './components/Navbar/Navbar';
-import { Footer } from './components/Footer/Footer';
+import { Navbar } from './widgets/header/ui/Navbar';
+import { Footer } from './widgets/footer/ui/Footer';
 import { AuthProvider } from './features/auth/AuthContext';
 
 function Layout() {

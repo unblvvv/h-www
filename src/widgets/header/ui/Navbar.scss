@@ -1,10 +1,10 @@
-@use '../../styles/variables' as *;
+@use '@/styles/variables' as *;
 
 .site-header {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(236, 253, 245, 0.88);
+  background: rgba(10, 20, 88, 0.88);
   border-bottom: 1px solid $color-border;
   backdrop-filter: blur(8px);
 }
@@ -51,7 +51,7 @@
   margin-top: 12px;
   padding-inline: 1.4rem;
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(16, 7, 70, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.24);
   backdrop-filter: blur(14px);
 }

@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Button } from '../../../../components/Button';
-import { Input } from '../../../../components/Input';
-import { Modal } from '../../../../components/Modal';
+import { Button } from '../../../../components/Button/Button';
+import { Input } from '../../../../components/Input/Input';
+import { Modal } from '../../../../components/Modal/Modal';
 import { useRegister } from '../../model/useRegister';
 import './RegisterModal.scss';
 
