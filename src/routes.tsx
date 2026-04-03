@@ -50,7 +50,10 @@ const routes = [
       { path: 'animal/:id', Component: AnimalDetailsPage },
       { path: 'adopt/:id', Component: AdoptionFormPage },
       { path: 'donate', Component: DonatePage },
-      { path: 'admin', Component: AdminPage },
+      {
+        element: <PrivateRoute allowRoles={["admin"]} />,
+        children: [{ path: 'admin', Component: AdminPage }],
+      },
       { path: 'mailbox', Component: MailBox },
       {
         element: <PrivateRoute />,
