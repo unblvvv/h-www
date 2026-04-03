@@ -21,7 +21,7 @@ export function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
   const isHeroStyledPage = true;
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated, isAdmin, user } = useAuth();
   const [isOnLightBackground, setIsOnLightBackground] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
@@ -164,9 +164,11 @@ export function Navbar() {
           <Link to="/donate" className={isActive('/donate') ? 'is-active' : ''}>
             Підтримати
           </Link>
-          <Link to="/admin" className={isActive('/admin') ? 'is-active' : ''}>
-            Адмін
-          </Link>
+          {isAuthenticated && isAdmin ? (
+            <Link to="/admin" className={isActive('/admin') ? 'is-active' : ''}>
+              Адмін
+            </Link>
+          ) : null}
         </div>
 
         <div className="site-nav__auth">
