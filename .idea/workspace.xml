@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c571c0de-0bf7-4d94-b18f-bed227e6aee1" name="Changes" comment="" />
+    <list default="true" id="c571c0de-0bf7-4d94-b18f-bed227e6aee1" name="Changes" comment="New commit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Footer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/Modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Modal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/ui/use-mobile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/ui/use-mobile.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/contexts/AuthContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/contexts/AuthContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/routes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/routes.tsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,7 +37,7 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/unblvvv/h-www.git&quot;,
+    &quot;url&quot;: &quot;https://github.com/unblvvv/h-www&quot;,
     &quot;accountId&quot;: &quot;889dc31d-1f11-4aea-8bdc-f5f24efb710d&quot;
   }
 }</component>
@@ -48,7 +61,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "main",
     "javascript.preferred.runtime.type.id": "node",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -56,6 +69,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_interpreter_path": "C:/Users/Admin/AppData/Roaming/JetBrains/WebStorm2025.3/node/versions/20.15.0/node",
     "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\Users\\Admin\\WebstormProjects\\dnipro_animals\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -74,11 +88,24 @@
       <option name="presentableId" value="Default" />
       <updated>1775200624393</updated>
       <workItem from="1775200625443" duration="1158000" />
-      <workItem from="1775202134934" duration="321000" />
+      <workItem from="1775202134934" duration="908000" />
     </task>
+    <task id="LOCAL-00001" summary="New commit">
+      <option name="closed" value="true" />
+      <created>1775202715286</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1775202715287</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="New commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="New commit" />
   </component>
 </project>

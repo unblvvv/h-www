@@ -1,4 +1,6 @@
-import { createBrowserRouter } from 'react-router';
+"use client";
+
+import { createBrowserRouter, createMemoryRouter } from 'react-router';
 import { Outlet } from 'react-router';
 import HomePage from './pages/HomePage';
 import AnimalDetailsPage from './pages/AnimalDetailsPage';
@@ -24,7 +26,7 @@ function Layout() {
   );
 }
 
-export const router = createBrowserRouter([
+const routes = [
   {
     path: '/',
     Component: Layout,
@@ -37,4 +39,9 @@ export const router = createBrowserRouter([
       { path: 'profile', Component: ProfilePage },
     ],
   },
-]);
+];
+
+export const router =
+  typeof window === 'undefined'
+    ? createMemoryRouter(routes)
+    : createBrowserRouter(routes);

@@ -13,10 +13,11 @@ export function Footer() {
             Giving animals a second chance at happiness
           </p>
           <p className="text-[#6B7280]">
-            © 2026 Animal Shelter. All rights reserved.
+            (c) 2026 Animal Shelter. All rights reserved.
           </p>
         </div>
       </div>
     </footer>
   );
 }
+
