@@ -10,16 +10,15 @@ import { ImageWithFallback } from '../../components/figma/ImageWithFallback';
 import './AnimalDetailsPage.scss';
 
 interface ApiAnimal {
-  Age?: string;
-  CreatedAt?: string;
-  Description?: string;
   ID?: string;
-  Name?: string;
   OrganizationID?: string;
-  PhotoURL?: string;
+  Name?: string;
+  Age?: string;
   Sex?: string;
+  Description?: string;
+  PhotoURLs?: string[];
   Status?: string;
-  Type?: string;
+  CreatedAt?: string;
   UpdatedAt?: string;
 }
 
@@ -29,12 +28,17 @@ interface ApiAnimalListResponse {
 
 const normalizeType = (value?: string): AnimalType => {
   const normalized = value?.trim().toLowerCase();
-  return normalized === 'cat' ? 'cat' : 'dog';
+  if (normalized === 'cat') return 'cat';
+  if (normalized === 'dog') return 'dog';
+  return 'unknown';
 };
 
 const normalizeAge = (value?: string): AnimalAge => {
-  const normalized = value?.trim().toLowerCase();
-  return normalized === 'young' ? 'young' : 'adult';
+  const trimmed = value?.trim();
+  if (!trimmed) return 'unknown';
+  const normalized = trimmed.toLowerCase();
+  if (normalized === 'young' || normalized === 'adult') return normalized;
+  return trimmed;
 };
 
 const normalizeStatus = (value?: string): AnimalStatus => {
@@ -44,9 +48,12 @@ const normalizeStatus = (value?: string): AnimalStatus => {
   return 'available';
 };
 
-const normalizeSex = (value?: string): 'male' | 'female' => {
-  const normalized = value?.trim().toLowerCase();
-  return normalized === 'female' ? 'female' : 'male';
+const normalizeSex = (value?: string): string => {
+  const trimmed = value?.trim();
+  if (!trimmed) return 'unknown';
+  const normalized = trimmed.toLowerCase();
+  if (normalized === 'female' || normalized === 'male') return normalized;
+  return trimmed;
 };
 
 export default function AnimalDetailsPage() {
@@ -55,9 +62,20 @@ export default function AnimalDetailsPage() {
   const [animal, setAnimal] = useState<Animal | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [activePhotoIndex, setActivePhotoIndex] = useState(0);
-  const petTypeLabel = animal?.type === 'dog' ? 'Собака' : 'Кіт';
-  const petAgeLabel = animal?.age === 'young' ? 'Молодий' : 'Дорослий';
-  const petGenderLabel = animal?.gender === 'female' ? 'Самка' : 'Самець';
+  const petTypeLabel =
+    animal?.type === 'dog' ? 'Собака' : animal?.type === 'cat' ? 'Кіт' : 'Невідомо';
+  const petAgeLabel =
+    animal?.age === 'young'
+      ? 'Молодий'
+      : animal?.age === 'adult'
+        ? 'Дорослий'
+        : animal?.age || 'Невідомо';
+  const petGenderLabel =
+    animal?.gender === 'female'
+      ? 'Самка'
+      : animal?.gender === 'male'
+        ? 'Самець'
+        : animal?.gender || 'Невідомо';
   const statusLabel =
     animal?.status === 'available'
       ? 'доступний'
@@ -87,16 +105,22 @@ export default function AnimalDetailsPage() {
   }, [animal?.id]);
 
   const photoUrls = (() => {
-    if (!animal || typeof animal.image !== 'string') {
-      return [''];
+    if (!animal) {
+      return [] as string[];
     }
 
-    const parts = animal.image
+    if (Array.isArray(animal.image)) {
+      return animal.image.map((value) => String(value).trim()).filter(Boolean);
+    }
+
+    if (typeof animal.image !== 'string') {
+      return [] as string[];
+    }
+
+    return animal.image
       .split(',')
       .map((value) => value.trim())
       .filter(Boolean);
-
-    return parts.length ? parts : [animal.image];
   })();
 
   const handlePrevPhoto = () => {
@@ -125,11 +149,11 @@ export default function AnimalDetailsPage() {
         const mapped = items.map((item, index) => ({
           id: item.ID ?? `${index}`,
           name: item.Name ?? 'Без імені',
-          type: normalizeType(item.Type),
+          type: normalizeType(undefined),
           age: normalizeAge(item.Age),
           gender: normalizeSex(item.Sex),
           description: item.Description ?? '',
-          image: item.PhotoURL ?? '',
+          image: item.PhotoURLs ?? [],
           status: normalizeStatus(item.Status),
         }));
         const found = mapped.find((pet) => pet.id === id) ?? null;

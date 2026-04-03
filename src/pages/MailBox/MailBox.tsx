@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { Archive, ArrowLeft, CheckCheck, Inbox, MailOpen, Search, Star, StarOff } from 'lucide-react';
+import { apiRequest } from '../../shared/lib/api';
 import { useSeo } from '../../shared/utils/useSeo';
 import './MailBox.scss';
 
@@ -21,74 +22,23 @@ interface MailMessage {
   starred: boolean;
 }
 
-const demoMessages: MailMessage[] = [
-  {
-    id: 'adoption-demo-1',
-    type: 'adoption',
-    sender: 'Відділ усиновлень',
-    subject: 'Нова заявка на усиновлення',
-    preview: 'Луна отримала нову заявку на усиновлення.',
-    body: [
-      'Подано нову заявку на усиновлення Луни.',
-      'Заявник: Катерина Бондар.',
-      'Перегляньте профіль і контактні дані в адмін-панелі, щоб продовжити перевірку.',
-    ],
-    time: '5 хв тому',
-    date: 'Сьогодні, 10:25',
-    unread: true,
-    archived: false,
-    starred: false,
-  },
-  {
-    id: 'donation-demo-1',
-    type: 'donation',
-    sender: 'Донати',
-    subject: 'Отримано донат: $50',
-    preview: 'Новий донат успішно оброблено.',
-    body: [
-      'Отримано донат $50 від анонімного благодійника.',
-      'Якщо є контактні дані, надішліть подяку.',
-    ],
-    time: '1 год тому',
-    date: 'Сьогодні, 09:11',
-    unread: true,
-    archived: false,
-    starred: true,
-  },
-  {
-    id: 'system-demo-1',
-    type: 'system',
-    sender: 'Система',
-    subject: 'Синхронізацію каталогу завершено',
-    preview: 'Каталог тварин і статуси заявок актуальні.',
-    body: [
-      'Нічну синхронізацію завершено.',
-      'Конфліктів між даними профілю та статусами усиновлення не виявлено.',
-    ],
-    time: '3 год тому',
-    date: 'Сьогодні, 07:00',
-    unread: false,
-    archived: false,
-    starred: false,
-  },
-  {
-    id: 'message-demo-1',
-    type: 'message',
-    sender: 'Форма контакту',
-    subject: 'Нове повідомлення від волонтера',
-    preview: 'Кандидат у волонтери надіслав повідомлення через форму контакту.',
-    body: [
-      'Ви отримали нове повідомлення з форми контакту.',
-      'Тема: Волонтерство у вихідні.',
-      'Відкрийте адмін-скриньку, щоб призначити відповідального за відповідь.',
-    ],
-    time: 'Вчора',
-    date: '2 квітня, 16:48',
-    unread: false,
-    archived: true,
-    starred: false,
-  },
-];
+interface AdminApplicationItem {
+  animal_id?: string;
+  animal_name?: string;
+  created_at?: string;
+  email?: string;
+  id?: string;
+  message?: string;
+  name?: string;
+  phone?: string;
+  status?: string;
+  user_id?: string;
+}
+
+interface AdminApplicationsResponse {
+  items?: AdminApplicationItem[];
+  total?: number;
+}
 
 const mailTypeLabels: Record<MailType, string> = {
   adoption: 'Усиновлення',
@@ -107,10 +57,81 @@ export default function MailBox() {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [folder, setFolder] = useState<MailFolder>('inbox');
-  const [messages, setMessages] = useState<MailMessage[]>(demoMessages);
-  const [selectedId, setSelectedId] = useState<string>(demoMessages[0].id);
+  const [messages, setMessages] = useState<MailMessage[]>([]);
+  const [selectedId, setSelectedId] = useState<string>('');
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
 
   const focusMessageId = (location.state as { focusMessageId?: string } | null)?.focusMessageId;
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadApplications = async () => {
+      setIsLoading(true);
+      setLoadError(null);
+
+      try {
+        const data = await apiRequest<AdminApplicationsResponse>('/admin/applications');
+        if (!isMounted) return;
+
+        const items = data.items ?? [];
+        const nextMessages = items.map((item) => {
+          const createdAt = item.created_at ? new Date(item.created_at) : null;
+          const hasValidDate = createdAt ? !Number.isNaN(createdAt.getTime()) : false;
+          const time = hasValidDate
+            ? createdAt!.toLocaleTimeString('uk-UA', { hour: '2-digit', minute: '2-digit' })
+            : '—';
+          const date = hasValidDate
+            ? createdAt!.toLocaleDateString('uk-UA', { day: '2-digit', month: 'long', year: 'numeric' })
+            : 'Невідома дата';
+          const applicantName = item.name?.trim() || 'Заявник';
+          const animalName = item.animal_name?.trim() || 'Улюбленець';
+          const messagePreview = item.message?.trim() || 'Повідомлення без тексту.';
+
+          return {
+            id: item.id ?? `${item.animal_id ?? ''}-${item.email ?? ''}-${item.created_at ?? ''}`,
+            type: 'adoption' as const,
+            sender: `${applicantName}${item.email ? ` (${item.email})` : ''}`,
+            subject: `Нова заявка на усиновлення: ${animalName}`,
+            preview: messagePreview.length > 120 ? `${messagePreview.slice(0, 117)}...` : messagePreview,
+            body: [
+              `Тварина: ${animalName}`,
+              item.animal_id ? `ID тварини: ${item.animal_id}` : 'ID тварини: —',
+              `Заявник: ${applicantName}`,
+              item.email ? `Email: ${item.email}` : 'Email: —',
+              item.phone ? `Телефон: ${item.phone}` : 'Телефон: —',
+              `Статус: ${item.status ?? '—'}`,
+              item.message ? `Повідомлення: ${item.message}` : 'Повідомлення: —',
+            ],
+            time,
+            date,
+            unread: true,
+            archived: false,
+            starred: false,
+          };
+        });
+
+        setMessages(nextMessages);
+        if (nextMessages.length > 0) {
+          setSelectedId(nextMessages[0].id);
+        }
+      } catch (error) {
+        if (!isMounted) return;
+        setLoadError(error instanceof Error ? error.message : 'Не вдалося отримати заявки.');
+        setMessages([]);
+      } finally {
+        if (!isMounted) return;
+        setIsLoading(false);
+      }
+    };
+
+    void loadApplications();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   useEffect(() => {
     if (!focusMessageId) {
@@ -294,7 +315,11 @@ export default function MailBox() {
 
             <div className="mailbox-content">
               <section className="mailbox-list" aria-label="Список повідомлень">
-                {filteredMessages.length === 0 ? (
+                {isLoading ? (
+                  <p className="mailbox-list__empty">Завантаження заявок...</p>
+                ) : loadError ? (
+                  <p className="mailbox-list__empty">{loadError}</p>
+                ) : filteredMessages.length === 0 ? (
                   <p className="mailbox-list__empty">Поки що немає сповіщень</p>
                 ) : (
                   <ul>

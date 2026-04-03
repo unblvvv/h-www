@@ -16,20 +16,31 @@ const statusLabel: Record<Animal['status'], string> = {
   adopted: 'Усиновлено',
 };
 
-const typeLabel: Record<Animal['type'], string> = {
-  dog: 'Собака',
-  cat: 'Кіт',
+const getTypeLabel = (value: Animal['type']) => {
+  if (value === 'dog') return 'Собака';
+  if (value === 'cat') return 'Кіт';
+  return 'Невідомо';
 };
 
-const ageLabel: Record<Animal['age'], string> = {
-  young: 'Молодий',
-  adult: 'Дорослий',
+const getAgeLabel = (value: Animal['age']) => {
+  if (value === 'young') return 'Молодий';
+  if (value === 'adult') return 'Дорослий';
+  if (!value) return 'Невідомо';
+  return value;
+};
+
+const getGenderLabel = (value: Animal['gender']) => {
+  if (value === 'male') return 'Самець';
+  if (value === 'female') return 'Самка';
+  if (!value) return 'Невідомо';
+  return value;
 };
 
 const typeFilterOptions = [
   { value: 'all', label: 'Усі типи' },
   { value: 'dog', label: 'Собака' },
   { value: 'cat', label: 'Кіт' },
+  { value: 'unknown', label: 'Невідомо' },
 ];
 
 const statusFilterOptions = [
@@ -52,7 +63,8 @@ const statusOptions = [
 ];
 
 type UploadResponse = {
-  url: string;
+  url?: string;
+  urls?: string[];
 };
 
 type CreateAnimalResponse = {
@@ -63,16 +75,15 @@ type CreateAnimalResponse = {
 type ViewMode = 'grid' | 'list';
 
 interface ApiAnimal {
-  Age?: string;
-  CreatedAt?: string;
-  Description?: string;
   ID?: string;
-  Name?: string;
   OrganizationID?: string;
-  PhotoURL?: string;
+  Name?: string;
+  Age?: string;
   Sex?: string;
+  Description?: string;
+  PhotoURLs?: string[];
   Status?: string;
-  Type?: string;
+  CreatedAt?: string;
   UpdatedAt?: string;
 }
 
@@ -80,16 +91,21 @@ interface ApiAnimalListResponse {
   items?: ApiAnimal[];
 }
 
-const normalizeUrl = (url: string) => url.replace(/([^:]\/)(\/)+/g, '$1');
+const normalizeUrl = (url?: string | null) => (url ? url.replace(/([^:]\/)(\/)+/g, '$1') : '');
 
 const normalizeType = (value?: string): AnimalType => {
   const normalized = value?.trim().toLowerCase();
-  return normalized === 'cat' ? 'cat' : 'dog';
+  if (normalized === 'cat') return 'cat';
+  if (normalized === 'dog') return 'dog';
+  return 'unknown';
 };
 
 const normalizeAge = (value?: string): AnimalAge => {
-  const normalized = value?.trim().toLowerCase();
-  return normalized === 'young' ? 'young' : 'adult';
+  const trimmed = value?.trim();
+  if (!trimmed) return 'unknown';
+  const normalized = trimmed.toLowerCase();
+  if (normalized === 'young' || normalized === 'adult') return normalized;
+  return trimmed;
 };
 
 const normalizeStatus = (value?: string): AnimalStatus => {
@@ -99,9 +115,28 @@ const normalizeStatus = (value?: string): AnimalStatus => {
   return 'available';
 };
 
-const normalizeSex = (value?: string): 'male' | 'female' => {
-  const normalized = value?.trim().toLowerCase();
-  return normalized === 'female' ? 'female' : 'male';
+const normalizeSex = (value?: string): string => {
+  const trimmed = value?.trim();
+  if (!trimmed) return 'unknown';
+  const normalized = trimmed.toLowerCase();
+  if (normalized === 'female' || normalized === 'male') return normalized;
+  return trimmed;
+};
+
+const normalizePhotoUrls = (value: Animal['image'] | undefined): string[] => {
+  if (!value) return [];
+  if (Array.isArray(value)) {
+    return value
+      .map((item) => (typeof item === 'string' ? item.trim() : ''))
+      .filter(Boolean);
+  }
+  if (typeof value === 'string') {
+    return value
+      .split(',')
+      .map((item) => item.trim())
+      .filter(Boolean);
+  }
+  return [];
 };
 
 const uploadFiles = async (files: File[]): Promise<string[]> => {
@@ -117,7 +152,12 @@ const uploadFiles = async (files: File[]): Promise<string[]> => {
       },
     });
 
-    return normalizeUrl(uploadResponse.data.url);
+    const candidate = uploadResponse.data.urls?.[0] ?? uploadResponse.data.url ?? '';
+    const resolvedUrl = normalizeUrl(candidate);
+    if (!resolvedUrl) {
+      throw new Error('Upload response missing url');
+    }
+    return resolvedUrl;
   });
 
   return Promise.all(uploads);
@@ -168,11 +208,11 @@ export default function AdminPage() {
         const mapped = items.map((item, index) => ({
           id: item.ID ?? `${index}`,
           name: item.Name ?? 'Без імені',
-          type: normalizeType(item.Type),
+          type: normalizeType(undefined),
           age: normalizeAge(item.Age),
           gender: normalizeSex(item.Sex),
           description: item.Description ?? '',
-          image: item.PhotoURL ?? '',
+          image: item.PhotoURLs ?? [],
           status: normalizeStatus(item.Status),
         }));
         setAnimals(mapped);
@@ -241,26 +281,26 @@ export default function AdminPage() {
     event.preventDefault();
 
     try {
-      let photoUrl = typeof formValues.image === 'string' ? formValues.image : '';
+      let photoUrls = normalizePhotoUrls(formValues.image);
 
-      if (Array.isArray(formValues.image) && formValues.image.length > 0) {
-        const uploaded = await uploadFiles(formValues.image);
-        photoUrl = uploaded.join(',');
+      if (Array.isArray(formValues.image) && formValues.image.some((item) => item instanceof File)) {
+        const uploaded = await uploadFiles(formValues.image as File[]);
+        photoUrls = uploaded;
       } else if (formValues.image instanceof File) {
         const uploaded = await uploadFiles([formValues.image]);
-        photoUrl = uploaded.join(',');
+        photoUrls = uploaded;
       }
 
       const createResponse = await instance.post<CreateAnimalResponse>('/admin/animal/create', {
         age: formValues.age,
         description: formValues.description,
         name: formValues.name,
-        photo_url: photoUrl,
+        photo_urls: photoUrls,
         sex: formValues.gender,
         status: formValues.status,
       });
 
-      const resolvedImage = photoUrl || (typeof formValues.image === 'string' ? formValues.image : '');
+      const resolvedImage = photoUrls.length ? photoUrls : normalizePhotoUrls(formValues.image);
 
       if (editingAnimal) {
         setAnimals((prev) =>
@@ -511,7 +551,7 @@ export default function AdminPage() {
                         <Badge variant={animal.status}>{statusLabel[animal.status]}</Badge>
                       </div>
                       <p className="admin-page__meta">
-                        {typeLabel[animal.type]} / {ageLabel[animal.age]}
+                        {getTypeLabel(animal.type)} / {getAgeLabel(animal.age)}
                       </p>
                       <p className="admin-page__description">{animal.description}</p>
                       <label className="admin-page__status-control">
@@ -548,7 +588,7 @@ export default function AdminPage() {
                     <div className="admin-page__list-main">
                       <h2>{animal.name}</h2>
                       <p>
-                        {typeLabel[animal.type]} / {ageLabel[animal.age]}
+                        {getTypeLabel(animal.type)} / {getAgeLabel(animal.age)}
                       </p>
                     </div>
                     <Badge variant={animal.status}>{statusLabel[animal.status]}</Badge>
@@ -607,8 +647,8 @@ export default function AdminPage() {
             <div className="admin-page__preview-content">
               <Badge variant={previewAnimal.status}>{statusLabel[previewAnimal.status]}</Badge>
               <p className="admin-page__preview-meta">
-                {typeLabel[previewAnimal.type]} / {ageLabel[previewAnimal.age]} /{' '}
-                {previewAnimal.gender === 'male' ? 'Самець' : 'Самка'}
+                {getTypeLabel(previewAnimal.type)} / {getAgeLabel(previewAnimal.age)} /{' '}
+                {getGenderLabel(previewAnimal.gender)}
               </p>
               <p className="admin-page__preview-description">{previewAnimal.description}</p>
               <div className="admin-page__preview-actions">

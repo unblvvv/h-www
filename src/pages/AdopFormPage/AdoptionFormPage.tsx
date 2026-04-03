@@ -11,16 +11,15 @@ import { useSeo } from '../../shared/utils/useSeo';
 import './AdoptionFormPage.scss';
 
 interface ApiAnimal {
-  Age?: string;
-  CreatedAt?: string;
-  Description?: string;
   ID?: string;
-  Name?: string;
   OrganizationID?: string;
-  PhotoURL?: string;
+  Name?: string;
+  Age?: string;
   Sex?: string;
+  Description?: string;
+  PhotoURLs?: string[];
   Status?: string;
-  Type?: string;
+  CreatedAt?: string;
   UpdatedAt?: string;
 }
 
@@ -28,14 +27,31 @@ interface ApiAnimalListResponse {
   items?: ApiAnimal[];
 }
 
+interface CreateApplicationRequest {
+  animal_id: string;
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+}
+
+interface CreateApplicationResponse {
+  message?: string;
+}
+
 const normalizeType = (value?: string): AnimalType => {
   const normalized = value?.trim().toLowerCase();
-  return normalized === 'cat' ? 'cat' : 'dog';
+  if (normalized === 'cat') return 'cat';
+  if (normalized === 'dog') return 'dog';
+  return 'unknown';
 };
 
 const normalizeAge = (value?: string): AnimalAge => {
-  const normalized = value?.trim().toLowerCase();
-  return normalized === 'young' ? 'young' : 'adult';
+  const trimmed = value?.trim();
+  if (!trimmed) return 'unknown';
+  const normalized = trimmed.toLowerCase();
+  if (normalized === 'young' || normalized === 'adult') return normalized;
+  return trimmed;
 };
 
 const normalizeStatus = (value?: string): AnimalStatus => {
@@ -45,9 +61,12 @@ const normalizeStatus = (value?: string): AnimalStatus => {
   return 'available';
 };
 
-const normalizeSex = (value?: string): 'male' | 'female' => {
-  const normalized = value?.trim().toLowerCase();
-  return normalized === 'female' ? 'female' : 'male';
+const normalizeSex = (value?: string): string => {
+  const trimmed = value?.trim();
+  if (!trimmed) return 'unknown';
+  const normalized = trimmed.toLowerCase();
+  if (normalized === 'female' || normalized === 'male') return normalized;
+  return trimmed;
 };
 
 export default function AdoptionFormPage() {
@@ -70,6 +89,8 @@ export default function AdoptionFormPage() {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!isAuthenticated || !user) {
@@ -100,11 +121,11 @@ export default function AdoptionFormPage() {
         const mapped = items.map((item, index) => ({
           id: item.ID ?? `${index}`,
           name: item.Name ?? 'Без імені',
-          type: normalizeType(item.Type),
+          type: normalizeType(undefined),
           age: normalizeAge(item.Age),
           gender: normalizeSex(item.Sex),
           description: item.Description ?? '',
-          image: item.PhotoURL ?? '',
+          image: item.PhotoURLs ?? [],
           status: normalizeStatus(item.Status),
         }));
         const found = mapped.find((pet) => pet.id === id) ?? null;
@@ -146,13 +167,40 @@ export default function AdoptionFormPage() {
     return Object.keys(nextErrors).length === 0;
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (!validate()) {
       return;
     }
 
-    setSubmitted(true);
+    if (!animal) {
+      setSubmitError('Не вдалося визначити улюбленця. Спробуйте ще раз.');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const payload: CreateApplicationRequest = {
+        animal_id: animal.id,
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        message: formData.message.trim(),
+      };
+
+      await apiRequest<CreateApplicationResponse>('/v1/applications', {
+        method: 'POST',
+        body: JSON.stringify(payload),
+      });
+
+      setSubmitted(true);
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : 'Не вдалося надіслати заявку');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isLoading) {
@@ -260,8 +308,9 @@ export default function AdoptionFormPage() {
           </label>
 
           <Button type="submit" size="lg">
-            Надіслати заявку на усиновлення
+            {isSubmitting ? 'Надсилаємо заявку...' : 'Надіслати заявку на усиновлення'}
           </Button>
+          {submitError && <p className="adoption-page__submit-error">{submitError}</p>}
         </form>
       </div>
     </main>

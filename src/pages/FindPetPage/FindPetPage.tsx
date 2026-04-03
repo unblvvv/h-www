@@ -9,16 +9,15 @@ import { apiRequest } from '../../shared/lib/api';
 import './FindPetPage.scss';
 
 interface ApiAnimal {
-  Age?: string;
-  CreatedAt?: string;
-  Description?: string;
   ID?: string;
-  Name?: string;
   OrganizationID?: string;
-  PhotoURL?: string;
+  Name?: string;
+  Age?: string;
   Sex?: string;
+  Description?: string;
+  PhotoURLs?: string[];
   Status?: string;
-  Type?: string;
+  CreatedAt?: string;
   UpdatedAt?: string;
 }
 
@@ -28,12 +27,17 @@ interface ApiAnimalListResponse {
 
 const normalizeType = (value?: string): AnimalType => {
   const normalized = value?.trim().toLowerCase();
-  return normalized === 'cat' ? 'cat' : 'dog';
+  if (normalized === 'cat') return 'cat';
+  if (normalized === 'dog') return 'dog';
+  return 'unknown';
 };
 
 const normalizeAge = (value?: string): AnimalAge => {
-  const normalized = value?.trim().toLowerCase();
-  return normalized === 'young' ? 'young' : 'adult';
+  const trimmed = value?.trim();
+  if (!trimmed) return 'unknown';
+  const normalized = trimmed.toLowerCase();
+  if (normalized === 'young' || normalized === 'adult') return normalized;
+  return trimmed;
 };
 
 const normalizeStatus = (value?: string): AnimalStatus => {
@@ -43,9 +47,12 @@ const normalizeStatus = (value?: string): AnimalStatus => {
   return 'available';
 };
 
-const normalizeSex = (value?: string): 'male' | 'female' => {
-  const normalized = value?.trim().toLowerCase();
-  return normalized === 'female' ? 'female' : 'male';
+const normalizeSex = (value?: string): string => {
+  const trimmed = value?.trim();
+  if (!trimmed) return 'unknown';
+  const normalized = trimmed.toLowerCase();
+  if (normalized === 'female' || normalized === 'male') return normalized;
+  return trimmed;
 };
 
 export default function FindPetPage() {
@@ -74,11 +81,11 @@ export default function FindPetPage() {
         const nextPets = items.map((animal, index) => ({
           id: animal.ID ?? `${index}`,
           name: animal.Name ?? 'Без імені',
-          type: normalizeType(animal.Type),
+          type: normalizeType(undefined),
           age: normalizeAge(animal.Age),
           gender: normalizeSex(animal.Sex),
           description: animal.Description ?? '',
-          image: animal.PhotoURL ?? '',
+          image: animal.PhotoURLs ?? [],
           status: normalizeStatus(animal.Status),
         }));
         setPets(nextPets);

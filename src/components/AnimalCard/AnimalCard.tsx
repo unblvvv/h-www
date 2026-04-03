@@ -11,8 +11,9 @@ interface AnimalCardProps {
 }
 
 export function AnimalCard({ animal }: AnimalCardProps) {
-  const petTypeLabel = animal.type === 'dog' ? 'Собака' : 'Кіт';
-  const petAgeLabel = animal.age === 'young' ? 'Молодий' : 'Дорослий';
+  const petTypeLabel = animal.type === 'dog' ? 'Собака' : animal.type === 'cat' ? 'Кіт' : 'Невідомо';
+  const petAgeLabel =
+    animal.age === 'young' ? 'Молодий' : animal.age === 'adult' ? 'Дорослий' : animal.age || 'Невідомо';
   const isAvailable = animal.status === 'available';
   const actionLabel = isAvailable ? 'Усиновити' : 'Деталі';
   const availability =
@@ -28,11 +29,13 @@ export function AnimalCard({ animal }: AnimalCardProps) {
         ? 'В процесі усиновлення'
         : 'Вже усиновлено';
 
+  const imageSrc = Array.isArray(animal.image) ? animal.image[0] ?? '' : animal.image;
+
   return (
     <article className={`animal-card animal-card--${animal.status}`}>
       <div className="animal-card__image-wrap">
         <ImageWithFallback
-          src={animal.image}
+          src={imageSrc}
           alt={`${animal.name}, ${petAgeLabel.toLowerCase()} ${petTypeLabel.toLowerCase()}, ${availability}`}
           className="animal-card__image"
         />

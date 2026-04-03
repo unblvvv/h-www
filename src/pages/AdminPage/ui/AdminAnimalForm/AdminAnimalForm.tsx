@@ -13,14 +13,16 @@ interface AdminAnimalFormProps {
 }
 
 export function AdminAnimalForm({ values, submitLabel, onChange, onSubmit }: AdminAnimalFormProps) {
-  const selectedFiles = Array.isArray(values.image)
+  const selectedFiles = Array.isArray(values.image) && values.image.every((item) => item instanceof File)
     ? values.image
     : values.image instanceof File
       ? [values.image]
       : [];
-  const existingImageCount = typeof values.image === 'string' && values.image
-    ? values.image.split(',').filter(Boolean).length
-    : 0;
+  const existingImageCount = Array.isArray(values.image) && values.image.every((item) => typeof item === 'string')
+    ? values.image.filter((item) => item.trim()).length
+    : typeof values.image === 'string' && values.image
+      ? values.image.split(',').filter(Boolean).length
+      : 0;
   const hasImage = selectedFiles.length > 0 || existingImageCount > 0;
   const typeOptions = [
     { value: 'dog', label: 'Собака' },

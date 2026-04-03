@@ -28,6 +28,7 @@ export function FilterBar({
     { value: 'all', label: 'Тип: Усі' },
     { value: 'dog', label: 'Тип: Собака' },
     { value: 'cat', label: 'Тип: Кіт' },
+    { value: 'unknown', label: 'Тип: Невідомо' },
   ];
 
   const ageOptions = [

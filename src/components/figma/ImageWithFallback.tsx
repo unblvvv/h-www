@@ -21,6 +21,9 @@ export function ImageWithFallback(props: ImageWithFallbackProps) {
     if (!src) return null
     const normalized = Array.isArray(src) ? src[0] : src
     if (!normalized) return null
+    if (typeof normalized === 'string' && !normalized.trim()) {
+      return null
+    }
     if (normalized instanceof File) {
       return URL.createObjectURL(normalized)
     }
@@ -38,6 +41,19 @@ export function ImageWithFallback(props: ImageWithFallbackProps) {
     if (normalized instanceof File) return normalized.name
     return normalized
   })()
+
+  if (!resolvedSrc) {
+    return (
+      <div
+        className={`inline-block bg-gray-100 text-center align-middle ${className ?? ''}`}
+        style={style}
+      >
+        <div className="flex items-center justify-center w-full h-full">
+          <img src={ERROR_IMG_SRC} alt="Зображення відсутнє" {...rest} data-original-url={originalLabel} />
+        </div>
+      </div>
+    )
+  }
 
   return didError ? (
     <div
