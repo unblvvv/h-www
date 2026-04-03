@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Heart, CheckCircle2 } from 'lucide-react';
-import { Button } from '../../shared/ui/Button';
-import { Input } from '../../shared/ui/Input';
+import { Button } from '../../../shared/ui/Button';
+import { Input } from '../../../shared/ui/Input';
 
 export default function DonatePage() {
   const navigate = useNavigate();

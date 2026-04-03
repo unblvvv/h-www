@@ -1,16 +1,14 @@
-"use client";
-
 import { createBrowserRouter, createMemoryRouter } from 'react-router';
 import { Outlet } from 'react-router';
-import HomePage from './widgets/animals-catalog/HomePage';
-import AnimalDetailsPage from './widgets/animals-catalog/AnimalDetailsPage';
-import AdoptionFormPage from './features/adopt-animal/AdoptionFormPage';
-import DonatePage from './features/donate/DonatePage';
-import AdminPage from './widgets/volunteer-dashboard/AdminPage';
-import ProfilePage from './widgets/volunteer-dashboard/ProfilePage';
-import { Navbar } from './widgets/header/Navbar';
-import { Footer } from './widgets/footer/Footer';
-import { AuthProvider } from './features/volunteer-auth/AuthContext';
+import HomePage from './pages/HomePage/HomePage';
+import AnimalDetailsPage from './pages/PetPage/AnimalDetailsPage';
+import AdoptionFormPage from './features/adopt-animal/ui/AdoptionFormPage';
+import DonatePage from './features/donate/ui/DonatePage';
+import AdminPage from './pages/ProfilePage/ui/AdminPage';
+import ProfilePage from './pages/ProfilePage/ui/ProfilePage';
+import { Navbar } from './widgets/header/ui/Navbar';
+import { Footer } from './widgets/footer/ui/Footer';
+import { AuthProvider } from './features/auth/AuthContext';
 
 function Layout() {
   return (

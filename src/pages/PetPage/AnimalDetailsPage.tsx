@@ -5,7 +5,7 @@ import { Button } from '../../shared/ui/Button';
 import { Badge } from '../../shared/ui/Badge';
 import { Modal } from '../../shared/ui/Modal';
 import { mockAnimals } from '../../shared/entities/animal/mockAnimals';
-import { ImageWithFallback } from '../../shared/ui/figma/ImageWithFallback';
+import { ImageWithFallback } from '../../shared/ui/ImageWithFallback';
 
 export default function AnimalDetailsPage() {
   const { id } = useParams();

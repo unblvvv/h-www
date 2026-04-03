@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { Plus, Pencil, Trash2, CheckCircle2 } from 'lucide-react';
-import { Button } from '../../shared/ui/Button';
-import { Input } from '../../shared/ui/Input';
-import { Textarea } from '../../shared/ui/Textarea';
-import { Modal } from '../../shared/ui/Modal';
-import { Badge } from '../../shared/ui/Badge';
-import { mockAnimals } from '../../shared/entities/animal/mockAnimals';
-import { Animal, AnimalType, AnimalAge, AnimalStatus } from '../../shared/entities/animal/animal';
-import { ImageWithFallback } from '../../shared/ui/figma/ImageWithFallback';
+import { Button } from '../../../shared/ui/Button';
+import { Input } from '../../../shared/ui/Input';
+import { Textarea } from '../../../shared/ui/Textarea';
+import { Modal } from '../../../shared/ui/Modal';
+import { Badge } from '../../../shared/ui/Badge';
+import { mockAnimals } from '../../../shared/entities/animal/mockAnimals';
+import { Animal, AnimalType, AnimalAge, AnimalStatus } from '../../../shared/entities/animal/animal';
+import { ImageWithFallback } from '../../../shared/ui/ImageWithFallback';
 
 export default function AdminPage() {
   const [animals, setAnimals] = useState<Animal[]>(mockAnimals);

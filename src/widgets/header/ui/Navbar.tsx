@@ -1,8 +1,8 @@
 import { Link, useLocation } from 'react-router';
 import { Heart, User, LogIn } from 'lucide-react';
 import { useState } from 'react';
-import { useAuth } from '../../features/volunteer-auth/AuthContext';
-import { LoginModal } from '../../features/volunteer-auth/LoginModal';
+import { useAuth } from '../../../features/auth/AuthContext';
+import { LoginModal } from '../../../features/auth/ui/LoginModal';
 
 export function Navbar() {
   const location = useLocation();

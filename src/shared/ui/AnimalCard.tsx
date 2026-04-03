@@ -2,7 +2,7 @@ import { Link } from 'react-router';
 import { Badge } from './Badge';
 import { Button } from './Button';
 import { Animal } from '../entities/animal/animal';
-import { ImageWithFallback } from './figma/ImageWithFallback';
+import { ImageWithFallback } from './ImageWithFallback';
 
 interface AnimalCardProps {
   animal: Animal;

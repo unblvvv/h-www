@@ -1,1 +1,1 @@
-export { default as DonatePage } from './DonatePage';
+export { default as DonatePage } from './ui/DonatePage';

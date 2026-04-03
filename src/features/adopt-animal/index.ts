@@ -1,1 +1,1 @@
-export { default as AdoptionFormPage } from './AdoptionFormPage';
+export { default as AdoptionFormPage } from './ui/AdoptionFormPage';

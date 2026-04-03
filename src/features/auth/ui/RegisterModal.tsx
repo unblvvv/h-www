@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { X } from 'lucide-react';
-import { Button } from '../../shared/ui/Button';
-import { Input } from '../../shared/ui/Input';
+import { Button } from '../../../shared/ui/Button';
+import { Input } from '../../../shared/ui/Input';
 
 interface RegisterModalProps {
   isOpen: boolean;

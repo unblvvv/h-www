@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { User, ArrowLeft } from 'lucide-react';
-import { Button } from '../../shared/ui/Button';
-import { Input } from '../../shared/ui/Input';
-import { useAuth } from '../../features/volunteer-auth/AuthContext';
+import { Button } from '../../../shared/ui/Button';
+import { Input } from '../../../shared/ui/Input';
+import { useAuth } from '../../../features/auth/AuthContext';
 
 export default function ProfilePage() {
   const navigate = useNavigate();

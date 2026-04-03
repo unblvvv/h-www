@@ -1,12 +1,12 @@
 import { useParams, useNavigate, Link } from 'react-router';
 import { useState, useEffect } from 'react';
 import { ArrowLeft, CheckCircle2 } from 'lucide-react';
-import { Button } from '../../shared/ui/Button';
-import { Input } from '../../shared/ui/Input';
-import { Textarea } from '../../shared/ui/Textarea';
-import { RegisterModal } from '../volunteer-auth/RegisterModal';
-import { mockAnimals } from '../../shared/entities/animal/mockAnimals';
-import { useAuth } from '../volunteer-auth/AuthContext';
+import { Button } from '../../../shared/ui/Button';
+import { Input } from '../../../shared/ui/Input';
+import { Textarea } from '../../../shared/ui/Textarea';
+import { RegisterModal } from '../../auth/ui/RegisterModal';
+import { mockAnimals } from '../../../shared/entities/animal/mockAnimals';
+import { useAuth } from '../../auth/AuthContext';
 
 export default function AdoptionFormPage() {
   const { id } = useParams();
