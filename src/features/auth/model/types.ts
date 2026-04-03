@@ -11,9 +11,11 @@ export interface LoginDto {
 
 export interface AuthResponse {
   token?: string
-  user?: {
-    name: string
-    email: string
-    phone?: string
-  }
+  user?:
+    | {
+        name: string
+        email: string
+        phone?: string
+      }
+    | string
 }

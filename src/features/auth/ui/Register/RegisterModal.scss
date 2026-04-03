@@ -1,27 +1,13 @@
 ﻿@use '@/styles/variables' as *;
 
-.register-modal {
-  display: grid;
-  gap: 0.95rem;
+.auth-modal__panel {
+  width: min(95vw, 960px);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 20px 60px rgba(30, 34, 90, 0.1);
 }
 
-.register-modal__field {
-  display: grid;
-  gap: 0.35rem;
-  color: $color-text-primary;
-  font-weight: 600;
-}
-
-.register-modal__actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 0.6rem;
-  padding-top: 0.4rem;
-}
-
-.register-modal__error {
-  margin: 0;
-  color: $color-error;
-  font-weight: 600;
+.auth-modal__body {
+  padding: 0;
 }
 

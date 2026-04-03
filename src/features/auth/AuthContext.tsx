@@ -6,6 +6,7 @@ import { authApi } from './api/auth';
 
 interface AuthContextType {
   isAuthenticated: boolean;
+  isAuthInProgress: boolean;
   user: UserProfile | null;
   login: (email: string, password: string) => Promise<void>;
   register: (profile: UserProfile, password: string) => Promise<void>;
@@ -16,58 +17,141 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const USER_KEY = 'shelter_user';
+const ADMIN_DEV_TOKEN =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiZjUxYjY1Y2UtMGViMy00MWVmLWEwMzctMGNkZDE4YjY5MDdiIiwicm9sZSI6ImFkbWluIiwiZXhwIjoxNzc1MzE1Nzk5LCJpYXQiOjE3NzUyMjkzOTl9.KAJdxnMVLr07vXllT2cdUrYrtYEa50iBhMPpHUtcMKg';
+
+const decodeJwtPayload = (token: string): Record<string, unknown> | null => {
+  const parts = token.split('.');
+  if (parts.length < 2) return null;
+
+  try {
+    const payload = parts[1].replace(/-/g, '+').replace(/_/g, '/');
+    const json = atob(payload.padEnd(Math.ceil(payload.length / 4) * 4, '='));
+    return JSON.parse(json) as Record<string, unknown>;
+  } catch {
+    return null;
+  }
+};
+
+const resolveProfileFromAuth = (res: { token?: string; user?: unknown }): UserProfile | null => {
+  if (res.user && typeof res.user === 'object') {
+    const user = res.user as Partial<UserProfile>;
+    if (user.name && user.email) {
+      return { name: user.name, email: user.email, phone: user.phone };
+    }
+  }
+
+  if (res.token) {
+    const payload = decodeJwtPayload(res.token);
+    if (payload) {
+      const name = String(payload.name ?? payload.username ?? '').trim();
+      const email = String(payload.email ?? '').trim();
+      if (name && email) {
+        return { name, email };
+      }
+    }
+  }
+
+  return null;
+};
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthInProgress, setIsAuthInProgress] = useState(true);
   const [user, setUser] = useState<UserProfile | null>(null);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem(USER_KEY);
-    const token = localStorage.getItem('token');
+    const bootstrapAuth = async () => {
+      const storedUser = localStorage.getItem(USER_KEY);
+      const token = localStorage.getItem('token');
 
-    if (token) {
-      setIsAuthenticated(true);
-    }
+      if (!token && import.meta.env.DEV) {
+        localStorage.setItem('token', ADMIN_DEV_TOKEN);
+      }
 
-    if (!storedUser) return;
+      if (token || import.meta.env.DEV) {
+        setIsAuthenticated(true);
+      }
 
-    try {
-      const parsedUser = JSON.parse(storedUser) as UserProfile;
-      setUser(parsedUser);
-      setIsAuthenticated(true);
-    } catch {
-      localStorage.removeItem(USER_KEY);
-      localStorage.removeItem('token');
-    }
+      if (storedUser) {
+        try {
+          const parsedUser = JSON.parse(storedUser) as UserProfile;
+          setUser(parsedUser);
+          setIsAuthenticated(true);
+          setIsAuthInProgress(false);
+          return;
+        } catch {
+          localStorage.removeItem(USER_KEY);
+          localStorage.removeItem('token');
+        }
+      }
+
+      if (token) {
+        try {
+          const profileResponse = await authApi.getMe();
+          const profile = profileResponse.data;
+          localStorage.setItem(USER_KEY, JSON.stringify(profile));
+          setUser(profile);
+          setIsAuthenticated(true);
+        } catch {
+          localStorage.removeItem('token');
+        }
+      }
+
+      setIsAuthInProgress(false);
+    };
+
+    void bootstrapAuth();
   }, []);
 
-const login = async (email: string, password: string) => {
-  const res = await authApi.login({ email, password });
+  const login = async (email: string, password: string) => {
+    setIsAuthInProgress(true);
+    try {
+      const res = await authApi.login({ email, password });
+      const data = res.data;
 
-  if (!res.token) throw new Error('Invalid credentials');
+      if (!data.token) throw new Error('Invalid credentials');
 
-  localStorage.setItem('token', res.token);
+      localStorage.setItem('token', data.token);
 
-  if (res.user) {
-    localStorage.setItem(USER_KEY, JSON.stringify(res.user));
-    setUser(res.user);
-  }
+      const profile = resolveProfileFromAuth(data);
+      if (profile) {
+        localStorage.setItem(USER_KEY, JSON.stringify(profile));
+        setUser(profile);
+      } else {
+        const profileResponse = await authApi.getMe();
+        const fetchedProfile = profileResponse.data;
+        localStorage.setItem(USER_KEY, JSON.stringify(fetchedProfile));
+        setUser(fetchedProfile);
+      }
 
-  setIsAuthenticated(true);
-};
+      setIsAuthenticated(true);
+    } finally {
+      setIsAuthInProgress(false);
+    }
+  };
   
 
   const register = async (profile: UserProfile, password: string) => {
-    await authApi.register({
-      username: profile.name, // мапимо під бек
-      email: profile.email,
-      password,
-    });
+    setIsAuthInProgress(true);
+    try {
+      const res = await authApi.register({
+        username: profile.name,
+        email: profile.email,
+        password,
+      });
 
-    // зберігаємо профіль локально після успішної реєстрації
-    localStorage.setItem(USER_KEY, JSON.stringify(profile));
-    setUser(profile);
-    setIsAuthenticated(true);
+      const data = res.data;
+      if (data?.token) {
+        localStorage.setItem('token', data.token);
+      }
+
+      localStorage.setItem(USER_KEY, JSON.stringify(profile));
+      setUser(profile);
+      setIsAuthenticated(true);
+    } finally {
+      setIsAuthInProgress(false);
+    }
   };
 
   const logout = () => {
@@ -75,6 +159,7 @@ const login = async (email: string, password: string) => {
     localStorage.removeItem(USER_KEY);
     setUser(null);
     setIsAuthenticated(false);
+    setIsAuthInProgress(false);
   };
 
   const updateProfile = (profile: UserProfile) => {
@@ -83,7 +168,7 @@ const login = async (email: string, password: string) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, login, register, logout, updateProfile }}>
+    <AuthContext.Provider value={{ isAuthenticated, isAuthInProgress, user, login, register, logout, updateProfile }}>
       {children}
     </AuthContext.Provider>
   );

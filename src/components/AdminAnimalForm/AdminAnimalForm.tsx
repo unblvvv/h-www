@@ -69,11 +69,11 @@ export function AdminAnimalForm({ values, submitLabel, onChange, onSubmit }: Adm
       </div>
 
       <label>
-        <span>Image URL</span>
+        <span>Photo</span>
         <Input
-          type="url"
-          value={values.image || ''}
-          onChange={(event) => onChange({ image: event.target.value })}
+          type="file"
+          accept="image/*"
+          onChange={(event) => onChange({ image: event.target.files?.[0] })}
           required
         />
       </label>

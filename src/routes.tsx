@@ -11,8 +11,10 @@ import AdminPage from './pages/AdminPage/AdminPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import { Navbar } from './widgets/header/ui/Navbar';
 import { Footer } from './widgets/footer/ui/Footer';
-import { LoginPage, RegisterPage } from './pages/AuthPages';
-import { AuthProvider } from './features/auth/AuthContext';
+import { AuthProvider } from './features/auth';
+import { LoginPage } from './features/auth/ui/Login/LoginModal';
+import { RegisterPage } from './features/auth/ui/Register/RegisterModal';
+import { PrivateRoute } from '@/shared/lib/PrivateRoute';
 
 function Layout() {
   const location = useLocation();
@@ -42,7 +44,10 @@ const routes = [
       { path: 'adopt/:id', Component: AdoptionFormPage },
       { path: 'donate', Component: DonatePage },
       { path: 'admin', Component: AdminPage },
-      { path: 'profile', Component: ProfilePage },
+      {
+        element: <PrivateRoute />,
+        children: [{ path: 'profile', Component: ProfilePage }],
+      },
       { path: 'login', Component: LoginPage },
       { path: 'register', Component: RegisterPage },
     ],

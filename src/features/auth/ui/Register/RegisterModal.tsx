@@ -1,53 +1,37 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router';
-import { Button } from '../../../../components/Button/Button';
-import { Input } from '../../../../components/Input/Input';
-import { Modal } from '../../../../components/Modal/Modal';
-import './RegisterModal.scss';
+import { FormEvent, useState } from 'react';
+import { Link, useNavigate } from 'react-router';
+import { ArrowLeft } from 'lucide-react';
+import { Button } from '@/components/Button/Button';
+import { Input } from '@/components/Input/Input';
+import { useAuth } from '@/features/auth/AuthContext';
 
-interface RegisterModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onRegister: (name: string, email: string, password: string) => Promise<void> | void;
-  defaultValues?: {
-    name: string;
-    email: string;
-  };
+function isEmailValid(email: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-export function RegisterModal({ isOpen, onClose, onRegister, defaultValues }: RegisterModalProps) {
+export function RegisterPage() {
+  const navigate = useNavigate();
+  const { register } = useAuth();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
-    name: defaultValues?.name || '',
-    email: defaultValues?.email || '',
+    fullName: '',
+    email: '',
     password: '',
     confirmPassword: '',
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
-
-  useEffect(() => {
-    if (!isOpen) {
-      return;
-    }
-
-    setFormData((prev) => ({
-      ...prev,
-      name: defaultValues?.name || prev.name,
-      email: defaultValues?.email || prev.email,
-      password: '',
-      confirmPassword: '',
-    }));
-  }, [isOpen, defaultValues?.name, defaultValues?.email]);
+  const [formError, setFormError] = useState('');
 
   const validate = () => {
     const nextErrors: Record<string, string> = {};
 
-    if (!formData.name.trim()) {
-      nextErrors.name = 'Name is required';
+    if (!formData.fullName.trim()) {
+      nextErrors.fullName = 'Full name is required';
     }
 
     if (!formData.email.trim()) {
       nextErrors.email = 'Email is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+    } else if (!isEmailValid(formData.email)) {
       nextErrors.email = 'Please enter a valid email';
     }
 
@@ -57,7 +41,9 @@ export function RegisterModal({ isOpen, onClose, onRegister, defaultValues }: Re
       nextErrors.password = 'Password must be at least 6 characters';
     }
 
-    if (formData.confirmPassword !== formData.password) {
+    if (!formData.confirmPassword) {
+      nextErrors.confirmPassword = 'Please confirm password';
+    } else if (formData.confirmPassword !== formData.password) {
       nextErrors.confirmPassword = 'Passwords do not match';
     }
 
@@ -65,89 +51,124 @@ export function RegisterModal({ isOpen, onClose, onRegister, defaultValues }: Re
     return Object.keys(nextErrors).length === 0;
   };
 
-  const handleSubmit = async (event: React.FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
+    setFormError('');
+
     if (!validate()) {
       return;
     }
 
-    await onRegister(formData.name, formData.email, formData.password);
-    onClose();
+    setIsSubmitting(true);
+    try {
+      await register(
+        {
+          name: formData.fullName,
+          email: formData.email,
+          phone: '',
+        },
+        formData.password,
+      );
+      navigate('/profile');
+    } catch {
+      setFormError('Could not create account. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onClose={onClose}
-      title="Create account"
-      panelClassName="auth-modal__panel"
-      bodyClassName="auth-modal__body"
-    >
-      <form className="auth-form register-modal" onSubmit={handleSubmit}>
-        <label className="auth-form__field register-modal__field">
-          <span>Full name</span>
-          <Input
-            className="auth-input"
-            type="text"
-            value={formData.name}
-            placeholder="Your name"
-            onChange={(event) => setFormData((prev) => ({ ...prev, name: event.target.value }))}
-            error={errors.name}
-          />
-        </label>
+    <section className="auth-page" aria-labelledby="register-title">
+      <div className="app-container">
+        <div className="auth-page__card">
+          <div className="auth-page__layout auth-page__layout--register">
+            <div className="auth-page__form-pane">
+              <button
+                type="button"
+                className="auth-page__back"
+                onClick={() => {
+                  if (window.history.length > 1) {
+                    navigate(-1);
+                    return;
+                  }
+                  navigate('/');
+                }}
+              >
+                <ArrowLeft size={16} />
+                Back
+              </button>
 
-        <label className="auth-form__field register-modal__field">
-          <span>Email</span>
-          <Input
-            className="auth-input"
-            type="email"
-            value={formData.email}
-            placeholder="you@example.com"
-            onChange={(event) => setFormData((prev) => ({ ...prev, email: event.target.value }))}
-            error={errors.email}
-          />
-        </label>
+              <form className="auth-form" onSubmit={handleSubmit}>
+                {formError ? <p className="auth-form__alert">{formError}</p> : null}
 
-        <label className="auth-form__field register-modal__field">
-          <span>Password</span>
-          <Input
-            className="auth-input"
-            type="password"
-            value={formData.password}
-            autoComplete="new-password" 
-            placeholder="At least 6 characters"
-            onChange={(event) => setFormData((prev) => ({ ...prev, password: event.target.value }))}
-            error={errors.password}
-          />
-        </label>
+                <label className="auth-form__field">
+                  <span>Full name</span>
+                  <Input
+                    className="auth-input"
+                    type="text"
+                    placeholder="Your full name"
+                    value={formData.fullName}
+                    onChange={(event) => setFormData((prev) => ({ ...prev, fullName: event.target.value }))}
+                    error={errors.fullName}
+                  />
+                </label>
 
-        <label className="auth-form__field register-modal__field">
-          <span>Confirm password</span>
-          <Input
-            className="auth-input"
-            type="password"
-            value={formData.confirmPassword}
-            autoComplete="new-password" 
-            placeholder="Repeat password"
-            onChange={(event) => setFormData((prev) => ({ ...prev, confirmPassword: event.target.value }))}
-            error={errors.confirmPassword}
-          />
-        </label>
+                <label className="auth-form__field">
+                  <span>Email</span>
+                  <Input
+                    className="auth-input"
+                    type="email"
+                    placeholder="you@example.com"
+                    value={formData.email}
+                    onChange={(event) => setFormData((prev) => ({ ...prev, email: event.target.value }))}
+                    error={errors.email}
+                  />
+                </label>
 
-        <div className="auth-form__actions register-modal__actions">
-          <Button variant="secondary" type="button" onClick={onClose}>
-            Cancel
-          </Button>
-          <Button className="auth-form__submit" type="submit">Create account</Button>
+                <label className="auth-form__field">
+                  <span>Password</span>
+                  <Input
+                    className="auth-input"
+                    type="password"
+                    placeholder="At least 6 characters"
+                    value={formData.password}
+                    onChange={(event) => setFormData((prev) => ({ ...prev, password: event.target.value }))}
+                    error={errors.password}
+                  />
+                </label>
+
+                <label className="auth-form__field">
+                  <span>Confirm password</span>
+                  <Input
+                    className="auth-input"
+                    type="password"
+                    placeholder="Repeat password"
+                    value={formData.confirmPassword}
+                    onChange={(event) => setFormData((prev) => ({ ...prev, confirmPassword: event.target.value }))}
+                    error={errors.confirmPassword}
+                  />
+                </label>
+
+                <Button className="auth-form__submit" type="submit" disabled={isSubmitting}>
+                  {isSubmitting ? 'Creating account...' : 'Create account'}
+                </Button>
+              </form>
+
+              <p className="auth-page__switch">
+                Already have an account? <Link to="/login">Log in</Link>
+              </p>
+            </div>
+
+            <aside className="auth-page__content-pane">
+              <p className="auth-page__badge">Create account</p>
+              <h1 id="register-title" className="auth-page__title">
+                Join Dnipro Animals
+              </h1>
+              <p className="auth-page__subtitle">Create your profile and start the adoption journey.</p>
+            </aside>
+          </div>
         </div>
-
-        <p className="auth-form__switch">
-          Already have an account?{' '}
-          <Link to="/login" onClick={onClose}>
-            Log in
-          </Link>
-        </p>
-      </form>
-    </Modal>
+      </div>
+    </section>
   );
 }

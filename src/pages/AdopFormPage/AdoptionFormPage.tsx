@@ -6,14 +6,13 @@ import { mockAnimals } from '../../shared/data/mockAnimals';
 import { Button } from '../../components/Button/Button';
 import { Input } from '../../components/Input/Input';
 import { Textarea } from '../../components/Textarea/Textarea';
-import { RegisterModal } from '../../features/auth/ui/Register/RegisterModal';
 import { useSeo } from '../../shared/utils/useSeo';
 import './AdoptionFormPage.scss';
 
 export default function AdoptionFormPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { isAuthenticated, user, register } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   const animal = mockAnimals.find((pet) => pet.id === id);
 
   useSeo({
@@ -29,7 +28,6 @@ export default function AdoptionFormPage() {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
-  const [showRegisterModal, setShowRegisterModal] = useState(false);
 
   useEffect(() => {
     if (!isAuthenticated || !user) {
@@ -40,7 +38,7 @@ export default function AdoptionFormPage() {
       ...prev,
       name: user.name,
       email: user.email,
-      phone: user.phone,
+      phone: user.phone ?? '',
     }));
   }, [isAuthenticated, user]);
 
@@ -73,12 +71,6 @@ export default function AdoptionFormPage() {
     }
 
     setSubmitted(true);
-  };
-
-  const handleRegister = async (name: string, email: string, password: string) => {
-    await register({ name, email, phone: formData.phone }, password);
-    setShowRegisterModal(false);
-    navigate('/profile');
   };
 
   if (!animal) {
@@ -114,20 +106,13 @@ export default function AdoptionFormPage() {
                   <Button variant="secondary" onClick={() => navigate('/find-pet')}>
                     Skip for now
                   </Button>
-                  <Button onClick={() => setShowRegisterModal(true)}>Create account</Button>
+                  <Button onClick={() => navigate('/register')}>Create account</Button>
                 </div>
               </div>
             ) : (
               <Button onClick={() => navigate('/find-pet')}>Back to pets catalog</Button>
             )}
           </section>
-
-          <RegisterModal
-            isOpen={showRegisterModal}
-            onClose={() => setShowRegisterModal(false)}
-            onRegister={handleRegister}
-            defaultValues={{ name: formData.name, email: formData.email }}
-          />
         </div>
       </main>
     );
