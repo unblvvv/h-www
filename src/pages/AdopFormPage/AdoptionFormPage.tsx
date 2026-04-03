@@ -2,18 +2,60 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router';
 import { CheckCircle2 } from 'lucide-react';
 import { useAuth } from '../../features/auth/AuthContext';
-import { mockAnimals } from '../../shared/data/mockAnimals';
+import { apiRequest } from '../../shared/lib/api';
+import { Animal, AnimalAge, AnimalStatus, AnimalType } from '../../shared/types/animal';
 import { Button } from '../../components/Button/Button';
 import { Input } from '../../components/Input/Input';
 import { Textarea } from '../../components/Textarea/Textarea';
 import { useSeo } from '../../shared/utils/useSeo';
 import './AdoptionFormPage.scss';
 
+interface ApiAnimal {
+  Age?: string;
+  CreatedAt?: string;
+  Description?: string;
+  ID?: string;
+  Name?: string;
+  OrganizationID?: string;
+  PhotoURL?: string;
+  Sex?: string;
+  Status?: string;
+  Type?: string;
+  UpdatedAt?: string;
+}
+
+interface ApiAnimalListResponse {
+  items?: ApiAnimal[];
+}
+
+const normalizeType = (value?: string): AnimalType => {
+  const normalized = value?.trim().toLowerCase();
+  return normalized === 'cat' ? 'cat' : 'dog';
+};
+
+const normalizeAge = (value?: string): AnimalAge => {
+  const normalized = value?.trim().toLowerCase();
+  return normalized === 'young' ? 'young' : 'adult';
+};
+
+const normalizeStatus = (value?: string): AnimalStatus => {
+  const normalized = value?.trim().toLowerCase();
+  if (normalized === 'in-process') return 'in-process';
+  if (normalized === 'adopted') return 'adopted';
+  return 'available';
+};
+
+const normalizeSex = (value?: string): 'male' | 'female' => {
+  const normalized = value?.trim().toLowerCase();
+  return normalized === 'female' ? 'female' : 'male';
+};
+
 export default function AdoptionFormPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { isAuthenticated, user } = useAuth();
-  const animal = mockAnimals.find((pet) => pet.id === id);
+  const [animal, setAnimal] = useState<Animal | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useSeo({
     title: animal ? `Усиновити ${animal.name} | Заявка з притулку` : 'Заявка на усиновлення | Притулок для тварин',
@@ -41,6 +83,46 @@ export default function AdoptionFormPage() {
       phone: user.phone ?? '',
     }));
   }, [isAuthenticated, user]);
+
+  useEffect(() => {
+    let isMounted = true;
+    if (!id) {
+      setAnimal(null);
+      setIsLoading(false);
+      return;
+    }
+
+    setIsLoading(true);
+    apiRequest<ApiAnimalListResponse>('/animal')
+      .then((data) => {
+        if (!isMounted) return;
+        const items = data.items ?? [];
+        const mapped = items.map((item, index) => ({
+          id: item.ID ?? `${index}`,
+          name: item.Name ?? 'Без імені',
+          type: normalizeType(item.Type),
+          age: normalizeAge(item.Age),
+          gender: normalizeSex(item.Sex),
+          description: item.Description ?? '',
+          image: item.PhotoURL ?? '',
+          status: normalizeStatus(item.Status),
+        }));
+        const found = mapped.find((pet) => pet.id === id) ?? null;
+        setAnimal(found);
+      })
+      .catch(() => {
+        if (!isMounted) return;
+        setAnimal(null);
+      })
+      .finally(() => {
+        if (!isMounted) return;
+        setIsLoading(false);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [id]);
 
   const validate = () => {
     const nextErrors: Record<string, string> = {};
@@ -72,6 +154,16 @@ export default function AdoptionFormPage() {
 
     setSubmitted(true);
   };
+
+  if (isLoading) {
+    return (
+      <main className="page adoption-page">
+        <div className="app-container adoption-page__not-found">
+          <p className="section-subtitle">Завантаження профілю улюбленця...</p>
+        </div>
+      </main>
+    );
+  }
 
   if (!animal) {
     return (

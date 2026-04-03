@@ -1,17 +1,60 @@
 import { Link, useNavigate, useParams } from 'react-router';
-import { useEffect } from 'react';
-import { ArrowLeft } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useSeo } from '../../shared/utils/useSeo';
-import { mockAnimals } from '../../shared/data/mockAnimals';
+import { apiRequest } from '../../shared/lib/api';
+import { Animal, AnimalAge, AnimalStatus, AnimalType } from '../../shared/types/animal';
 import { Badge } from '../../components/Badge/Badge';
 import { Button } from '../../components/Button/Button';
 import { ImageWithFallback } from '../../components/figma/ImageWithFallback';
 import './AnimalDetailsPage.scss';
 
+interface ApiAnimal {
+  Age?: string;
+  CreatedAt?: string;
+  Description?: string;
+  ID?: string;
+  Name?: string;
+  OrganizationID?: string;
+  PhotoURL?: string;
+  Sex?: string;
+  Status?: string;
+  Type?: string;
+  UpdatedAt?: string;
+}
+
+interface ApiAnimalListResponse {
+  items?: ApiAnimal[];
+}
+
+const normalizeType = (value?: string): AnimalType => {
+  const normalized = value?.trim().toLowerCase();
+  return normalized === 'cat' ? 'cat' : 'dog';
+};
+
+const normalizeAge = (value?: string): AnimalAge => {
+  const normalized = value?.trim().toLowerCase();
+  return normalized === 'young' ? 'young' : 'adult';
+};
+
+const normalizeStatus = (value?: string): AnimalStatus => {
+  const normalized = value?.trim().toLowerCase();
+  if (normalized === 'in-process') return 'in-process';
+  if (normalized === 'adopted') return 'adopted';
+  return 'available';
+};
+
+const normalizeSex = (value?: string): 'male' | 'female' => {
+  const normalized = value?.trim().toLowerCase();
+  return normalized === 'female' ? 'female' : 'male';
+};
+
 export default function AnimalDetailsPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const animal = mockAnimals.find((pet) => pet.id === id);
+  const [animal, setAnimal] = useState<Animal | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [activePhotoIndex, setActivePhotoIndex] = useState(0);
   const petTypeLabel = animal?.type === 'dog' ? 'Собака' : 'Кіт';
   const petAgeLabel = animal?.age === 'young' ? 'Молодий' : 'Дорослий';
   const petGenderLabel = animal?.gender === 'female' ? 'Самка' : 'Самець';
@@ -39,6 +82,83 @@ export default function AnimalDetailsPage() {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   }, [id]);
 
+  useEffect(() => {
+    setActivePhotoIndex(0);
+  }, [animal?.id]);
+
+  const photoUrls = (() => {
+    if (!animal || typeof animal.image !== 'string') {
+      return [''];
+    }
+
+    const parts = animal.image
+      .split(',')
+      .map((value) => value.trim())
+      .filter(Boolean);
+
+    return parts.length ? parts : [animal.image];
+  })();
+
+  const handlePrevPhoto = () => {
+    if (photoUrls.length <= 1) return;
+    setActivePhotoIndex((prev) => (prev - 1 + photoUrls.length) % photoUrls.length);
+  };
+
+  const handleNextPhoto = () => {
+    if (photoUrls.length <= 1) return;
+    setActivePhotoIndex((prev) => (prev + 1) % photoUrls.length);
+  };
+
+  useEffect(() => {
+    let isMounted = true;
+    if (!id) {
+      setAnimal(null);
+      setIsLoading(false);
+      return;
+    }
+
+    setIsLoading(true);
+    apiRequest<ApiAnimalListResponse>('/animal')
+      .then((data) => {
+        if (!isMounted) return;
+        const items = data.items ?? [];
+        const mapped = items.map((item, index) => ({
+          id: item.ID ?? `${index}`,
+          name: item.Name ?? 'Без імені',
+          type: normalizeType(item.Type),
+          age: normalizeAge(item.Age),
+          gender: normalizeSex(item.Sex),
+          description: item.Description ?? '',
+          image: item.PhotoURL ?? '',
+          status: normalizeStatus(item.Status),
+        }));
+        const found = mapped.find((pet) => pet.id === id) ?? null;
+        setAnimal(found);
+      })
+      .catch(() => {
+        if (!isMounted) return;
+        setAnimal(null);
+      })
+      .finally(() => {
+        if (!isMounted) return;
+        setIsLoading(false);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [id]);
+
+  if (isLoading) {
+    return (
+      <main className="page animal-details-page">
+        <div className="app-container animal-details-page__not-found">
+          <p className="section-subtitle">Завантаження профілю улюбленця...</p>
+        </div>
+      </main>
+    );
+  }
+
   if (!animal) {
     return (
       <main className="page animal-details-page">
@@ -63,18 +183,47 @@ export default function AnimalDetailsPage() {
 
         <article className="animal-details-page__card">
           <section className="animal-details-page__gallery" aria-label={`Фото ${animal.name}`}>
-            <ImageWithFallback
-              src={animal.image}
-              alt={`${animal.name}, ${petAgeLabel.toLowerCase()} ${petTypeLabel.toLowerCase()}, профільне фото з притулку`}
-              className="animal-details-page__main-image"
-            />
-            <div className="animal-details-page__thumbs">
-              {[1, 2, 3].map((thumb) => (
-                <ImageWithFallback
-                  key={thumb}
-                  src={animal.image}
-                  alt={`Фото ${animal.name} ${thumb + 1}`}
-                  className="animal-details-page__thumb-image"
+            <div className="animal-details-page__slider">
+              <button
+                type="button"
+                className="animal-details-page__slider-arrow animal-details-page__slider-arrow--left"
+                onClick={handlePrevPhoto}
+                aria-label="Попереднє фото"
+                disabled={photoUrls.length <= 1}
+              >
+                <ChevronLeft size={20} />
+              </button>
+
+              <ImageWithFallback
+                src={photoUrls[activePhotoIndex] ?? ''}
+                alt={`${animal.name}, фото ${activePhotoIndex + 1}`}
+                className="animal-details-page__main-image"
+              />
+
+              <button
+                type="button"
+                className="animal-details-page__slider-arrow animal-details-page__slider-arrow--right"
+                onClick={handleNextPhoto}
+                aria-label="Наступне фото"
+                disabled={photoUrls.length <= 1}
+              >
+                <ChevronRight size={20} />
+              </button>
+            </div>
+
+            <div className="animal-details-page__dots" role="tablist" aria-label="Слайди фото">
+              {photoUrls.map((_, index) => (
+                <button
+                  key={index}
+                  type="button"
+                  className={
+                    index === activePhotoIndex
+                      ? 'animal-details-page__dot is-active'
+                      : 'animal-details-page__dot'
+                  }
+                  onClick={() => setActivePhotoIndex(index)}
+                  aria-label={`Показати фото ${index + 1}`}
+                  aria-pressed={index === activePhotoIndex}
                 />
               ))}
             </div>
