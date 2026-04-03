@@ -6,7 +6,7 @@ import { mockAnimals } from '../../shared/data/mockAnimals';
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
 import { Textarea } from '../../components/Textarea';
-import { RegisterModal } from '../../components/RegisterModal';
+import { RegisterModal } from '../../features/auth/ui/Register/RegisterModal';
 import { useSeo } from '../../shared/utils/useSeo';
 import './AdoptionFormPage.scss';
 

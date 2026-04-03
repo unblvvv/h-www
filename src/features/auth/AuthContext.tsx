@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import { UserProfile } from '../../shared/types/user';
+import { authApi } from './api/auth';
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -23,6 +24,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const storedUser = localStorage.getItem(USER_KEY);
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      setIsAuthenticated(true);
+    }
+
     if (!storedUser) {
       return;
     }
@@ -38,24 +45,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const login = async (email: string, password: string) => {
-    const rawAuth = localStorage.getItem(AUTH_KEY);
-    if (!rawAuth) {
+    const res = await authApi.login({ email, password });
+    const token = res.token;
+
+    if (token) {
+      localStorage.setItem('token', token);
+      setIsAuthenticated(true);
+    } else {
       throw new Error('Invalid credentials');
     }
-
-    const authData = JSON.parse(rawAuth) as { email: string; password: string };
-    if (authData.email !== email || authData.password !== password) {
-      throw new Error('Invalid credentials');
-    }
-
-    const rawUser = localStorage.getItem(USER_KEY);
-    if (!rawUser) {
-      throw new Error('User profile not found');
-    }
-
-    const parsedUser = JSON.parse(rawUser) as UserProfile;
-    setUser(parsedUser);
-    setIsAuthenticated(true);
   };
 
   const register = async (profile: UserProfile, password: string) => {

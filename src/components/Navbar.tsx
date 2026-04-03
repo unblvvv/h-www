@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router';
 import { Heart, User, LogIn } from 'lucide-react';
 import { useState } from 'react';
 import { useAuth } from '../features/auth/AuthContext';
-import { LoginModal } from './LoginModal';
+import { LoginModal } from '../features/auth/ui/Login/LoginModal';
 import './Navbar.scss';
 
 export function Navbar() {
