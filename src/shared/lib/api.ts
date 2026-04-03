@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:8080'
+const BASE_URL = 'https://hwww-f047055f2d1b.herokuapp.com'
 
 export async function apiRequest<T>(
   endpoint: string,

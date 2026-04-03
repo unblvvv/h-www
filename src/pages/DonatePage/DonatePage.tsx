@@ -16,6 +16,7 @@ export default function DonatePage() {
   const navigate = useNavigate();
   const [processing, setProcessing] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [paymentStep, setPaymentStep] = useState<'idle' | 'redirect' | 'confirm'>('idle');
 
   const handleDonate = (amount: number) => {
     if (amount <= 0) {
@@ -23,9 +24,14 @@ export default function DonatePage() {
     }
 
     setProcessing(true);
+    setPaymentStep('redirect');
+    window.setTimeout(() => {
+      setPaymentStep('confirm');
+    }, 700);
     window.setTimeout(() => {
       setProcessing(false);
       setSuccess(true);
+      setPaymentStep('idle');
     }, 1400);
   };
 
@@ -57,7 +63,21 @@ export default function DonatePage() {
 
         <section className="donate-page__form-wrap" aria-label="Форма донату">
           <DonationForm onDonate={handleDonate} disabled={processing} />
-          {processing ? <p className="donate-page__processing">Обробка донату...</p> : null}
+          {processing ? (
+            <div className="donate-page__gateway">
+              <div className="donate-page__gateway-badge" aria-hidden="true">
+                mono
+              </div>
+              <div>
+                <p>Monobank Pay</p>
+                <span>
+                  {paymentStep === 'confirm'
+                    ? 'Підтверджуємо оплату у банку...'
+                    : 'Переадресовуємо на сторінку оплати...'}
+                </span>
+              </div>
+            </div>
+          ) : null}
         </section>
       </div>
     </main>

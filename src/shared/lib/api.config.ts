@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosHeaders, AxiosRequestConfig } from 'axios';
 
-const API_BASE_URL = 'http://localhost:8080';
+const API_BASE_URL = 'https://hwww-f047055f2d1b.herokuapp.com';
 const TOKEN_KEY = 'token';
 const REFRESH_ENDPOINT = '/v1/auth/refresh';
 
