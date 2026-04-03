@@ -16,8 +16,25 @@ export async function apiRequest<T>(
   })
 
   if (!res.ok) {
-    const error = await res.json()
-    throw new Error(error.message ?? 'Щось пішло не так')
+    const text = await res.text()
+    let errorData: unknown = null
+
+    if (text) {
+      try {
+        errorData = JSON.parse(text)
+      } catch {
+        errorData = text
+      }
+    }
+
+    const message =
+      typeof errorData === 'string'
+        ? errorData
+        : (errorData as { message?: string; detail?: string })?.message ??
+          (errorData as { detail?: string })?.detail ??
+          'Щось пішло не так'
+
+    throw new Error(message)
   }
 
   return res.json()

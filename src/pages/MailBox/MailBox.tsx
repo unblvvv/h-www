@@ -6,7 +6,7 @@ import { useSeo } from '../../shared/utils/useSeo';
 import './MailBox.scss';
 
 type MailType = 'adoption' | 'donation' | 'system' | 'message';
-type MailFolder = 'inbox' | 'unread' | 'starred' | 'archived';
+type MailFolder = 'inbox' | 'unread' | 'read' | 'starred' | 'archived';
 
 interface MailMessage {
   id: string;
@@ -140,19 +140,17 @@ export default function MailBox() {
 
     setFolder('inbox');
     setSelectedId(focusMessageId);
-    setMessages((prev) =>
-      prev.map((message) => (message.id === focusMessageId ? { ...message, unread: false } : message)),
-    );
     navigate('/mailbox', { replace: true, state: null });
   }, [focusMessageId, navigate]);
 
   const folderCounts = useMemo(() => {
     const inbox = messages.filter((message) => !message.archived).length;
     const unread = messages.filter((message) => !message.archived && message.unread).length;
+    const read = messages.filter((message) => !message.archived && !message.unread).length;
     const starred = messages.filter((message) => !message.archived && message.starred).length;
     const archived = messages.filter((message) => message.archived).length;
 
-    return { inbox, unread, starred, archived };
+    return { inbox, unread, read, starred, archived };
   }, [messages]);
 
   const filteredMessages = useMemo(() => {
@@ -165,6 +163,8 @@ export default function MailBox() {
             ? !message.archived
             : folder === 'unread'
               ? !message.archived && message.unread
+              : folder === 'read'
+                ? !message.archived && !message.unread
               : folder === 'starred'
                 ? !message.archived && message.starred
                 : message.archived;
@@ -200,7 +200,6 @@ export default function MailBox() {
 
   const openMessage = (id: string) => {
     setSelectedId(id);
-    setMessages((prev) => prev.map((message) => (message.id === id ? { ...message, unread: false } : message)));
   };
 
   const markAllAsRead = () => {
@@ -291,6 +290,17 @@ export default function MailBox() {
                 </span>
                 <strong>{folderCounts.unread}</strong>
               </button>
+              <button
+                type="button"
+                className={folder === 'read' ? 'mailbox-folder is-active' : 'mailbox-folder'}
+                onClick={() => setFolder('read')}
+              >
+                <span>
+                  <Inbox size={16} />
+                  Прочитані
+                </span>
+                <strong>{folderCounts.read}</strong>
+              </button>
             </nav>
 
             <button type="button" className="mailbox-sidebar__mark-all" onClick={markAllAsRead}>
@@ -360,14 +370,6 @@ export default function MailBox() {
                       <button type="button" onClick={toggleReadForSelected}>
                         {selectedMessage.unread ? <MailOpen size={15} /> : <Inbox size={15} />}
                         {selectedMessage.unread ? 'Позначити як прочитане' : 'Позначити як непрочитане'}
-                      </button>
-                      <button type="button" onClick={toggleStarForSelected}>
-                        {selectedMessage.starred ? <StarOff size={15} /> : <Star size={15} />}
-                        {selectedMessage.starred ? 'Прибрати з обраного' : 'Додати в обране'}
-                      </button>
-                      <button type="button" onClick={toggleArchiveForSelected}>
-                        <Archive size={15} />
-                        {selectedMessage.archived ? 'Повернути у вхідні' : 'Архівувати'}
                       </button>
                     </div>
 

@@ -334,14 +334,25 @@ export default function AdminPage() {
     }
   };
 
-  const handleDelete = (id: string) => {
-    const confirmed = window.confirm('Видалити цей профіль тварини?');
+  const handleDelete = async (id: string) => {
+    const confirmed = window.confirm('Ви впевнені, що хочете видалити цю тварину?');
     if (!confirmed) {
       return;
     }
 
-    setAnimals((prev) => prev.filter((animal) => animal.id !== id));
-    setPreviewAnimal((prev) => (prev?.id === id ? null : prev));
+    try {
+      await instance.delete(`/admin/animal/delete/${id}`, {
+        headers: {
+          Accept: 'application/json, application/problem+json',
+        },
+      });
+
+      setAnimals((prev) => prev.filter((animal) => animal.id !== id));
+      setPreviewAnimal((prev) => (prev?.id === id ? null : prev));
+    } catch (error) {
+      console.error('Failed to delete animal', error);
+      window.alert('Не вдалося видалити тварину. Спробуйте ще раз.');
+    }
   };
 
   const handleStatusChange = (id: string, status: Animal['status']) => {

@@ -173,6 +173,12 @@ export default function AdoptionFormPage() {
       return;
     }
 
+    const token = localStorage.getItem('token');
+    if (!isAuthenticated || !token) {
+      setSubmitError('Щоб надіслати заявку, потрібно увійти в акаунт ще раз.');
+      return;
+    }
+
     if (!animal) {
       setSubmitError('Не вдалося визначити улюбленця. Спробуйте ще раз.');
       return;
