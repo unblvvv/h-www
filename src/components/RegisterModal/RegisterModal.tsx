@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router';
 import { Button } from '../Button/Button';
 import { Input } from '../Input/Input';
 import { Modal } from '../Modal/Modal';
@@ -75,11 +76,18 @@ export function RegisterModal({ isOpen, onClose, onRegister, defaultValues }: Re
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Create account">
-      <form className="register-modal" onSubmit={handleSubmit}>
-        <label className="register-modal__field">
-          <span>Name</span>
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      title="Create account"
+      panelClassName="auth-modal__panel"
+      bodyClassName="auth-modal__body"
+    >
+      <form className="auth-form register-modal" onSubmit={handleSubmit}>
+        <label className="auth-form__field register-modal__field">
+          <span>Full name</span>
           <Input
+            className="auth-input"
             type="text"
             value={formData.name}
             placeholder="Your name"
@@ -88,9 +96,10 @@ export function RegisterModal({ isOpen, onClose, onRegister, defaultValues }: Re
           />
         </label>
 
-        <label className="register-modal__field">
+        <label className="auth-form__field register-modal__field">
           <span>Email</span>
           <Input
+            className="auth-input"
             type="email"
             value={formData.email}
             placeholder="you@example.com"
@@ -99,9 +108,10 @@ export function RegisterModal({ isOpen, onClose, onRegister, defaultValues }: Re
           />
         </label>
 
-        <label className="register-modal__field">
+        <label className="auth-form__field register-modal__field">
           <span>Password</span>
           <Input
+            className="auth-input"
             type="password"
             value={formData.password}
             placeholder="At least 6 characters"
@@ -110,9 +120,10 @@ export function RegisterModal({ isOpen, onClose, onRegister, defaultValues }: Re
           />
         </label>
 
-        <label className="register-modal__field">
+        <label className="auth-form__field register-modal__field">
           <span>Confirm password</span>
           <Input
+            className="auth-input"
             type="password"
             value={formData.confirmPassword}
             placeholder="Repeat password"
@@ -121,12 +132,19 @@ export function RegisterModal({ isOpen, onClose, onRegister, defaultValues }: Re
           />
         </label>
 
-        <div className="register-modal__actions">
+        <div className="auth-form__actions register-modal__actions">
           <Button variant="secondary" type="button" onClick={onClose}>
             Cancel
           </Button>
-          <Button type="submit">Create account</Button>
+          <Button className="auth-form__submit" type="submit">Create account</Button>
         </div>
+
+        <p className="auth-form__switch">
+          Already have an account?{' '}
+          <Link to="/login" onClick={onClose}>
+            Log in
+          </Link>
+        </p>
       </form>
     </Modal>
   );

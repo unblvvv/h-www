@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router';
 import { Button } from '../Button/Button';
 import { Input } from '../Input/Input';
 import { Modal } from '../Modal/Modal';
@@ -58,13 +59,20 @@ export function LoginModal({ isOpen, onClose, onLogin }: LoginModalProps) {
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Log in to your account">
-      <form className="login-modal" onSubmit={handleSubmit}>
-        {loginError ? <p className="login-modal__alert">{loginError}</p> : null}
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      title="Log in to your account"
+      panelClassName="auth-modal__panel"
+      bodyClassName="auth-modal__body"
+    >
+      <form className="auth-form login-modal" onSubmit={handleSubmit}>
+        {loginError ? <p className="auth-form__alert">{loginError}</p> : null}
 
-        <label className="login-modal__field">
+        <label className="auth-form__field login-modal__field">
           <span>Email</span>
           <Input
+            className="auth-input"
             type="email"
             placeholder="you@example.com"
             value={formData.email}
@@ -73,9 +81,10 @@ export function LoginModal({ isOpen, onClose, onLogin }: LoginModalProps) {
           />
         </label>
 
-        <label className="login-modal__field">
+        <label className="auth-form__field login-modal__field">
           <span>Password</span>
           <Input
+            className="auth-input"
             type="password"
             placeholder="Enter password"
             value={formData.password}
@@ -84,14 +93,21 @@ export function LoginModal({ isOpen, onClose, onLogin }: LoginModalProps) {
           />
         </label>
 
-        <div className="login-modal__actions">
+        <div className="auth-form__actions login-modal__actions">
           <Button variant="secondary" onClick={onClose} type="button">
             Cancel
           </Button>
-          <Button type="submit" disabled={isSubmitting}>
+          <Button className="auth-form__submit" type="submit" disabled={isSubmitting}>
             {isSubmitting ? 'Logging in...' : 'Log in'}
           </Button>
         </div>
+
+        <p className="auth-form__switch">
+          Don’t have an account?{' '}
+          <Link to="/register" onClick={onClose}>
+            Sign up
+          </Link>
+        </p>
       </form>
     </Modal>
   );

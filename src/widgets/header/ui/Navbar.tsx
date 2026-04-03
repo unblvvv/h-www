@@ -2,16 +2,13 @@
 
 import { Link, useLocation } from 'react-router';
 import { User, LogIn } from 'lucide-react';
-import { useState } from 'react';
 import { useAuth } from '@/features/auth/AuthContext';
-import { LoginModal } from '@/features/auth/ui/Login/LoginModal';
 import './Navbar.scss';
 
 export function Navbar() {
   const location = useLocation();
   const isHome = location.pathname === '/';
-  const { isAuthenticated, user, login } = useAuth();
-  const [showLoginModal, setShowLoginModal] = useState(false);
+  const { isAuthenticated, user } = useAuth();
 
   const isActive = (path: string) => {
     if (path === '/find-pet' && location.pathname.startsWith('/animal/')) {
@@ -51,20 +48,19 @@ export function Navbar() {
                 <span>{user?.name || 'Profile'}</span>
               </Link>
             ) : (
-              <button className="login-chip" onClick={() => setShowLoginModal(true)}>
-                <LogIn size={16} />
-                <span>Log in</span>
-              </button>
+              <>
+                <Link to="/register" className={isActive('/register') ? 'signup-chip signup-chip--active' : 'signup-chip'}>
+                  Sign up
+                </Link>
+                <Link to="/login" className={isActive('/login') ? 'login-chip login-chip--active' : 'login-chip'}>
+                  <LogIn size={16} />
+                  <span>Log in</span>
+                </Link>
+              </>
             )}
           </div>
         </nav>
       </header>
-
-      <LoginModal
-        isOpen={showLoginModal}
-        onClose={() => setShowLoginModal(false)}
-        onLogin={login}
-      />
     </>
   );
 }

@@ -90,9 +90,11 @@
 .site-nav__auth {
   display: flex;
   align-items: center;
+  gap: 0.55rem;
 }
 
 .login-chip,
+.signup-chip,
 .profile-chip {
   border: 1px solid $color-border;
   background: $color-surface;
@@ -106,16 +108,45 @@
   cursor: pointer;
 }
 
+.signup-chip {
+  background: #6367ff;
+  border-color: #6367ff;
+  color: #fff;
+
+  &:hover {
+    background: #4f52e8;
+    border-color: #4f52e8;
+  }
+}
+
+.signup-chip--active {
+  background: #4f52e8;
+  border-color: #4f52e8;
+}
+
 .site-header--hero .login-chip,
+.site-header--hero .signup-chip,
 .site-header--hero .profile-chip {
   border: 1px solid rgba(255, 255, 255, 0.3);
   background: rgba(255, 255, 255, 0.12);
   color: #fff;
 }
 
+.site-header--hero .signup-chip,
+.site-header--hero .signup-chip--active {
+  background: #fff;
+  border-color: #fff;
+  color: #4247d7;
+}
+
 .site-header--hero .profile-chip--active {
   border-color: rgba(255, 255, 255, 0.45);
   background: rgba(255, 255, 255, 0.2);
+}
+
+.login-chip--active {
+  border-color: #6367ff;
+  color: #4f52e8;
 }
 
 .profile-chip--active {

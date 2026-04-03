@@ -11,6 +11,7 @@ import AdminPage from './pages/AdminPage/AdminPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import { Navbar } from './widgets/header/ui/Navbar';
 import { Footer } from './widgets/footer/ui/Footer';
+import { LoginPage, RegisterPage } from './pages/AuthPages';
 import { AuthProvider } from './features/auth/AuthContext';
 
 function Layout() {
@@ -39,6 +40,8 @@ const routes = [
       { path: 'donate', Component: DonatePage },
       { path: 'admin', Component: AdminPage },
       { path: 'profile', Component: ProfilePage },
+      { path: 'login', Component: LoginPage },
+      { path: 'register', Component: RegisterPage },
     ],
   },
 ];

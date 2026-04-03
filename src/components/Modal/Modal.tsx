@@ -9,9 +9,11 @@ interface ModalProps {
   onClose: () => void;
   children: ReactNode;
   title?: string;
+  panelClassName?: string;
+  bodyClassName?: string;
 }
 
-export function Modal({ isOpen, onClose, children, title }: ModalProps) {
+export function Modal({ isOpen, onClose, children, title, panelClassName, bodyClassName }: ModalProps) {
   useEffect(() => {
     if (!isOpen) {
       return;
@@ -39,14 +41,14 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
   return (
     <div className="app-modal" role="dialog" aria-modal="true" aria-label={title || 'Dialog window'}>
       <button className="app-modal__backdrop" onClick={onClose} aria-label="Close modal" />
-      <div className="app-modal__panel">
+      <div className={`app-modal__panel${panelClassName ? ` ${panelClassName}` : ''}`}>
         <div className="app-modal__head">
           {title ? <h2 className="app-modal__title">{title}</h2> : <span />}
           <button className="app-modal__close" onClick={onClose} aria-label="Close modal">
             <X size={18} />
           </button>
         </div>
-        <div className="app-modal__body">{children}</div>
+        <div className={`app-modal__body${bodyClassName ? ` ${bodyClassName}` : ''}`}>{children}</div>
       </div>
     </div>
   );
