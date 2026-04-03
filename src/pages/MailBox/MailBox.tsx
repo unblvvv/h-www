@@ -270,28 +270,6 @@ export default function MailBox() {
                 </span>
                 <strong>{folderCounts.unread}</strong>
               </button>
-              <button
-                type="button"
-                className={folder === 'starred' ? 'mailbox-folder is-active' : 'mailbox-folder'}
-                onClick={() => setFolder('starred')}
-              >
-                <span>
-                  <Star size={16} />
-                  Обрані
-                </span>
-                <strong>{folderCounts.starred}</strong>
-              </button>
-              <button
-                type="button"
-                className={folder === 'archived' ? 'mailbox-folder is-active' : 'mailbox-folder'}
-                onClick={() => setFolder('archived')}
-              >
-                <span>
-                  <Archive size={16} />
-                  Архів
-                </span>
-                <strong>{folderCounts.archived}</strong>
-              </button>
             </nav>
 
             <button type="button" className="mailbox-sidebar__mark-all" onClick={markAllAsRead}>

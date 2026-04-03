@@ -336,6 +336,23 @@ select {
   background: linear-gradient(180deg, #0f1430 0%, #131a3a 100%);
 }
 
+.dark .auth-form__field {
+  color: #e9eeff;
+}
+
+.dark .auth-form .app-input {
+  background: #1f2753;
+}
+
+.dark .auth-form .app-input:focus-visible {
+  background: #243062;
+}
+
+.dark .auth-form .app-input--error {
+  border-color: rgba(239, 68, 68, 0.55);
+  background: #3a1f2a;
+}
+
 .dark .auth-page__card,
 .dark .about__panel,
 .dark .pets-carousel,

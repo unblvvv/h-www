@@ -64,6 +64,40 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.dark .admin-animal-form {
+  label {
+    color: #e9eeff;
+  }
+
+  .app-input {
+    background: #1f2753;
+    color: #edf2ff;
+
+    &::placeholder {
+      color: #aab6e6;
+    }
+
+    &:focus-visible {
+      background: #243062;
+      box-shadow: 0 0 0 3px rgba(111, 124, 255, 0.24);
+    }
+  }
+
+  .app-textarea {
+    background: #1f2753;
+    color: #edf2ff;
+
+    &::placeholder {
+      color: #aab6e6;
+    }
+
+    &:focus-visible {
+      background: #243062;
+      box-shadow: 0 0 0 3px rgba(111, 124, 255, 0.24);
+    }
+  }
+}
+
 @media (max-width: 620px) {
   .admin-animal-form__row {
     grid-template-columns: 1fr;

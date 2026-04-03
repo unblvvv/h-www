@@ -46,7 +46,7 @@
 }
 
 .app-select__content {
-  z-index: 100;
+  z-index: 200;
   min-width: var(--radix-select-trigger-width);
   max-height: min(320px, var(--radix-select-content-available-height));
   border-radius: 18px;
@@ -117,12 +117,17 @@
   border-color: #3a4780;
   background: #1b2350;
   box-shadow: 0 20px 44px rgba(4, 7, 21, 0.6);
+  color: #f7f8ff;
 }
 
 .dark .app-select__item {
-  color: #e8edff;
+  color: #f7f8ff;
 
   &[data-highlighted] {
     background: #243063;
   }
+}
+
+.dark .app-select[data-disabled] {
+  opacity: 0.75;
 }
