@@ -15,6 +15,12 @@
     }
   }
 
+  .admin-animal-form__file-meta {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #6e72a8;
+  }
+
   .admin-animal-form__select.app-select {
     min-height: 52px;
     padding-left: 1rem;
@@ -67,6 +73,10 @@
 .dark .admin-animal-form {
   label {
     color: #e9eeff;
+  }
+
+  .admin-animal-form__file-meta {
+    color: #aab6e6;
   }
 
   .app-input {

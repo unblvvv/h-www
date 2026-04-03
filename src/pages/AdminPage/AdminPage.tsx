@@ -7,8 +7,7 @@ import { Modal } from '../../components/Modal/Modal';
 import { ImageWithFallback } from '../../components/figma/ImageWithFallback';
 import { AppSelect } from '../../components/AppSelect/AppSelect';
 import { instance } from '../../shared/lib/api.config';
-import { mockAnimals } from '../../shared/data/mockAnimals';
-import { Animal } from '../../shared/types/animal';
+import { Animal, AnimalAge, AnimalStatus, AnimalType } from '../../shared/types/animal';
 import './AdminPage.scss';
 
 const statusLabel: Record<Animal['status'], string> = {
@@ -63,10 +62,70 @@ type CreateAnimalResponse = {
 
 type ViewMode = 'grid' | 'list';
 
+interface ApiAnimal {
+  Age?: string;
+  CreatedAt?: string;
+  Description?: string;
+  ID?: string;
+  Name?: string;
+  OrganizationID?: string;
+  PhotoURL?: string;
+  Sex?: string;
+  Status?: string;
+  Type?: string;
+  UpdatedAt?: string;
+}
+
+interface ApiAnimalListResponse {
+  items?: ApiAnimal[];
+}
+
 const normalizeUrl = (url: string) => url.replace(/([^:]\/)(\/)+/g, '$1');
 
+const normalizeType = (value?: string): AnimalType => {
+  const normalized = value?.trim().toLowerCase();
+  return normalized === 'cat' ? 'cat' : 'dog';
+};
+
+const normalizeAge = (value?: string): AnimalAge => {
+  const normalized = value?.trim().toLowerCase();
+  return normalized === 'young' ? 'young' : 'adult';
+};
+
+const normalizeStatus = (value?: string): AnimalStatus => {
+  const normalized = value?.trim().toLowerCase();
+  if (normalized === 'in-process') return 'in-process';
+  if (normalized === 'adopted') return 'adopted';
+  return 'available';
+};
+
+const normalizeSex = (value?: string): 'male' | 'female' => {
+  const normalized = value?.trim().toLowerCase();
+  return normalized === 'female' ? 'female' : 'male';
+};
+
+const uploadFiles = async (files: File[]): Promise<string[]> => {
+  const uploads = files.map(async (file) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('name', file.name);
+
+    const uploadResponse = await instance.post<UploadResponse>('/v1/upload', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Accept: 'application/json, application/problem+json',
+      },
+    });
+
+    return normalizeUrl(uploadResponse.data.url);
+  });
+
+  return Promise.all(uploads);
+};
+
 export default function AdminPage() {
-  const [animals, setAnimals] = useState<Animal[]>(mockAnimals);
+  const [animals, setAnimals] = useState<Animal[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [editingAnimal, setEditingAnimal] = useState<Animal | null>(null);
   const [previewAnimal, setPreviewAnimal] = useState<Animal | null>(null);
   const [formValues, setFormValues] = useState<Partial<Animal>>({
@@ -92,6 +151,45 @@ export default function AdminPage() {
     const timeout = window.setTimeout(() => setIsFiltering(false), 220);
     return () => window.clearTimeout(timeout);
   }, [searchQuery, typeFilter, statusFilter, ageFilter, viewMode]);
+
+  useEffect(() => {
+    let isMounted = true;
+    setIsLoading(true);
+
+    instance
+      .get<ApiAnimalListResponse>('/animal', {
+        headers: {
+          Accept: 'application/json, application/problem+json',
+        },
+      })
+      .then((response) => {
+        if (!isMounted) return;
+        const items = response.data.items ?? [];
+        const mapped = items.map((item, index) => ({
+          id: item.ID ?? `${index}`,
+          name: item.Name ?? 'Без імені',
+          type: normalizeType(item.Type),
+          age: normalizeAge(item.Age),
+          gender: normalizeSex(item.Sex),
+          description: item.Description ?? '',
+          image: item.PhotoURL ?? '',
+          status: normalizeStatus(item.Status),
+        }));
+        setAnimals(mapped);
+      })
+      .catch(() => {
+        if (!isMounted) return;
+        setAnimals([]);
+      })
+      .finally(() => {
+        if (!isMounted) return;
+        setIsLoading(false);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const summary = useMemo(() => {
     return {
@@ -145,19 +243,12 @@ export default function AdminPage() {
     try {
       let photoUrl = typeof formValues.image === 'string' ? formValues.image : '';
 
-      if (formValues.image instanceof File) {
-        const formData = new FormData();
-        formData.append('file', formValues.image);
-        formData.append('name', formValues.name || formValues.image.name);
-
-        const uploadResponse = await instance.post<UploadResponse>('/v1/upload', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            Accept: 'application/json, application/problem+json',
-          },
-        });
-
-        photoUrl = normalizeUrl(uploadResponse.data.url);
+      if (Array.isArray(formValues.image) && formValues.image.length > 0) {
+        const uploaded = await uploadFiles(formValues.image);
+        photoUrl = uploaded.join(',');
+      } else if (formValues.image instanceof File) {
+        const uploaded = await uploadFiles([formValues.image]);
+        photoUrl = uploaded.join(',');
       }
 
       const createResponse = await instance.post<CreateAnimalResponse>('/admin/animal/create', {
@@ -169,6 +260,8 @@ export default function AdminPage() {
         status: formValues.status,
       });
 
+      const resolvedImage = photoUrl || (typeof formValues.image === 'string' ? formValues.image : '');
+
       if (editingAnimal) {
         setAnimals((prev) =>
           prev.map((animal) =>
@@ -176,7 +269,7 @@ export default function AdminPage() {
               ? ({
                   ...editingAnimal,
                   ...formValues,
-                  image: photoUrl || formValues.image,
+                  image: resolvedImage,
                 } as Animal)
               : animal,
           ),
@@ -187,7 +280,7 @@ export default function AdminPage() {
           {
             ...(formValues as Animal),
             id: createResponse.data.id || Date.now().toString(),
-            image: photoUrl || formValues.image || '',
+            image: resolvedImage,
           },
         ]);
       }
@@ -339,7 +432,7 @@ export default function AdminPage() {
           </section>
 
           <section className="admin-page__catalog" aria-label="Список тварин в адмінці">
-            {isFiltering ? (
+            {isLoading || isFiltering ? (
               <div className={viewMode === 'grid' ? 'admin-page__grid' : 'admin-page__list'}>
                 {Array.from({ length: viewMode === 'grid' ? 6 : 4 }).map((_, index) => (
                   <article

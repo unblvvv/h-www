@@ -9,6 +9,6 @@ export interface Animal {
   age: AnimalAge;
   gender: 'male' | 'female';
   description: string;
-  image: File | string;
+  image: File | File[] | string;
   status: AnimalStatus;
 }

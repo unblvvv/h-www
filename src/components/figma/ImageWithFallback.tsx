@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 const ERROR_IMG_SRC =
   'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODgiIGhlaWdodD0iODgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBvcGFjaXR5PSIuMyIgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIzLjciPjxyZWN0IHg9IjE2IiB5PSIxNiIgd2lkdGg9IjU2IiBoZWlnaHQ9IjU2IiByeD0iNiIvPjxwYXRoIGQ9Im0xNiA1OCAxNi0xOCAzMiAzMiIvPjxjaXJjbGUgY3g9IjUzIiBjeT0iMzUiIHI9IjciLz48L3N2Zz4KCg=='
 
-type ImageSource = string | File | null | undefined
+type ImageSource = string | string[] | File | File[] | null | undefined
 
 interface ImageWithFallbackProps extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'src'> {
   src?: ImageSource
@@ -19,18 +19,25 @@ export function ImageWithFallback(props: ImageWithFallbackProps) {
   const { src, alt, style, className, ...rest } = props
   const resolvedSrc = useMemo(() => {
     if (!src) return null
-    if (src instanceof File) {
-      return URL.createObjectURL(src)
+    const normalized = Array.isArray(src) ? src[0] : src
+    if (!normalized) return null
+    if (normalized instanceof File) {
+      return URL.createObjectURL(normalized)
     }
-    return src
+    return normalized
   }, [src])
 
   useEffect(() => {
-    if (!resolvedSrc || !(src instanceof File)) return
+    const normalized = Array.isArray(src) ? src[0] : src
+    if (!resolvedSrc || !(normalized instanceof File)) return
     return () => URL.revokeObjectURL(resolvedSrc)
   }, [resolvedSrc, src])
 
-  const originalLabel = src instanceof File ? src.name : src
+  const originalLabel = (() => {
+    const normalized = Array.isArray(src) ? src[0] : src
+    if (normalized instanceof File) return normalized.name
+    return normalized
+  })()
 
   return didError ? (
     <div

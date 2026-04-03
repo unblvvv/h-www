@@ -13,6 +13,15 @@ interface AdminAnimalFormProps {
 }
 
 export function AdminAnimalForm({ values, submitLabel, onChange, onSubmit }: AdminAnimalFormProps) {
+  const selectedFiles = Array.isArray(values.image)
+    ? values.image
+    : values.image instanceof File
+      ? [values.image]
+      : [];
+  const existingImageCount = typeof values.image === 'string' && values.image
+    ? values.image.split(',').filter(Boolean).length
+    : 0;
+  const hasImage = selectedFiles.length > 0 || existingImageCount > 0;
   const typeOptions = [
     { value: 'dog', label: 'Собака' },
     { value: 'cat', label: 'Кіт' },
@@ -94,9 +103,17 @@ export function AdminAnimalForm({ values, submitLabel, onChange, onSubmit }: Adm
         <Input
           type="file"
           accept="image/*"
-          onChange={(event) => onChange({ image: event.target.files?.[0] })}
-          required
+          multiple
+          onChange={(event) => onChange({ image: Array.from(event.target.files ?? []) })}
+          required={!hasImage}
         />
+        <span className="admin-animal-form__file-meta">
+          {selectedFiles.length > 0
+            ? `Обрано файлів: ${selectedFiles.length}`
+            : existingImageCount > 0
+              ? `Поточних фото: ${existingImageCount}`
+              : 'Додайте щонайменше одне фото'}
+        </span>
       </label>
 
       <label>
