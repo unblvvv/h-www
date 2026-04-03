@@ -17,8 +17,6 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const USER_KEY = 'shelter_user';
-const ADMIN_DEV_TOKEN =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiZjUxYjY1Y2UtMGViMy00MWVmLWEwMzctMGNkZDE4YjY5MDdiIiwicm9sZSI6ImFkbWluIiwiZXhwIjoxNzc1MzE1Nzk5LCJpYXQiOjE3NzUyMjkzOTl9.KAJdxnMVLr07vXllT2cdUrYrtYEa50iBhMPpHUtcMKg';
 
 const decodeJwtPayload = (token: string): Record<string, unknown> | null => {
   const parts = token.split('.');
@@ -65,11 +63,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const storedUser = localStorage.getItem(USER_KEY);
       const token = localStorage.getItem('token');
 
-      if (!token && import.meta.env.DEV) {
-        localStorage.setItem('token', ADMIN_DEV_TOKEN);
-      }
-
-      if (token || import.meta.env.DEV) {
+      if (token) {
         setIsAuthenticated(true);
       }
 
