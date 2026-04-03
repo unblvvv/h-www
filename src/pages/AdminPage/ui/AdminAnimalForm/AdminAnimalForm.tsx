@@ -2,6 +2,7 @@ import { Animal, AnimalAge, AnimalStatus, AnimalType } from '../../../../shared/
 import { Input } from '../../../../components/Input/Input';
 import { Textarea } from '../../../../components/Textarea/Textarea';
 import { Button } from '../../../../components/Button/Button';
+import { AppSelect } from '../../../../components/AppSelect/AppSelect';
 import './AdminAnimalForm.scss';
 
 interface AdminAnimalFormProps {
@@ -12,6 +13,27 @@ interface AdminAnimalFormProps {
 }
 
 export function AdminAnimalForm({ values, submitLabel, onChange, onSubmit }: AdminAnimalFormProps) {
+  const typeOptions = [
+    { value: 'dog', label: 'Dog' },
+    { value: 'cat', label: 'Cat' },
+  ];
+
+  const ageOptions = [
+    { value: 'young', label: 'Young' },
+    { value: 'adult', label: 'Adult' },
+  ];
+
+  const genderOptions = [
+    { value: 'male', label: 'Male' },
+    { value: 'female', label: 'Female' },
+  ];
+
+  const statusOptions = [
+    { value: 'available', label: 'Available' },
+    { value: 'in-process', label: 'In process' },
+    { value: 'adopted', label: 'Adopted' },
+  ];
+
   return (
     <form className="admin-animal-form" onSubmit={onSubmit}>
       <label>
@@ -22,49 +44,48 @@ export function AdminAnimalForm({ values, submitLabel, onChange, onSubmit }: Adm
       <div className="admin-animal-form__row">
         <label>
           <span>Type</span>
-          <select
+          <AppSelect
+            className="admin-animal-form__select"
             value={values.type || 'dog'}
-            onChange={(event) => onChange({ type: event.target.value as AnimalType })}
-          >
-            <option value="dog">Dog</option>
-            <option value="cat">Cat</option>
-          </select>
+            options={typeOptions}
+            ariaLabel="Animal type"
+            onValueChange={(value) => onChange({ type: value as AnimalType })}
+          />
         </label>
 
         <label>
           <span>Age</span>
-          <select
+          <AppSelect
+            className="admin-animal-form__select"
             value={values.age || 'young'}
-            onChange={(event) => onChange({ age: event.target.value as AnimalAge })}
-          >
-            <option value="young">Young</option>
-            <option value="adult">Adult</option>
-          </select>
+            options={ageOptions}
+            ariaLabel="Animal age"
+            onValueChange={(value) => onChange({ age: value as AnimalAge })}
+          />
         </label>
       </div>
 
       <div className="admin-animal-form__row">
         <label>
           <span>Gender</span>
-          <select
+          <AppSelect
+            className="admin-animal-form__select"
             value={values.gender || 'male'}
-            onChange={(event) => onChange({ gender: event.target.value as 'male' | 'female' })}
-          >
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
+            options={genderOptions}
+            ariaLabel="Animal gender"
+            onValueChange={(value) => onChange({ gender: value as 'male' | 'female' })}
+          />
         </label>
 
         <label>
           <span>Status</span>
-          <select
+          <AppSelect
+            className="admin-animal-form__select"
             value={values.status || 'available'}
-            onChange={(event) => onChange({ status: event.target.value as AnimalStatus })}
-          >
-            <option value="available">Available</option>
-            <option value="in-process">In process</option>
-            <option value="adopted">Adopted</option>
-          </select>
+            options={statusOptions}
+            ariaLabel="Animal status"
+            onValueChange={(value) => onChange({ status: value as AnimalStatus })}
+          />
         </label>
       </div>
 

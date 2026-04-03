@@ -1,4 +1,3 @@
-import { Link } from 'react-router';
 import { ImageWithFallback } from '../../../../components/figma/ImageWithFallback';
 import { mockAnimals } from '../../../../shared/data/mockAnimals';
 import './AboutSection.scss';
@@ -21,9 +20,10 @@ export function AboutSection() {
               Dnipro Animals provides medical care, rehabilitation, and a transparent adoption path to help every pet
               find a safe, loving home.
             </p>
-            <Link to="/find-pet" className="about__button">
-              Learn more
-            </Link>
+            <p className="about__text about__text--secondary">
+              We focus on responsible adoption, post-adoption support, and clear communication so each match is safe
+              and sustainable for both families and pets.
+            </p>
           </div>
 
           <div className="about__visual" aria-hidden="true">

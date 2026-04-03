@@ -309,3 +309,126 @@ select {
 .auth-modal__body {
   padding: 1rem 1rem 1.25rem;
 }
+
+.dark body {
+  background: #0d1229;
+  color: #e5ebff;
+}
+
+.dark .page {
+  background: linear-gradient(180deg, #0f1430 0%, #131a3a 100%) !important;
+}
+
+.dark .section-title,
+.dark .section-subtitle,
+.dark h1,
+.dark h2,
+.dark h3 {
+  color: #e9eeff;
+}
+
+.dark .section-subtitle,
+.dark p {
+  color: #b7c1e8;
+}
+
+.dark .auth-page {
+  background: linear-gradient(180deg, #0f1430 0%, #131a3a 100%);
+}
+
+.dark .auth-page__card,
+.dark .about__panel,
+.dark .pets-carousel,
+.dark .pet-card,
+.dark .filter-bar,
+.dark .find-pet-catalog,
+.dark .animal-details-page__card,
+.dark .donate-page__form-wrap,
+.dark .donate-page__success-card,
+.dark .admin-page__filters,
+.dark .admin-page__catalog,
+.dark .admin-page__card,
+.dark .admin-page__list-item,
+.dark .admin-page__empty,
+.dark .auth-modal__panel,
+.dark .app-modal__panel {
+  background: #161d42 !important;
+  border-color: #2b3568 !important;
+  box-shadow: 0 16px 46px rgba(6, 9, 24, 0.52) !important;
+}
+
+.dark .about__text,
+.dark .pet-card__meta p,
+.dark .find-pet-catalog__head p,
+.dark .admin-page__meta,
+.dark .admin-page__description,
+.dark .animal-details-page__status-box p,
+.dark .animal-details-page__about p,
+.dark .animal-details-page__title-wrap p {
+  color: #b5c0ea !important;
+}
+
+.dark .filter-bar__search,
+.dark .admin-page__search,
+.dark .animal-details-page__status-box,
+.dark .animal-details-page__facts div {
+  background: #1f2753 !important;
+  border-color: #36427a !important;
+}
+
+.dark .find-pet-catalog__chip--available {
+  background: #1f2c5e;
+  color: #a7b7ff;
+}
+
+.dark .find-pet-catalog__chip--in-process {
+  background: #3a2f1d;
+  color: #f4cd8d;
+}
+
+.dark .find-pet-catalog__chip--adopted {
+  background: #293154;
+  color: #c0caef;
+}
+
+.dark .site-header--hero .site-nav {
+  background: rgba(14, 20, 50, 0.72);
+  border-color: rgba(116, 130, 194, 0.35);
+}
+
+.dark .site-header--hero-light .site-brand,
+.dark .site-header--hero-light .site-nav__links a,
+.dark .site-header--hero-light .login-chip,
+.dark .site-header--hero-light .profile-chip,
+.dark .site-header--hero-light .theme-chip {
+  color: #eef2ff;
+}
+
+.dark .site-header--hero-light .site-nav__links a:hover,
+.dark .site-header--hero-light .site-nav__links a.is-active {
+  color: #fff;
+}
+
+.dark .login-chip,
+.dark .profile-chip,
+.dark .theme-chip {
+  background: rgba(24, 32, 71, 0.9);
+  border-color: #35417a;
+  color: #e8eeff;
+}
+
+.dark .profile-chip--active,
+.dark .theme-chip--active,
+.dark .login-chip--active {
+  border-color: #6f7cff;
+  color: #d9e0ff;
+}
+
+.dark .site-footer {
+  background: linear-gradient(140deg, #1e2466 0%, #2a3080 58%, #32399b 100%);
+}
+
+.dark .app-modal__close {
+  background: #253060;
+  color: #e8eeff;
+}

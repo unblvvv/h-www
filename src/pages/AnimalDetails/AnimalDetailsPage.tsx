@@ -1,4 +1,5 @@
 import { Link, useNavigate, useParams } from 'react-router';
+import { useEffect } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { useSeo } from '../../shared/utils/useSeo';
 import { mockAnimals } from '../../shared/data/mockAnimals';
@@ -27,6 +28,10 @@ export default function AnimalDetailsPage() {
       ? `${animal.name} is a ${animal.age} ${animal.type} currently ${animal.status}. Learn more and apply to adopt.`
       : 'View pet details and start your adoption request.',
   });
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [id]);
 
   if (!animal) {
     return (

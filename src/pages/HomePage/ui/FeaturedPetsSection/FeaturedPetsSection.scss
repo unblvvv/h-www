@@ -106,13 +106,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  border: 0;
   border-radius: 999px;
   padding: 0.5rem 0.92rem;
   background: #6367ff;
   color: #fff;
-  text-decoration: none;
   font-size: 0.87rem;
   font-weight: 600;
+  cursor: pointer;
 }
 
 @keyframes petsTicker {

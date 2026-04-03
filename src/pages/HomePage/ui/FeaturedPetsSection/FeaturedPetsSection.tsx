@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { ImageWithFallback } from '../../../../components/figma/ImageWithFallback';
 import { Animal } from '../../../../shared/types/animal';
 import './FeaturedPetsSection.scss';
@@ -8,7 +8,14 @@ interface FeaturedPetsSectionProps {
 }
 
 export function FeaturedPetsSection({ pets }: FeaturedPetsSectionProps) {
+  const navigate = useNavigate();
   const carouselPets = pets.slice(0, 8);
+  const handleViewInfo = (petId: string) => {
+    navigate(`/animal/${petId}`);
+    window.requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    });
+  };
 
   return (
     <section className="featured-pets" aria-labelledby="featured-pets-title">
@@ -32,9 +39,9 @@ export function FeaturedPetsSection({ pets }: FeaturedPetsSectionProps) {
                     <h3>{pet.name}</h3>
                     <p>{pet.type}</p>
                   </div>
-                  <Link to={`/adopt/${pet.id}`} className="pet-card__button">
-                    Adopt
-                  </Link>
+                  <button type="button" className="pet-card__button" onClick={() => handleViewInfo(pet.id)}>
+                    View info
+                  </button>
                 </article>
               ))}
             </div>
@@ -47,9 +54,14 @@ export function FeaturedPetsSection({ pets }: FeaturedPetsSectionProps) {
                     <h3>{pet.name}</h3>
                     <p>{pet.type}</p>
                   </div>
-                  <Link to={`/adopt/${pet.id}`} className="pet-card__button" tabIndex={-1}>
-                    Adopt
-                  </Link>
+                  <button
+                    type="button"
+                    className="pet-card__button"
+                    tabIndex={-1}
+                    onClick={() => handleViewInfo(pet.id)}
+                  >
+                    View info
+                  </button>
                 </article>
               ))}
             </div>

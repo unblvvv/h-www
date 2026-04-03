@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { ArrowUp } from 'lucide-react';
 import { mockAnimals } from '../../shared/data/mockAnimals';
 import { AnimalAge, AnimalStatus, AnimalType } from '../../shared/types/animal';
 import { FilterBar } from '../../features/animal-filter/FilterBar/FilterBar';
@@ -19,6 +20,7 @@ export default function FindPetPage() {
   const [ageFilter, setAgeFilter] = useState<AnimalAge | 'all'>('all');
   const [statusFilter, setStatusFilter] = useState<AnimalStatus | 'all'>('all');
   const [loading, setLoading] = useState(true);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -28,6 +30,16 @@ export default function FindPetPage() {
 
     return () => window.clearTimeout(timer);
   }, [searchQuery, typeFilter, ageFilter, statusFilter]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 680);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const filteredPets = useMemo(() => {
     const normalizedQuery = searchQuery.toLowerCase().trim();
@@ -98,6 +110,15 @@ export default function FindPetPage() {
 
         <PetGrid pets={filteredPets} loading={loading} />
       </div>
+
+      <button
+        type="button"
+        className={`find-pet-page__scroll-top${showScrollTop ? ' is-visible' : ''}`}
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        aria-label="Return to top"
+      >
+        <ArrowUp size={20} />
+      </button>
     </main>
   );
 }

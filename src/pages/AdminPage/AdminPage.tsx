@@ -5,6 +5,7 @@ import { Badge } from '../../components/Badge/Badge';
 import { Button } from '../../components/Button/Button';
 import { Modal } from '../../components/Modal/Modal';
 import { ImageWithFallback } from '../../components/figma/ImageWithFallback';
+import { AppSelect } from '../../components/AppSelect/AppSelect';
 import { mockAnimals } from '../../shared/data/mockAnimals';
 import { Animal } from '../../shared/types/animal';
 import './AdminPage.scss';
@@ -24,6 +25,31 @@ const ageLabel: Record<Animal['age'], string> = {
   young: 'Young',
   adult: 'Adult',
 };
+
+const typeFilterOptions = [
+  { value: 'all', label: 'All types' },
+  { value: 'dog', label: 'Dog' },
+  { value: 'cat', label: 'Cat' },
+];
+
+const statusFilterOptions = [
+  { value: 'all', label: 'All statuses' },
+  { value: 'available', label: 'Available' },
+  { value: 'in-process', label: 'In process' },
+  { value: 'adopted', label: 'Adopted' },
+];
+
+const ageFilterOptions = [
+  { value: 'all', label: 'All ages' },
+  { value: 'young', label: 'Young' },
+  { value: 'adult', label: 'Adult' },
+];
+
+const statusOptions = [
+  { value: 'available', label: 'Available' },
+  { value: 'in-process', label: 'In process' },
+  { value: 'adopted', label: 'Adopted' },
+];
 
 type ViewMode = 'grid' | 'list';
 
@@ -204,39 +230,35 @@ export default function AdminPage() {
                 <span>
                   <SlidersHorizontal size={14} /> Type
                 </span>
-                <select
+                <AppSelect
+                  className="admin-page__filter-select"
                   value={typeFilter}
-                  onChange={(event) => setTypeFilter(event.target.value as 'all' | Animal['type'])}
-                >
-                  <option value="all">All types</option>
-                  <option value="dog">Dog</option>
-                  <option value="cat">Cat</option>
-                </select>
+                  options={typeFilterOptions}
+                  ariaLabel="Filter by type"
+                  onValueChange={(value) => setTypeFilter(value as 'all' | Animal['type'])}
+                />
               </label>
 
               <label className="admin-page__filter">
                 <span>Status</span>
-                <select
+                <AppSelect
+                  className="admin-page__filter-select"
                   value={statusFilter}
-                  onChange={(event) => setStatusFilter(event.target.value as 'all' | Animal['status'])}
-                >
-                  <option value="all">All statuses</option>
-                  <option value="available">Available</option>
-                  <option value="in-process">In process</option>
-                  <option value="adopted">Adopted</option>
-                </select>
+                  options={statusFilterOptions}
+                  ariaLabel="Filter by status"
+                  onValueChange={(value) => setStatusFilter(value as 'all' | Animal['status'])}
+                />
               </label>
 
               <label className="admin-page__filter">
                 <span>Age</span>
-                <select
+                <AppSelect
+                  className="admin-page__filter-select"
                   value={ageFilter}
-                  onChange={(event) => setAgeFilter(event.target.value as 'all' | Animal['age'])}
-                >
-                  <option value="all">All ages</option>
-                  <option value="young">Young</option>
-                  <option value="adult">Adult</option>
-                </select>
+                  options={ageFilterOptions}
+                  ariaLabel="Filter by age"
+                  onValueChange={(value) => setAgeFilter(value as 'all' | Animal['age'])}
+                />
               </label>
 
               <div className="admin-page__view-toggle" role="group" aria-label="View mode">
@@ -345,17 +367,19 @@ export default function AdminPage() {
                       <p className="admin-page__description">{animal.description}</p>
                       <label className="admin-page__status-control">
                         <span>Change status</span>
-                        <select
-                          value={animal.status}
+                        <div
+                          className="admin-page__status-select-wrap"
                           onClick={(event) => event.stopPropagation()}
-                          onChange={(event) =>
-                            handleStatusChange(animal.id, event.target.value as Animal['status'])
-                          }
+                          onPointerDown={(event) => event.stopPropagation()}
                         >
-                          <option value="available">Available</option>
-                          <option value="in-process">In process</option>
-                          <option value="adopted">Adopted</option>
-                        </select>
+                          <AppSelect
+                            className="admin-page__status-select"
+                            value={animal.status}
+                            options={statusOptions}
+                            ariaLabel={`Change status for ${animal.name}`}
+                            onValueChange={(value) => handleStatusChange(animal.id, value as Animal['status'])}
+                          />
+                        </div>
                       </label>
                     </div>
                   </article>
@@ -379,18 +403,13 @@ export default function AdminPage() {
                       </p>
                     </div>
                     <Badge variant={animal.status}>{statusLabel[animal.status]}</Badge>
-                    <select
+                    <AppSelect
                       className="admin-page__list-select"
                       value={animal.status}
-                      onChange={(event) =>
-                        handleStatusChange(animal.id, event.target.value as Animal['status'])
-                      }
-                      aria-label={`Change status for ${animal.name}`}
-                    >
-                      <option value="available">Available</option>
-                      <option value="in-process">In process</option>
-                      <option value="adopted">Adopted</option>
-                    </select>
+                      ariaLabel={`Change status for ${animal.name}`}
+                      options={statusOptions}
+                      onValueChange={(value) => handleStatusChange(animal.id, value as Animal['status'])}
+                    />
                     <div className="admin-page__row-actions">
                       <button aria-label={`Preview ${animal.name}`} onClick={() => setPreviewAnimal(animal)}>
                         <Eye size={16} />

@@ -1,5 +1,6 @@
 import { Search } from 'lucide-react';
 import { AnimalAge, AnimalStatus, AnimalType } from '../../../shared/types/animal';
+import { AppSelect } from '../../../components/AppSelect/AppSelect';
 import './FilterBar.scss';
 
 interface FilterBarProps {
@@ -23,6 +24,25 @@ export function FilterBar({
   onAgeChange,
   onStatusChange,
 }: FilterBarProps) {
+  const typeOptions = [
+    { value: 'all', label: 'Type: All' },
+    { value: 'dog', label: 'Type: Dog' },
+    { value: 'cat', label: 'Type: Cat' },
+  ];
+
+  const ageOptions = [
+    { value: 'all', label: 'Age: All' },
+    { value: 'young', label: 'Age: Young' },
+    { value: 'adult', label: 'Age: Adult' },
+  ];
+
+  const statusOptions = [
+    { value: 'all', label: 'Status: All' },
+    { value: 'available', label: 'Status: Available' },
+    { value: 'in-process', label: 'Status: In process' },
+    { value: 'adopted', label: 'Status: Adopted' },
+  ];
+
   return (
     <section className="filter-bar" aria-label="Pet search and filters">
       <div className="filter-bar__search">
@@ -37,36 +57,29 @@ export function FilterBar({
       </div>
 
       <div className="filter-bar__controls">
-        <select
-          aria-label="Filter by pet type"
+        <AppSelect
+          className="filter-bar__select"
+          ariaLabel="Filter by pet type"
           value={typeFilter}
-          onChange={(event) => onTypeChange(event.target.value as AnimalType | 'all')}
-        >
-          <option value="all">Type: All</option>
-          <option value="dog">Type: Dog</option>
-          <option value="cat">Type: Cat</option>
-        </select>
+          options={typeOptions}
+          onValueChange={(value) => onTypeChange(value as AnimalType | 'all')}
+        />
 
-        <select
-          aria-label="Filter by pet age"
+        <AppSelect
+          className="filter-bar__select"
+          ariaLabel="Filter by pet age"
           value={ageFilter}
-          onChange={(event) => onAgeChange(event.target.value as AnimalAge | 'all')}
-        >
-          <option value="all">Age: All</option>
-          <option value="young">Age: Young</option>
-          <option value="adult">Age: Adult</option>
-        </select>
+          options={ageOptions}
+          onValueChange={(value) => onAgeChange(value as AnimalAge | 'all')}
+        />
 
-        <select
-          aria-label="Filter by adoption status"
+        <AppSelect
+          className="filter-bar__select"
+          ariaLabel="Filter by adoption status"
           value={statusFilter}
-          onChange={(event) => onStatusChange(event.target.value as AnimalStatus | 'all')}
-        >
-          <option value="all">Status: All</option>
-          <option value="available">Status: Available</option>
-          <option value="in-process">Status: In process</option>
-          <option value="adopted">Status: Adopted</option>
-        </select>
+          options={statusOptions}
+          onValueChange={(value) => onStatusChange(value as AnimalStatus | 'all')}
+        />
       </div>
     </section>
   );

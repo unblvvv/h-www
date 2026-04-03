@@ -35,3 +35,19 @@
   font-size: 0.86rem;
 }
 
+.dark .app-input {
+  background: #1f2753;
+  border-color: #334072;
+  color: #edf2ff;
+
+  &::placeholder {
+    color: #aab6e6;
+  }
+
+  &:focus-visible {
+    border-color: #6878d8;
+    box-shadow: 0 0 0 3px rgba(111, 124, 255, 0.24);
+    background: #243062;
+  }
+}
+

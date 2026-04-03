@@ -112,6 +112,7 @@
   gap: 0.55rem;
 }
 
+.theme-chip,
 .login-chip,
 .signup-chip,
 .profile-chip {
@@ -125,6 +126,13 @@
   gap: 0.4rem;
   text-decoration: none;
   cursor: pointer;
+}
+
+.theme-chip {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  justify-content: center;
 }
 
 .signup-chip {
@@ -145,14 +153,16 @@
 
 .site-header--hero .login-chip,
 .site-header--hero .signup-chip,
-.site-header--hero .profile-chip {
+.site-header--hero .profile-chip,
+.site-header--hero .theme-chip {
   border: 1px solid rgba(255, 255, 255, 0.3);
   background: rgba(255, 255, 255, 0.12);
   color: #fff;
 }
 
 .site-header--hero-light .login-chip,
-.site-header--hero-light .profile-chip {
+.site-header--hero-light .profile-chip,
+.site-header--hero-light .theme-chip {
   color: #1e225a;
 }
 
@@ -173,8 +183,18 @@
   background: rgba(255, 255, 255, 0.2);
 }
 
+.site-header--hero .theme-chip--active {
+  border-color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.2);
+}
+
 .site-header--hero-light .profile-chip--active {
   color: #1e225a;
+}
+
+.theme-chip--active {
+  border-color: #6367ff;
+  color: #4f52e8;
 }
 
 .login-chip--active {

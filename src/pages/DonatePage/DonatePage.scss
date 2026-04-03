@@ -93,3 +93,17 @@
     grid-template-columns: 1fr;
   }
 }
+
+.dark .donate-page__processing {
+  color: #c2cbef;
+}
+
+.dark .donate-page__success-card {
+  h1 {
+    color: #edf2ff;
+  }
+
+  p {
+    color: #b7c1e8;
+  }
+}

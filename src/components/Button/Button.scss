@@ -50,3 +50,15 @@
   }
 }
 
+.dark .app-button--secondary {
+  background: #2a3568;
+  border-color: #44549a;
+  color: #edf2ff;
+
+  &:hover:not(:disabled) {
+    background: #33407a;
+    border-color: #5a6cc0;
+    color: #fff;
+  }
+}
+

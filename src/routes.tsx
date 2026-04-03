@@ -2,6 +2,7 @@
 
 import { createBrowserRouter, createMemoryRouter } from 'react-router';
 import { Outlet, useLocation } from 'react-router';
+import { useEffect } from 'react';
 import HomePage from './pages/HomePage/HomePage';
 import FindPetPage from './pages/FindPetPage/FindPetPage';
 import AnimalDetailsPage from './pages/AnimalDetails/AnimalDetailsPage';
@@ -19,6 +20,10 @@ import { PrivateRoute } from '@/shared/lib/PrivateRoute';
 function Layout() {
   const location = useLocation();
   const isAuthRoute = location.pathname === '/login' || location.pathname === '/register';
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [location.pathname]);
 
   return (
     <AuthProvider>

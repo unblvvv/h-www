@@ -1,7 +1,7 @@
 "use client";
 
 import { Link, useLocation } from 'react-router';
-import { User, LogIn } from 'lucide-react';
+import { User, LogIn, Moon, Sun } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/features/auth/AuthContext';
 import './Navbar.scss';
@@ -11,6 +11,7 @@ export function Navbar() {
   const isHeroStyledPage = true;
   const { isAuthenticated, user } = useAuth();
   const [isOnLightBackground, setIsOnLightBackground] = useState(false);
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   useEffect(() => {
     const updateHeaderContrast = () => {
@@ -44,11 +45,29 @@ export function Navbar() {
     };
   }, [location.pathname]);
 
+  useEffect(() => {
+    const savedTheme = window.localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const shouldUseDark = savedTheme ? savedTheme === 'dark' : prefersDark;
+
+    document.documentElement.classList.toggle('dark', shouldUseDark);
+    setIsDarkTheme(shouldUseDark);
+  }, []);
+
   const isActive = (routePath: string) => {
     if (routePath === '/find-pet' && location.pathname.startsWith('/animal/')) {
       return true;
     }
     return location.pathname === routePath;
+  };
+
+  const handleThemeToggle = () => {
+    setIsDarkTheme((prev) => {
+      const next = !prev;
+      document.documentElement.classList.toggle('dark', next);
+      window.localStorage.setItem('theme', next ? 'dark' : 'light');
+      return next;
+    });
   };
 
   return (
@@ -77,6 +96,16 @@ export function Navbar() {
         </div>
 
         <div className="site-nav__auth">
+          <button
+            type="button"
+            className={isDarkTheme ? 'theme-chip theme-chip--active' : 'theme-chip'}
+            onClick={handleThemeToggle}
+            aria-label={isDarkTheme ? 'Switch to light theme' : 'Switch to dark theme'}
+            title={isDarkTheme ? 'Light theme' : 'Dark theme'}
+          >
+            {isDarkTheme ? <Sun size={16} /> : <Moon size={16} />}
+          </button>
+
           {isAuthenticated ? (
             <Link to="/profile" className={isActive('/profile') ? 'profile-chip profile-chip--active' : 'profile-chip'}>
               <User size={16} />

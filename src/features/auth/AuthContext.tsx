@@ -124,7 +124,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setIsAuthInProgress(false);
     }
   };
-  
 
   const register = async (profile: UserProfile, password: string) => {
     setIsAuthInProgress(true);

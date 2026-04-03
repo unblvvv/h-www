@@ -4,8 +4,40 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c571c0de-0bf7-4d94-b18f-bed227e6aee1" name="Changes" comment="Added design to pages:&#10;- Admin&#10;- Find a pet&#10;- Donate&#10;- Sign Up, Login">
+    <list default="true" id="c571c0de-0bf7-4d94-b18f-bed227e6aee1" name="Changes" comment="Reworked admin page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AnimalCard/AnimalCard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AnimalCard/AnimalCard.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Badge/Badge.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Badge/Badge.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Button/Button.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Button/Button.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Input/Input.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Input/Input.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Textarea/Textarea.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Textarea/Textarea.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/animal-filter/FilterBar/FilterBar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/animal-filter/FilterBar/FilterBar.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/animal-filter/FilterBar/FilterBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/animal-filter/FilterBar/FilterBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/auth/AuthContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/AuthContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/donate/DonationForm/DonationForm.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/donate/DonationForm/DonationForm.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/AdminPage/AdminPage.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdminPage/AdminPage.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/AdminPage/AdminPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdminPage/AdminPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/AdminPage/ui/AdminAnimalForm/AdminAnimalForm.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdminPage/ui/AdminAnimalForm/AdminAnimalForm.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/AdminPage/ui/AdminAnimalForm/AdminAnimalForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdminPage/ui/AdminAnimalForm/AdminAnimalForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/AdopFormPage/AdoptionFormPage.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdopFormPage/AdoptionFormPage.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/AnimalDetails/AnimalDetailsPage.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AnimalDetails/AnimalDetailsPage.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/AnimalDetails/AnimalDetailsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AnimalDetails/AnimalDetailsPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/DonatePage/DonatePage.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/DonatePage/DonatePage.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/FindPetPage/FindPetPage.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/FindPetPage/FindPetPage.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/FindPetPage/FindPetPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/FindPetPage/FindPetPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/ui/AboutSection/AboutSection.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/ui/AboutSection/AboutSection.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/ui/AboutSection/AboutSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/ui/AboutSection/AboutSection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/ui/FeaturedPetsSection/FeaturedPetsSection.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/ui/FeaturedPetsSection/FeaturedPetsSection.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/ui/FeaturedPetsSection/FeaturedPetsSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/ui/FeaturedPetsSection/FeaturedPetsSection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/main.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/widgets/footer/ui/Footer.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/footer/ui/Footer.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/widgets/footer/ui/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/footer/ui/Footer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/widgets/header/ui/Navbar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/header/ui/Navbar.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/widgets/header/ui/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/header/ui/Navbar.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,7 +45,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="169" />
+    <option name="cachedIndexableFilesCount" value="127" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -57,6 +89,7 @@
     &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
@@ -91,6 +124,7 @@
       <updated>1775200624393</updated>
       <workItem from="1775200625443" duration="1158000" />
       <workItem from="1775202134934" duration="908000" />
+      <workItem from="1775232892329" duration="5201000" />
     </task>
     <task id="LOCAL-00001" summary="New commit">
       <option name="closed" value="true" />
@@ -140,7 +174,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775223384068</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Reworked admin page">
+      <option name="closed" value="true" />
+      <created>1775224666399</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1775224666399</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -162,6 +204,7 @@
     <MESSAGE value="File structure changes" />
     <MESSAGE value="Fixed toolbar visibility" />
     <MESSAGE value="Added design to pages:&#10;- Admin&#10;- Find a pet&#10;- Donate&#10;- Sign Up, Login" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added design to pages:&#10;- Admin&#10;- Find a pet&#10;- Donate&#10;- Sign Up, Login" />
+    <MESSAGE value="Reworked admin page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Reworked admin page" />
   </component>
 </project>

@@ -37,10 +37,17 @@
     }
   }
 
-  .is-active {
+  button.is-active {
     background: #6367ff;
     color: #fff;
     box-shadow: 0 12px 24px rgba(79, 82, 232, 0.3);
+
+    &:hover {
+      transform: none;
+      background: #6367ff;
+      color: #fff;
+      box-shadow: 0 12px 24px rgba(79, 82, 232, 0.3);
+    }
   }
 }
 
@@ -80,4 +87,45 @@
   .donation-form__amounts {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
+
+.dark .donation-form legend,
+.dark .donation-form__custom {
+  color: #e8eeff;
+}
+
+.dark .donation-form__amounts button {
+  background: #2a3568;
+  color: #f2f5ff;
+
+  &:hover {
+    background: #33407a;
+  }
+}
+
+.dark .donation-form__amounts button.is-active {
+  background: linear-gradient(135deg, #626dff 0%, #7a84ff 100%);
+  border: 1px solid #aeb8ff;
+  color: #fff;
+  box-shadow: 0 12px 24px rgba(70, 84, 170, 0.42), 0 0 0 2px rgba(174, 184, 255, 0.25) inset;
+
+  &:hover {
+    background: linear-gradient(135deg, #626dff 0%, #7a84ff 100%);
+    border-color: #aeb8ff;
+    color: #fff;
+    transform: none;
+  }
+}
+
+.dark .donation-form__custom .app-input {
+  background: #2a3568;
+  color: #f2f5ff;
+}
+
+.dark .donation-form__custom .app-input::placeholder {
+  color: #cad4ff;
+}
+
+.dark .donation-form .app-button {
+  color: #fff;
 }
