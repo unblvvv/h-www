@@ -56,15 +56,16 @@
     "vaul": "1.1.2"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.1.12",
-    "@vitejs/plugin-react": "^4.7.0",
     "@tailwindcss/postcss": "^4",
+    "@tailwindcss/vite": "^4.1.12",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^4.7.0",
     "eslint": "^9",
     "eslint-config-next": "16.2.2",
     "sass": "^1.93.2",
+    "sass-embedded": "^1.99.0",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vite": "^6.3.5"

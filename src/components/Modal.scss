@@ -1,0 +1,60 @@
+@use '../styles/variables' as *;
+
+.app-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.app-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(6, 78, 59, 0.45);
+}
+
+.app-modal__panel {
+  position: relative;
+  width: min(95vw, 520px);
+  max-height: min(85vh, 820px);
+  overflow: auto;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-soft;
+}
+
+.app-modal__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1rem 0;
+}
+
+.app-modal__title {
+  margin: 0;
+  color: $color-text-primary;
+  font-size: 1.2rem;
+}
+
+.app-modal__close {
+  border: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: $color-input-bg;
+  color: $color-text-primary;
+}
+
+.app-modal__body {
+  padding: 1rem;
+}
